@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            
             $table->string('nombre');
             $table->string('apellido1');
             $table->string('apellido2');
@@ -27,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->date('fecha_nac');
             $table->string('dni');
             $table->string('localidad')->nullable();
-            
         });
     }
 
