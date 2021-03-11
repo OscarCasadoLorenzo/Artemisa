@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArtworkTable extends Migration
+class CreateArtworksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateArtworkTable extends Migration
      */
     public function up()
     {
-        Schema::create('artwork', function (Blueprint $table) {
+        Schema::create('artworks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('author');
-            $table->string('year');
+            $table->int('year');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateArtworkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artwork');
+        Schema::dropIfExists('artworks');
     }
 }
