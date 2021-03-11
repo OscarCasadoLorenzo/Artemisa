@@ -3,6 +3,7 @@ namespace Tests\Units;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\User;
 
 class UserTest extends TestCase
 {
@@ -18,9 +19,9 @@ class UserTest extends TestCase
         $usu->localidad = 'prueba';
         $usu->save();
 
-        $this->assertEquals($user->nombre, 'Test');
-        $this->assertEquals($user->email, 'test@prueba.com');
-        $this->assertEquals($user->fecha_nac, '2021-01-01');
+        $this->assertEquals($usu->nombre, 'Test');
+        $this->assertEquals($usu->email, 'test@prueba.com');
+        $this->assertEquals($usu->fecha_nac, '2021-01-01');
     }
 }
 

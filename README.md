@@ -11,4 +11,4 @@ php artisan migrate:status //ver estado
 
 php artisan migrate //lanza las migraciones
 
-
+php artisan make:model Artwork -m //crea migracion CreateArtworksTable y model Artwork.php
