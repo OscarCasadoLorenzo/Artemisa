@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMuseumTable extends Migration
+class CreateMuseumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateMuseumTable extends Migration
      */
     public function up()
     {
-        Schema::create('museum', function (Blueprint $table) {
+        Schema::create('museums', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
             $table->string('name');
             $table->integer('capacity');
             $table->string('adress');
@@ -30,6 +31,6 @@ class CreateMuseumTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('museum');
+        Schema::dropIfExists('museums');
     }
 }
