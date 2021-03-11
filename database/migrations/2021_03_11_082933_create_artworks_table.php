@@ -17,7 +17,7 @@ class CreateArtworksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('author');
-            $table->string('year');
+            $table->int('year');
         });
     }
 
