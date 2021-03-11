@@ -19,6 +19,9 @@ class CreateArtworksTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->integer('year');
+
+            $table->bigInteger('museum_id')->unsigned();
+            $table->foreign('museum_id')->references('id')->on('museums')->onDelete('cascade');
         });
     }
 
