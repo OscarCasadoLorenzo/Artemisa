@@ -24,7 +24,5 @@ class MuseumsTableSeeder extends Seeder
         $aux->codpost = '75001';
         $aux->province = 'Paris';
         $aux->save();
-
-
     }
 }
