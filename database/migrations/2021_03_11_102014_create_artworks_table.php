@@ -15,9 +15,10 @@ class CreateArtworksTable extends Migration
     {
         Schema::create('artworks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
             $table->string('title');
             $table->string('author');
-            $table->int('year');
+            $table->integer('year');
         });
     }
 
