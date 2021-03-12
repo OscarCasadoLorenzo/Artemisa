@@ -11,7 +11,7 @@ class Museum extends Model
     }
 
     public function users(){
-        return $this->belongToMAny('App\User');
+        return $this->belongsToMany('App\User','users_museums','museum_id','user_id');
     }
 
     public function id(){

@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function museums(){
-        return $this->belongToMany('App\Museum');
+        return $this->belongsToMany('App\Museum', 'users_museums','user_id','museum_id');
     }
 
     public function id(){

@@ -21,6 +21,8 @@ class UserTest extends TestCase
         $this->assertEquals($usu->nombre, 'Test');
         $this->assertEquals($usu->email, 'test@prueba.com');
         $this->assertEquals($usu->fecha_nac, '2021-01-01');
+
+        $usu->delete();
     }
 }
 

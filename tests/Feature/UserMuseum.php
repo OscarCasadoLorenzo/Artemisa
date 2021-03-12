@@ -36,11 +36,12 @@ class UserMuseum extends TestCase
         $museo->province = 'Alicante';
         $museo->save();
 
-        $musu = new UsersMuseum();
-        $musu->museum_id = $museo->id();
-        $musu->user_id = $usu->id();
+        $museo->users()->save($usu);
 
-        $this->assertEquals()
+        $this->assertEquals($museo->users[0]->nombre, $usu->nombre);
+        $this->assertEquals($usu->museums[0]->name, $museo->name);
 
+        $museo->delete();
+        $usu->delete();        
     }
 }

@@ -30,5 +30,6 @@ class ArtworkTest extends TestCase
         $this->assertEquals($aux->author, 'Vincent Van Gogh');
         $this->assertEquals($aux->year, 1889);
 
+        $aux->delete();
     }
 }
