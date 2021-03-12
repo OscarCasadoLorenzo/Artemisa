@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\UsersMuseum;
 
 class UsersMuseumTableSeeder extends Seeder
 {
@@ -11,6 +12,19 @@ class UsersMuseumTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $um = new UsersMuseum();
+        $um->museum_id = 1;
+        $um->user_id = 1;
+        $um->save();
+
+        $um = new UsersMuseum();
+        $um->museum_id = 1;
+        $um->user_id = 2;
+        $um->save();
+
+        $um = new UsersMuseum();
+        $um->museum_id = 2;
+        $um->user_id = 3;
+        $um->save();
     }
 }
