@@ -14,13 +14,14 @@ class ArtworkTest extends TestCase
      *
      * @return void
      */
-    public function artworkBasicTest()
+    public function testExample()
     {
         $aux = new Artwork();
 
         $aux->id = 23;
         $aux->title = 'La noche estrellada';
         $aux->author = 'Vincent Van Gogh';
+        $aux->museum_id = 1;
         $aux->year = 1889;
         $aux->save();
 

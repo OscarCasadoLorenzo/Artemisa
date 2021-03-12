@@ -13,4 +13,8 @@ class Museum extends Model
     public function users(){
         return $this->belongToMAny('App\User');
     }
+
+    public function id(){
+        return $this->id;
+    }
 }

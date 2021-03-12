@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function museums(){
         return $this->belongToMany('App\Museum');
     }
+
+    public function id(){
+        return $this->id;
+    }
 }
