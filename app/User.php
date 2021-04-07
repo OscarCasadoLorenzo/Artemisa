@@ -37,10 +37,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function museums(){
-        return $this->belongsToMany('App\Museum', 'users_museums','user_id','museum_id');
-    }
-
     public function id(){
         return $this->id;
     }

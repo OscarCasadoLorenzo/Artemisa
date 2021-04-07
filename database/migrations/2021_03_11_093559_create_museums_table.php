@@ -17,10 +17,9 @@ class CreateMuseumsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
-            $table->integer('capacity');
+            $table->string('location');
             $table->string('adress');
-            $table->integer('codpost');
-            $table->string('province');
+            $table->string('email');
         });
     }
 

@@ -12,20 +12,16 @@ class MuseumsTableSeeder extends Seeder
      */
     public function run()
     {
-        $aux = new Museum();
-        $aux->name = 'El Prado';
-        $aux->adress = 'Calle de Ruiz de Alarcón';
-        $aux->capacity = '438';
-        $aux->codpost = '28014';
-        $aux->province = 'Madrid';
-        $aux->save();
+        $m1 = new Museum();
+        $m1->name = 'El Prado';
+        $m1->adress = 'Calle de Ruiz de Alarcón';
+        $m1->location = 'Madrid, España';
+        $m1->save();
 
-        $aux = new Museum();
-        $aux->name = 'El Louvre';
-        $aux->adress = 'Rue de Rivoli';
-        $aux->capacity = '6000';
-        $aux->codpost = '75001';
-        $aux->province = 'Paris';
-        $aux->save();
+        $m2 = new Museum();
+        $m2->name = 'El Louvre';
+        $m2->adress = 'Rue de Rivoli';
+        $m2->location = 'Paris, Francia';
+        $m2->save();
     }
 }
