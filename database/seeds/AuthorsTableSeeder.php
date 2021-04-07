@@ -81,11 +81,11 @@ class AuthorsTableSeeder extends Seeder
         $aut9->movement('Realismo');
         $aut9->save(); 
 
-        $aut8 = new Author();
-        $aut8->name('Alekséi Venetsiánov');
-        $aut8->nacionality('Ruso');
-        $aut8->birth_date('1780');
-        $aut8->movement('Realismo');
-        $aut8->save();
+        $aut10 = new Author();
+        $aut10->name('Alekséi Venetsiánov');
+        $aut10->nacionality('Ruso');
+        $aut10->birth_date('1780');
+        $aut10->movement('Realismo');
+        $aut10->save();
     }
 }
