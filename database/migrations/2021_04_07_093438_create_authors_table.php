@@ -17,9 +17,9 @@ class CreateAuthorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('nacionality');
-            $table->integer('year');
+            $table->integer('birth_date');
             $table->string('movement');
-            $table->string('eWiki');
+            $table->string('eWiki')->nullable();
         });
     }
 
