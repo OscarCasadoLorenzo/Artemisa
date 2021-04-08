@@ -37,7 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function id(){
-        return $this->id;
+    //Relacion N:N con Artworks (loved)
+    public function artworks(){
+        return $this->belongToMany('App\Artwork');
     }
 }

@@ -19,11 +19,15 @@ class CreateArtworksTable extends Migration
             $table->string('title');
             $table->string('movement');
             $table->string('genre');
-            $table->string('dimensions');
+            $table->string('dimensions')->default('Desconocido');
             $table->integer('year');
             $table->string('eWiki')->nullable();
 
-            //Image
+            $table->bigInteger('author_id')->unsigned();
+            $table->foreign('author_id')->references('id')->on('authors');
+
+            $table->bigInteger('collection_id')->unsigned();
+            $table->foreign('collection_id')->references('id')->on('collections');
          });
     }
 

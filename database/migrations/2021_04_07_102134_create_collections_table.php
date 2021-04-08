@@ -17,6 +17,9 @@ class CreateCollectionsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
+
+            $table->bigInteger('museum_id')->unsigned();
+            $table->foreign('museum_id')->references('id')->on('museums')->onDElete('cascade');
         });
     }
 
