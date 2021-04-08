@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Museum;
 class MuseumController extends Controller
 {
-    public function prueba(Request $request){
+    public function test(Request $request){
         return "Acción de pruebas de MUSEUM-CONTROLLER";
     }
 

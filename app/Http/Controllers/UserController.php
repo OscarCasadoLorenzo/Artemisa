@@ -7,7 +7,7 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function prueba(Request $request){
+    public function test(Request $request){
         return "Acción de pruebas de USER-CONTROLLER";
     }
 

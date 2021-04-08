@@ -7,7 +7,7 @@ use App\Collection;
 
 class CollectionController extends Controller
 {
-    public function prueba(Request $request){
+    public function test(Request $request){
         return "Acción de pruebas de COLLECTION-CONTROLLER";
     }
 
