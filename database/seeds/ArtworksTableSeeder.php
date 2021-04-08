@@ -17,82 +17,82 @@ class ArtworksTableSeeder extends Seeder
     {
 
 ///////////////////////AUTORES///////////////////////
-$aut1 = new Author();
-$aut1->name = 'Johan Barthold Jongkind';
-$aut1->nacionality = 'Holandés';
-$aut1->birth_date = '1819';
-$aut1->movement = 'Impresionismo, Realismo';
-$aut1->save();
+        $aut1 = new Author();
+        $aut1->name = 'Johan Barthold Jongkind';
+        $aut1->nacionality = 'Holandés';
+        $aut1->birth_date = '1819';
+        $aut1->movement = 'Impresionismo, Realismo';
+        $aut1->save();
 
-$aut2 = new Author();
-$aut2->name = 'Jacob-Abraham-Camille Pissarro';
-$aut2->nacionality = 'Francés';
-$aut2->birth_date = '1830';
-$aut2->movement = 'Impresionismo, Neoimpresionismo';
-$aut2->save();
+        $aut2 = new Author();
+        $aut2->name = 'Jacob-Abraham-Camille Pissarro';
+        $aut2->nacionality = 'Francés';
+        $aut2->birth_date = '1830';
+        $aut2->movement = 'Impresionismo, Neoimpresionismo';
+        $aut2->save();
 
-$aut3 = new Author();
-$aut3->name = 'León Ferrari';
-$aut3->nacionality = 'Argentino';
-$aut3->birth_date = '1920';
-$aut3->movement = 'Arte Conceptual';
-$aut3->save();  
+        $aut3 = new Author();
+        $aut3->name = 'León Ferrari';
+        $aut3->nacionality = 'Argentino';
+        $aut3->birth_date = '1920';
+        $aut3->movement = 'Arte Conceptual';
+        $aut3->save();  
 
-$aut4 = new Author();
-$aut4->name = 'Ion Bitzan';
-$aut4->nacionality = 'Rumano';
-$aut4->birth_date = '1924';
-$aut4->movement = 'Arte Conceptual';
-$aut4->save(); 
+        $aut4 = new Author();
+        $aut4->name = 'Ion Bitzan';
+        $aut4->nacionality = 'Rumano';
+        $aut4->birth_date = '1924';
+        $aut4->movement = 'Arte Conceptual';
+        $aut4->save(); 
 
-$aut4 = new Author();
-$aut4->name = 'Wayne Thiebaud';
-$aut4->nacionality = 'Americano';
-$aut4->birth_date = '1920';
-$aut4->movement = 'Arte Pop';
-$aut4->save();      
+        $aut4 = new Author();
+        $aut4->name = 'Wayne Thiebaud';
+        $aut4->nacionality = 'Americano';
+        $aut4->birth_date = '1920';
+        $aut4->movement = 'Arte Pop';
+        $aut4->save();      
 
-$aut5 = new Author();
-$aut5->name = 'Paul Brill';
-$aut5->nacionality = 'Flamenco';
-$aut5->birth_date = '1554';
-$aut5->movement = 'Barroco';
-$aut5->save(); 
+        $aut5 = new Author();
+        $aut5->name = 'Paul Brill';
+        $aut5->nacionality = 'Flamenco';
+        $aut5->birth_date = '1554';
+        $aut5->movement = 'Barroco';
+        $aut5->save(); 
 
-$aut6 = new Author();
-$aut6->name = 'Caravaggio';
-$aut6->nacionality = 'Italiano';
-$aut6->birth_date = '1571';
-$aut6->movement = 'Barroco';
-$aut6->save();
+        $aut6 = new Author();
+        $aut6->name = 'Caravaggio';
+        $aut6->nacionality = 'Italiano';
+        $aut6->birth_date = '1571';
+        $aut6->movement = 'Barroco';
+        $aut6->save();
 
-$aut7 = new Author();
-$aut7->name = 'Hendrick Goltzius';
-$aut7->nacionality = 'Flamenco';
-$aut7->birth_date = '1558';
-$aut7->movement = 'Manierismo, Barroco';
-$aut7->save(); 
+        $aut7 = new Author();
+        $aut7->name = 'Hendrick Goltzius';
+        $aut7->nacionality = 'Flamenco';
+        $aut7->birth_date = '1558';
+        $aut7->movement = 'Manierismo, Barroco';
+        $aut7->save(); 
 
-$aut8 = new Author();
-$aut8->name = 'Jean-Baptiste-Camille Corot';
-$aut8->nacionality = 'Francés';
-$aut8->birth_date = '1796';
-$aut8->movement = 'Realismo';
-$aut8->save(); 
+        $aut8 = new Author();
+        $aut8->name = 'Jean-Baptiste-Camille Corot';
+        $aut8->nacionality = 'Francés';
+        $aut8->birth_date = '1796';
+        $aut8->movement = 'Realismo';
+        $aut8->save(); 
 
-$aut9 = new Author();
-$aut9->name = 'George Catlin';
-$aut9->nacionality = 'Americano';
-$aut9->birth_date = '1796';
-$aut9->movement = 'Realismo';
-$aut9->save(); 
+        $aut9 = new Author();
+        $aut9->name = 'George Catlin';
+        $aut9->nacionality = 'Americano';
+        $aut9->birth_date = '1796';
+        $aut9->movement = 'Realismo';
+        $aut9->save(); 
 
-$aut10 = new Author();
-$aut10->name = 'Alekséi Venetsiánov';
-$aut10->nacionality = 'Ruso';
-$aut10->birth_date = '1780';
-$aut10->movement = 'Realismo';
-$aut10->save();
+        $aut10 = new Author();
+        $aut10->name = 'Alekséi Venetsiánov';
+        $aut10->nacionality = 'Ruso';
+        $aut10->birth_date = '1780';
+        $aut10->movement = 'Realismo';
+        $aut10->save();
 /////////////////////////////////////////////////////
 
 
@@ -339,5 +339,127 @@ $aut10->save();
 
         // $m2->collection()->saveMany($real);
 
+        //Arte impresionista
+
+        $impre = new Collection();
+        $impre->name = "Impresionismo";
+        $impre->museum()->associate($m1);
+        $impre->save();
+
+        $aux = new Artwork();
+        $aux->title = 'View of a square in Avignon, with a hardware store';
+        $aux->author()->associate($aut1);
+        $aux->year = 1880;
+        $aux->genre = 'Paisaje Urbano';
+        $aux->collection()->associate($impre);
+        $aux->movement = 'Impresionismo';
+        $aux->dimensions = '27 x 37,1 cm';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'View of Rotterdam';
+        $aux->author()->associate($aut1);
+        $aux->year = 1867;
+        $aux->genre = 'Paisaje Urbano';
+        $aux->collection()->associate($impre);
+        $aux->movement = 'Impresionismo';
+        $aux->dimensions = '24,5 x 37,5 cm';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'Entrée de port, Honfleur';
+        $aux->author()->associate($aut1);
+        $aux->year = 1866;
+        $aux->genre = 'Marina';
+        $aux->collection()->associate($impre);
+        $aux->movement = 'Impresionismo';
+        $aux->dimensions = '42,5 x 56 cm';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'The Pont Royal and the Pavillon de Flore';
+        $aux->author()->associate($aut2);
+        $aux->year = 1903;
+        $aux->genre = 'Paisaje Urbano';
+        $aux->collection()->associate($impre);
+        $aux->movement = 'Impresionismo';
+        $aux->dimensions = '54 x 65 cm';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'The Treasury and the Academy, Gray Weather';
+        $aux->author()->associate($aut2);
+        $aux->year = 1903;
+        $aux->genre = 'Paisaje Urbano';
+        $aux->collection()->associate($impre);
+        $aux->movement = 'Impresionismo';
+        $aux->dimensions = '46 x 38 cm';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'The Malaquais Quay in the Morning, Sunny Weather';
+        $aux->author()->associate($aut2);
+        $aux->year = 1903;
+        $aux->genre = 'Paisaje Urbano';
+        $aux->collection()->associate($impre);
+        $aux->movement = 'Impresionismo';
+        $aux->dimensions = '41 x 33 cm';
+        $aux->save();
+
+        //Arte conceptual
+        $concep = new Collection();
+        $concep->name = "Impresionismo";
+        $concep->museum()->associate($m1);
+        $concep->save();
+
+        $aux = new Artwork();
+        $aux->title = 'Peces coloridos y bichos de Comfer';
+        $aux->author()->associate($aut3);
+        $aux->year = 1994;
+        $aux->genre = 'Instalación';
+        $aux->collection()->associate($concep);
+        $aux->movement = 'Arte Conceptual';
+        $aux->dimensions = '';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'Western Christian Civilization';
+        $aux->author()->associate($aut3);
+        $aux->year = 1965;
+        $aux->genre = 'Instalación';
+        $aux->collection()->associate($concep);
+        $aux->movement = 'Arte Conceptual';
+        $aux->dimensions = '';
+        $aux->save();
+        
+        $aux = new Artwork();
+        $aux->title = "Noah's Ark";
+        $aux->author()->associate($aut3);
+        $aux->year = 1964;
+        $aux->genre = 'Pintura Fugitiva';
+        $aux->collection()->associate($concep);
+        $aux->movement = 'Arte Conceptual';
+        $aux->dimensions = '';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'The Magic Square';
+        $aux->author()->associate($aut4);
+        $aux->year = 1975;
+        $aux->genre = 'Pintura Fugitiva';
+        $aux->collection()->associate($concep);
+        $aux->movement = 'Arte Conceptual';
+        $aux->dimensions = '';
+        $aux->save();
+
+        $aux = new Artwork();
+        $aux->title = 'The Fairies';
+        $aux->author()->associate($aut4);
+        $aux->year = 1996;
+        $aux->genre = 'Instalación';
+        $aux->collection()->associate($concep);
+        $aux->movement = 'Arte Conceptual';
+        $aux->dimensions = '';
+        $aux->save();
     }
 }
