@@ -23,8 +23,8 @@ Route::post('/api/register', 'UserController@register');
 Route::post('/api/login', 'UserController@login');
 
 //Rutas de extracción de listados
-Route::get('/users/test', 'UserController@getUsers');
-Route::get('/museums/test', 'MuseumController@getMuseums'); 
-Route::get('/collections/test', 'CollectionController@getCollections'); 
-Route::get('/artworks/test', 'ArtworkController@getArtworks'); 
-Route::get('/authors/test', 'AuthorController@getAuthors'); 
+Route::get('/users/', 'UserController@getUsers');
+Route::get('/museums/', 'MuseumController@getMuseums'); 
+Route::get('/collections/', 'CollectionController@getCollections'); 
+Route::get('/artworks/', 'ArtworkController@getArtworks'); 
+Route::get('/authors/', 'AuthorController@getAuthors'); 
