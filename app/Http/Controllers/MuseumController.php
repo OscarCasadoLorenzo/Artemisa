@@ -15,7 +15,7 @@ class MuseumController extends Controller
         return $u;
     }
 
-    public function createCollection(Request $request){
-        return view('create.collection');
+    public function createMuseum(Request $request){
+        return view('createObjects.museum');
     }
 }
