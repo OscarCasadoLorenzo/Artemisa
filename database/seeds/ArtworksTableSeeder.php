@@ -49,8 +49,8 @@ class ArtworksTableSeeder extends Seeder
         $aux3->dimensions = '30.5 x 40 cm';
         $aux3->save();
 
-        $pop->artworks()->saveMany(aux1, aux2, aux3);
-        
+        $pop->artworks()->saveMany($aux1, $aux2, $aux3);
+
 
 //Barroco
 
@@ -115,7 +115,7 @@ class ArtworksTableSeeder extends Seeder
         // $aux6->movement = 'Barroco';
         $aux6->collection()->associate($bar);
         $aux6->year = 1592;
-        $aux6->dimensions = '64,4 x 75,5 cm';
+        $aux6->dimensions = '64.4 x 75.5 cm';
         $aux6->save();
 
         $aux7 = new Artwork();
@@ -134,18 +134,104 @@ class ArtworksTableSeeder extends Seeder
         //$aux8->author = 'Hendrick Goltzius';
         $aux8->collection()->associate($bar);
         $aux8->year = 1608;
-        $aux8->dimensions = '203,5 x 134 cm';
+        $aux8->dimensions = '203.5 x 134 cm';
         $aux8->save();
 
-        
+
         $aux9 = new Artwork();
         $aux9->title = 'The Baptism of Christ';
         $aux9->genre = 'Pintura Religiosa';
         //$aux9->author = 'Hendrick Goltzius';
         $aux9->year = 1608;
-        $aux9->dimensions = '203,5 x 132,5 cm';
+        $aux9->dimensions = '203.5 x 132.5 cm';
         $aux9->save();
 
-        $bar->artworks()->saveMany(aux1, aux2, aux3, aux4, aux5, aux6, aux7, aux8);
+        $bar->artworks()->saveMany($aux1, $aux2, $aux3, $aux4, $aux5, $aux6, $aux7, $aux8);
+
+
+//REALISMO
+
+        $real = new Collection();
+        $real->name = "Realismo";
+        $real->save();
+        $aux1 = new Artwork();
+        $aux1->title = 'Woman Reading in a Landscape';
+        $aux1->genre = 'Retrato';
+        //$aux1->author = 'Wayne Thiebaud';
+        // $aux1->movement = 'Realismo';
+        $aux1->collection()->associate($real);
+        $aux1->year = 1869;
+        $aux1->dimensions = '54.3 x 37.5 cm';
+        $aux1->save();
+
+        $aux2 = new Artwork();
+        $aux2->title = 'The Woman with a Pearl';
+        $aux2->genre = 'Retrato';
+        //$aux2->author = 'Wayne Thiebaud';
+        // $aux2->movement = 'Realismo';
+        $aux2->collection()->associate($real);
+        $aux2->year = 1869;
+        $aux2->dimensions = '70 x 55 cm';
+        $aux2->save();
+
+        $aux3 = new Artwork();
+        $aux3->title = 'Ah-yaw-ne-tak-oár-ron, a Warrior';
+        $aux3->genre = 'Retrato';
+        //$aux3->author = 'Wayne Thiebaud';
+        // $aux3->movement = 'Realismo';
+        $aux3->collection()->associate($real);
+        $aux3->year = 1831;
+        $aux3->dimensions = '53.7 x 41.9 cm';
+        $aux3->save();
+
+
+
+        $aux4->title = 'Hól-te-mál-te-téz-te-néek-ee, Sam Perryman (Creek Chief)';
+        $aux4->genre = 'Retrato';
+        //$aux4->author = 'Wayne Thiebaud';
+        // $aux4->movement = 'Realismo';
+        $aux4->collection()->associate($real);
+        $aux4->year = 1834;
+        $aux4->dimensions = '73.7 x 60.9 cm';
+        $aux4->save();
+
+        $aux5->title = 'Mó-sho-la-túb-bee, He Who Puts Out and Kills, Chief of the Tribe';
+        $aux5->genre = 'Retrato';
+        //$aux5->author = 'Wayne Thiebaud';
+        // $aux5->movement = 'Realismo';
+        $aux5->collection()->associate($real);
+        $aux5->year = 1834;
+        $aux5->dimensions = '73.7 x 60.9 cm';
+        $aux5->save();
+
+        $aux6->title = 'Sleeping Herd-Boy';
+        $aux6->genre = 'Retrato';
+        //$aux6->author = 'Wayne Thiebaud';
+        // $aux6->movement = 'Realismo';
+        $aux6->collection()->associate($real);
+        $aux6->year = 1824;
+        $aux6->dimensions = '76.2 x 55.88 cm';
+        $aux6->save();
+
+        $aux7->title = 'Meeting at the Well';
+        $aux7->genre = 'Retrato';
+        //$aux7->author = 'Wayne Thiebaud';
+        // $aux7->movement = 'Realismo';
+        $aux7->collection()->associate($real);
+        $aux7->year = 1843;
+        $aux7->dimensions = '75.5 x 62.0 cm';
+        $aux7->save();
+
+        $aux8->title = 'Peasant Children in the Field';
+        $aux8->genre = 'Retrato';
+        //$aux8->author = 'Wayne Thiebaud';
+        // $aux8->movement = 'Realismo';
+        $aux8->collection()->associate($real);
+        $aux8->year = 1876;
+        $aux8->dimensions = '48.5 × 64.5 cm';
+        $aux8->save();
+
+        $real->artworks()->saveMany($aux1, $aux2, $aux3, $aux4, $aux5, $aux6, $aux7, $aux8);
+
     }
 }
