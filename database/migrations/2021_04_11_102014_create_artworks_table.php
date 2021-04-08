@@ -16,7 +16,7 @@ class CreateArtworksTable extends Migration
         Schema::create('artworks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('movement');
             $table->string('genre');
             $table->string('dimensions')->default('Desconocido');
