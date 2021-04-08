@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Collection;
 
 class CollectionsTableSeeder extends Seeder
 {

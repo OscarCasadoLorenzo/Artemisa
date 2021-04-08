@@ -19,7 +19,7 @@ class CreateMuseumsTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->string('adress');
-            $table->string('email');
+            $table->string('email')->nullable();
         });
     }
 

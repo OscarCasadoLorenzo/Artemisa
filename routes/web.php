@@ -1,5 +1,5 @@
 <?php
-
+use App\Museum;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +13,13 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/museums/{id}', function ($id) {
+    try{
+        $m = Museum::findOrFail($id);
+        return $m;
+    } catch(\Exception $e){
+        return response()->json(['message'=>"museum $id not found"], 404);
+    }
 });
