@@ -15,4 +15,8 @@ class ArtworkController extends Controller
         $u = Artwork::all();
         return $u;
     }
+
+    public function createArtwork(Request $request){
+        return view('create.artwork');
+    }
 }

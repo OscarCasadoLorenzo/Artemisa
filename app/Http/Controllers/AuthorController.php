@@ -15,4 +15,8 @@ class AuthorController extends Controller
         $u = Author::all();
         return $u;
     }
+
+    public function createAuthor(Request $request){
+        return view('create.author');
+    }
 }

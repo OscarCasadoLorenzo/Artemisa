@@ -18,6 +18,6 @@ class Artwork extends Model
 
     //Relacion 1:N con Collections (expone)
     public function collection(){
-        return $this->belongsTo('App\Collections');
+        return $this->belongsTo('App\Collection');
     }
 }

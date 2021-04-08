@@ -28,3 +28,10 @@ Route::get('/museums/', 'MuseumController@getMuseums');
 Route::get('/collections/', 'CollectionController@getCollections'); 
 Route::get('/artworks/', 'ArtworkController@getArtworks'); 
 Route::get('/authors/', 'AuthorController@getAuthors'); 
+
+//Creación de elementos
+Route::get('/users/create', 'UserController@createUser');
+Route::get('/museums/create', 'MuseumController@createMuseum'); 
+Route::get('/collections/create', 'CollectionController@createCollection'); 
+Route::get('/artworks/create', 'ArtworkController@createArtwork'); 
+Route::get('/authors/create', 'AuthorController@createAuthor'); 

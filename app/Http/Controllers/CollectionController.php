@@ -15,4 +15,8 @@ class CollectionController extends Controller
         $u = Collection::all();
         return $u;
     }
+
+    public function createCollection(Request $request){
+        return view('create.collection');
+    }
 }

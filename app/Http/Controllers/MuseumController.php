@@ -14,4 +14,8 @@ class MuseumController extends Controller
         $u = Museum::all();
         return $u;
     }
+
+    public function createCollection(Request $request){
+        return view('create.collection');
+    }
 }

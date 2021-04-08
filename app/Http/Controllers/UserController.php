@@ -16,4 +16,7 @@ class UserController extends Controller
        return $u;
     }
 
+    public function createUser(Request $request){
+        return view('create.user');
+    }
 }
