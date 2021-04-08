@@ -11,15 +11,20 @@ use App\Museum;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Rutas de prueba para el linkado de controladores
+Route::get('/users/test', 'UserController@test');
+Route::get('/museums/test', 'MuseumController@test'); 
+Route::get('/collections/test', 'CollectionController@test'); 
+Route::get('/artworks/test', 'ArtworkController@test'); 
+Route::get('/authors/test', 'AuthorController@test'); 
 
-Route::get('/museums/{id}', function ($id) {
-    try{
-        $m = Museum::findOrFail($id);
-        return $m;
-    } catch(\Exception $e){
-        return response()->json(['message'=>"museum $id not found"], 404);
-    }
-});
+//Registro e inicio de sesion
+Route::post('/api/register', 'UserController@register');
+Route::post('/api/login', 'UserController@login');
+
+//Rutas de extracción de listados
+Route::get('/users/test', 'UserController@getUsers');
+Route::get('/museums/test', 'MuseumController@getMuseums'); 
+Route::get('/collections/test', 'CollectionController@getCollections'); 
+Route::get('/artworks/test', 'ArtworkController@getArtworks'); 
+Route::get('/authors/test', 'AuthorController@getAuthors'); 
