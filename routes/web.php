@@ -12,7 +12,7 @@ use App\Museum;
 */
 
 
-
+Route::get('/', 'PagesController@show');
 //Rutas de prueba para el linkado de controladores
 Route::get('/users/test', 'UserController@test');
 Route::get('/museums/test', 'MuseumController@test'); 

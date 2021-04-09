@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Museums</title> 
-    </head>
+@extends('templates.main')
+
     <body>
         <h1>Create new museum</h1>
         <form action="/museums" method="post">
@@ -23,6 +19,6 @@
             <button type="submit">Submit</button>
         </form>
     </body>
-</html>
+
 
 

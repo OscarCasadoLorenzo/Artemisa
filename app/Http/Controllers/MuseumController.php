@@ -11,8 +11,9 @@ class MuseumController extends Controller
     }
 
     public function getMuseums(Request $request){
-        $u = Museum::all();
-        return $u;
+        $museums = Museum::all();
+        //Pasar un array como 2º parámetro a la view
+        return view('listObjects.museum', ['museums'=>$museums]);
     }
 
     public function createMuseum(){
