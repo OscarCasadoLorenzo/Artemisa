@@ -4,18 +4,33 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-        <title>Hello, world!</title>
+        <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">
+        <title>Artemisa | @yield('title', 'Default')</title>
     </head>
 
-    <body>
-        @include ("templates.navbar")
-        @yield("header")
-        
-        @yield("information")
+    <style>
+        body{
+            text-align:center;
+        }
 
-        @yield("footer")
- 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    </body>
+        .content{
+            width:80%;
+            margin: 0 auto;
+            display:flex;
+        }
+    </style>
+
+    <body>
+        <section class="content">
+            @yield("header")
+        </section>
+
+        <section class="content">
+            @yield("information")
+        </section>
+
+        <section class="content">
+            @yield("footer")
+        </section>
+    <body>
 </html>

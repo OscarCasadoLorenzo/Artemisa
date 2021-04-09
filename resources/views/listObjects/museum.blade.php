@@ -1,5 +1,13 @@
-@extends('templates.main')
+@extends("templates.main")
 
-@foreach($museums as $museum)
-    
-@endforeach
+@section('title', 'Museos')
+
+@section('header')
+    @include ("templates.navbar")
+@endsection
+
+@section('information')
+    @foreach($museums as $museum)
+        @include("templates.card")
+    @endforeach
+@endsection
