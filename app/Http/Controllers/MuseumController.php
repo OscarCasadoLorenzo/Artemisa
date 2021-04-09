@@ -15,15 +15,18 @@ class MuseumController extends Controller
         return $u;
     }
 
-    public function createMuseum(Request $request){
+    public function createMuseum(){
         return view('createObjects.museum');
     }
 
     public function saveMuseum(Request $request){
-        Museum::create(['name'=>$request->name,
-                        'location'=>$request->location,
-                        'address'=>$request->address,
-                        'email'=>$request->email]);
+        Museum::create($request->all());
         return "Museo $request->name añadido a la BD!";
     }
+
+    public function findMuseum(Request $request){
+      
+    }
+
+
 }

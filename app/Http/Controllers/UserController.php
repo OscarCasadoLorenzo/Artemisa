@@ -7,16 +7,24 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function test(Request $request){
+    public function test(){
         return "Acción de pruebas de USER-CONTROLLER";
     }
 
-    public function getUsers(Request $request){
+    public function getUsers(){
        $u = User::all();
        return $u;
     }
 
-    public function createUser(Request $request){
-        return view('create.user');
+    public function createUser(){
+        return view('createObjects.user');
+    }
+
+    public function saveUser(Request $request){
+
+    }
+
+    public function findUsers(){
+      
     }
 }

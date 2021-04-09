@@ -7,16 +7,24 @@ use App\Author;
 
 class AuthorController extends Controller
 {
-    public function test(Request $request){
+    public function test(){
         return "Acción de pruebas de AUTHOR-CONTROLLER";
     }
 
-    public function getAuthors(Request $request){
+    public function getAuthors(){
         $u = Author::all();
         return $u;
     }
 
-    public function createAuthor(Request $request){
-        return view('create.author');
+    public function createAuthor(){
+        return view('createObjects.author');
+    }
+
+    public function saveAuthor(Request $request){
+
+    }
+
+    public function findAuthors(Request $request){
+      
     }
 }

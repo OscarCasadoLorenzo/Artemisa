@@ -5,7 +5,7 @@
         <title>Museums</title> 
     </head>
     <body>
-        <h1>Create new museum</h1>
+        <h1>Create new collection</h1>
         <form action="/museums" method="post">
             @csrf
             <label for="nm">Name</label>
@@ -24,5 +24,3 @@
         </form>
     </body>
 </html>
-
-

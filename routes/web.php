@@ -39,4 +39,8 @@ Route::get('/artworks/create', 'ArtworkController@createArtwork');
 Route::get('/authors/create', 'AuthorController@createAuthor'); 
 
 //Creación de elementos
+Route::post('/users', 'UserController@saveUser'); 
 Route::post('/museums', 'MuseumController@saveMuseum'); 
+Route::post('/collections', 'CollectionController@saveCollection'); 
+Route::post('/artworks', 'ArtworkController@saveArtworks'); 
+Route::post('/authors', 'AuthorController@saveAuthors'); 

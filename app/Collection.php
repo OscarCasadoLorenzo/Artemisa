@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Collection extends Model
 {
+    protected $guarded = ['id']; 
+    
     //Relacion 1:N con Museum (composicion)
     public function museum(){
         return $this->belongsTo('App\Museum');

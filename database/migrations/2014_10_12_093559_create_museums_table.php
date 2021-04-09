@@ -16,7 +16,7 @@ class CreateMuseumsTable extends Migration
         Schema::create('museums', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('location');
             $table->string('address');
             $table->string('email')->nullable();

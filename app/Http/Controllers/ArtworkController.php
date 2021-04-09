@@ -7,21 +7,24 @@ use App\Artwork;
 
 class ArtworkController extends Controller
 {
-    public function test(Request $request){
+    public function test(){
         return "Acción de pruebas de ARTWORK-CONTROLLER";
     }
 
-    public function getArtworks(Request $request){
+    public function getArtworks(){
         $u = Artwork::all();
         return $u;
     }
 
-    public function createArtwork(Request $request){
-        return view('create.artwork');
+    public function createArtwork(){
+        return view('createObjects.artwork');
+    }
+    
+    public function saveArtwork(Request $request){
+
     }
 
     public function findArtworks(){
-        $query = Artwork::where('title', 'The Port')->orderBy('year', 'desc')->get();
-        return $query;
+      
     }
 }

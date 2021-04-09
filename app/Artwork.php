@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artwork extends Model
 {
+    protected $guarded = ['id']; 
+    
     //Relacion N:N con Users (loved)
     public function users(){
         return $this->belongToMany('App\User');

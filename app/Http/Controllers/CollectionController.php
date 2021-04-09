@@ -16,7 +16,15 @@ class CollectionController extends Controller
         return $u;
     }
 
-    public function createCollection(Request $request){
-        return view('create.collection');
+    public function createCollection(){
+        return view('createObjects.collection');
+    }
+
+    public function saveCollection(Request $request){
+
+    }
+
+    public function findCollection(Request $request){
+      
     }
 }

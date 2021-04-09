@@ -22,9 +22,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date');
             $table->string('location');
             $table->string('type')->default('visitor');
-
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable(); //Comprueba la estrucutura de email?
             $table->string('password');
             $table->rememberToken();
         });
