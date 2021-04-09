@@ -18,7 +18,7 @@ class CreateMuseumsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('location');
-            $table->string('adress');
+            $table->string('address');
             $table->string('email')->nullable();
         });
     }

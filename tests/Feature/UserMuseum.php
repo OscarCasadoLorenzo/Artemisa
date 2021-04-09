@@ -31,7 +31,7 @@ class UserMuseum extends TestCase
         $museo = new Museum();
         $museo->name = 'Museo de Rojales';
         $museo->capacity = '30';
-        $museo->adress = 'Plaza de España';
+        $museo->address = 'Plaza de España';
         $museo->codpost = '03170';
         $museo->province = 'Alicante';
         $museo->save();

@@ -19,4 +19,9 @@ class ArtworkController extends Controller
     public function createArtwork(Request $request){
         return view('create.artwork');
     }
+
+    public function findArtworks(){
+        $query = Artwork::where('title', 'The Port')->orderBy('year', 'desc')->get();
+        return $query;
+    }
 }

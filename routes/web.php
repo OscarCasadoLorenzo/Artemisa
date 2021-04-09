@@ -11,6 +11,8 @@ use App\Museum;
 |
 */
 
+
+
 //Rutas de prueba para el linkado de controladores
 Route::get('/users/test', 'UserController@test');
 Route::get('/museums/test', 'MuseumController@test'); 
@@ -35,3 +37,6 @@ Route::get('/museums/create', 'MuseumController@createMuseum');
 Route::get('/collections/create', 'CollectionController@createCollection'); 
 Route::get('/artworks/create', 'ArtworkController@createArtwork'); 
 Route::get('/authors/create', 'AuthorController@createAuthor'); 
+
+//Creación de elementos
+Route::post('/museums', 'MuseumController@saveMuseum'); 
