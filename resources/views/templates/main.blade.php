@@ -18,18 +18,22 @@
             margin: 0 auto;
             display:flex;
         }
+
+        #information{
+            margin-top:20px;
+        }
     </style>
 
     <body>
-        <section class="content">
+        <section class="content" id="header">
             @yield("header")
         </section>
 
-        <section class="content">
+        <section class="content" id="information">
             @yield("information")
         </section>
 
-        <section class="content">
+        <section class="content" id="footer">
             @yield("footer")
         </section>
     <body>
