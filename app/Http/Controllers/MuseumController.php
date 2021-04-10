@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Museum;
+use \App\Http\Controllers\CollectionController;
+
 class MuseumController extends Controller
 {
     public function getMuseums(){
@@ -19,6 +21,12 @@ class MuseumController extends Controller
     public function saveMuseum(Request $request){
         Museum::create($request->all());
         return "Museo $request->name añadido a la BD!";
+    }
+
+    public function getMuseum($id){
+      $museum = Museum::find($id);
+      $collections = CollectionController::getCollections();
+      return view('singleObject.museum', ['museum'=>$museum, 'collections'=>$collections]);
     }
 
     public function findMuseum(){

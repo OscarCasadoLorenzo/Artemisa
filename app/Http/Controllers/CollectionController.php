@@ -7,9 +7,9 @@ use App\Collection;
 
 class CollectionController extends Controller
 {
-    public function getCollections(){
-        $u = Collection::all();
-        return $u;
+    public static function getCollections(){
+        $collections = Collection::all();
+        return $collections;
     }
 
     public function createCollection(){
