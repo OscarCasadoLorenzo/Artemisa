@@ -1,5 +1,6 @@
 @extends('templates.main')
 
+@section('information')
     <body>
         <h1>Create new museum</h1>
         <form action="/museums" method="post">
@@ -19,6 +20,7 @@
             <button type="submit">Submit</button>
         </form>
     </body>
+@endsection
 
 
 
