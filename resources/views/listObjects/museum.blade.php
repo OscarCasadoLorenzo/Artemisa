@@ -10,13 +10,14 @@
     @foreach($museums as $museum)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img
-                    src="https://mdbootstrap.com/img/new/standard/nature/111.jpg"
-                    class="img-fluid"
-                />
                 <a href="/museums/{{$museum->id}}">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    <img
+                        src="https://mdbootstrap.com/img/new/standard/nature/111.jpg"
+                        class="img-fluid"
+                    />
                 </a>
+
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
             </div>
 
             <div class="card-body">
