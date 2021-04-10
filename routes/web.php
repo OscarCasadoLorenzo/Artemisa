@@ -22,9 +22,7 @@ Route::get('/authors/', 'AuthorController@getAuthors');
 
 //RUTAS + COMPLEJAS
 Route::get('/museums/{id}', 'MuseumController@getMuseum'); 
-Route::get('/museums/{id}/collections', 'CollectionController@getCollections'); 
 Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollection');
-Route::get('/museums/{idM}/collections/{idC}/artworks', 'CollectionController@getArtworks');
 Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'CollectionController@getArtwork');
 
 

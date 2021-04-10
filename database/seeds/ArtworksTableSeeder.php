@@ -111,7 +111,7 @@ class ArtworksTableSeeder extends Seeder
         //inicializacion de colecciones
         $pop = new Collection();
         $pop->name = "Arte Pop";
-        $pop->museum()->associate($m1);
+        $pop->museum()->associate($m2);
         $pop->save();
         //Arte Pop
         $aux1 = new Artwork();
@@ -154,7 +154,7 @@ class ArtworksTableSeeder extends Seeder
 
         $bar = new Collection();
         $bar->name = "Barroco";
-        $bar->museum()->associate($m1);
+        $bar->museum()->associate($m2);
         $bar->save();
 
         $aux1 = new Artwork();
@@ -256,7 +256,7 @@ class ArtworksTableSeeder extends Seeder
 
         $real = new Collection();
         $real->name = "Realismo";
-        $real->museum()->associate($m1);
+        $real->museum()->associate($m2);
         $real->save();
 
         $aux1 = new Artwork();
@@ -408,7 +408,7 @@ class ArtworksTableSeeder extends Seeder
 
         //Arte conceptual
         $concep = new Collection();
-        $concep->name = "Impresionismo";
+        $concep->name = "Arte Conceptual";
         $concep->museum()->associate($m1);
         $concep->save();
 
