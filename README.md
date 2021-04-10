@@ -3,6 +3,7 @@
 git config --global user.name "josemicarrion99"
 git config --global user.email "jmcp25@alu.ua.es"
 
+php artisan migrate --seed // para llenar las tablas del phpmyadmin
 
 php artisan make:migration create_artwork_table --create=artwork //crear tabla
 
