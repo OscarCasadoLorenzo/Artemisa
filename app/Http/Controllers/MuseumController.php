@@ -25,7 +25,7 @@ class MuseumController extends Controller
 
     public function getMuseum($id){
       $museum = Museum::find($id);
-      $collections = CollectionController::getCollections();
+      $collections = CollectionController::getCollections($id);
       return view('singleObject.museum', ['museum'=>$museum, 'collections'=>$collections]);
     }
 

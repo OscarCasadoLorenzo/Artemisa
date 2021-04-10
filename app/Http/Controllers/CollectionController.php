@@ -7,8 +7,8 @@ use App\Collection;
 
 class CollectionController extends Controller
 {
-    public static function getCollections(){
-        $collections = Collection::where('museum_id','=', '1')->get();
+    public static function getCollections($id){
+        $collections = Collection::where('museum_id','=', $id)->get();
         return $collections;
     }
 
