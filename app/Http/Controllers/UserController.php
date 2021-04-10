@@ -7,10 +7,6 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function test(){
-        return "Acción de pruebas de USER-CONTROLLER";
-    }
-
     public function getUsers(){
        $u = User::all();
        return $u;

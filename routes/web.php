@@ -13,23 +13,28 @@ use App\Museum;
 
 
 Route::get('/', 'PagesController@show');
-//Rutas de prueba para el linkado de controladores
-Route::get('/users/test', 'UserController@test');
-Route::get('/museums/test', 'MuseumController@test'); 
-Route::get('/collections/test', 'CollectionController@test'); 
-Route::get('/artworks/test', 'ArtworkController@test'); 
-Route::get('/authors/test', 'AuthorController@test'); 
-
-//Registro e inicio de sesion
-Route::post('/api/register', 'UserController@register');
-Route::post('/api/login', 'UserController@login');
 
 //Rutas de extracción de listados
 Route::get('/users/', 'UserController@getUsers');
 Route::get('/museums/', 'MuseumController@getMuseums'); 
-Route::get('/collections/', 'CollectionController@getCollections'); 
-Route::get('/artworks/', 'ArtworkController@getArtworks'); 
 Route::get('/authors/', 'AuthorController@getAuthors'); 
+
+
+//RUTAS + COMPLEJAS
+Route::get('/museums/{id}', 'MuseumController@getMuseum'); 
+Route::get('/museums/{id}/collections', 'CollectionController@getCollections'); 
+Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollection');
+Route::get('/museums/{idM}/collections/{idC}/artworks', 'CollectionController@getArtworks');
+Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'CollectionController@getArtwork');
+
+
+//Inserción de elementos
+Route::post('/users', 'UserController@saveUser'); 
+Route::post('/museums', 'MuseumController@saveMuseum'); 
+Route::post('/authors', 'AuthorController@saveAuthors'); 
+Route::post('/collections', 'CollectionController@saveCollection'); 
+Route::post('/artworks', 'ArtworkController@saveArtworks'); 
+
 
 //Creación de elementos
 Route::get('/users/create', 'UserController@createUser');
@@ -38,9 +43,4 @@ Route::get('/collections/create', 'CollectionController@createCollection');
 Route::get('/artworks/create', 'ArtworkController@createArtwork'); 
 Route::get('/authors/create', 'AuthorController@createAuthor'); 
 
-//Creación de elementos
-Route::post('/users', 'UserController@saveUser'); 
-Route::post('/museums', 'MuseumController@saveMuseum'); 
-Route::post('/collections', 'CollectionController@saveCollection'); 
-Route::post('/artworks', 'ArtworkController@saveArtworks'); 
-Route::post('/authors', 'AuthorController@saveAuthors'); 
+

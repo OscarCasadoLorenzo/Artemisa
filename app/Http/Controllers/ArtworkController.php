@@ -7,10 +7,6 @@ use App\Artwork;
 
 class ArtworkController extends Controller
 {
-    public function test(){
-        return "Acción de pruebas de ARTWORK-CONTROLLER";
-    }
-
     public function getArtworks(){
         $u = Artwork::all();
         return $u;

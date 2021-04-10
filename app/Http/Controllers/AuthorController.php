@@ -7,10 +7,6 @@ use App\Author;
 
 class AuthorController extends Controller
 {
-    public function test(){
-        return "Acción de pruebas de AUTHOR-CONTROLLER";
-    }
-
     public function getAuthors(){
         $u = Author::all();
         return $u;

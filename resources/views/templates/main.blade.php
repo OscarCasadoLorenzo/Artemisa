@@ -16,11 +16,12 @@
         .content{
             width:80%;
             margin: 0 auto;
-            display:flex;
         }
 
         #information{
             margin-top:20px;
+            display:flex;
+            justify-content:center;
         }
     </style>
 
