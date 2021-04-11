@@ -8,8 +8,8 @@ use App\Author;
 class AuthorController extends Controller
 {
     public function getAuthors(){
-        $u = Author::all();
-        return $u;
+        $authors = Author::all();
+        return view('listObjects.author', ['authors'=>$authors]);
     }
 
     public function createAuthor(){
