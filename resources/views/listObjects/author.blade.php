@@ -6,6 +6,14 @@
     @include ("templates.navbar")
 @endsection
 
+<style>
+.img-fluid{
+    width:400px;
+    height:150px !important;
+    object-fit:fill;
+}
+</style>
+
 @section('information')
     @foreach($authors as $author)
         <div class="card">

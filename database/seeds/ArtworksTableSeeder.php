@@ -390,10 +390,6 @@ class ArtworksTableSeeder extends Seeder
         $aux9->dimensions = '203.5 x 132.5 cm';
         $aux9->save();
 
-        // $bar->artworks()->saveMany($aux1, $aux2, $aux3, $aux4, $aux5, $aux6, $aux7, $aux8);
-
-        // $m1->collection()->saveMany($pop, $bar);
-
 
 //REALISMO
 
