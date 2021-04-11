@@ -7,9 +7,9 @@ use App\Artwork;
 
 class ArtworkController extends Controller
 {
-    public function getArtworks(){
-        $u = Artwork::all();
-        return $u;
+    public function getArtworks($id){
+        $artworks = Artwork::where('collection_id','=', $id)->get();
+        return $artworks;
     }
 
     public function createArtwork(){

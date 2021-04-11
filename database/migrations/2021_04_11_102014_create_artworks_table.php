@@ -21,6 +21,7 @@ class CreateArtworksTable extends Migration
             $table->string('genre');
             $table->string('dimensions')->default('Desconocido');
             $table->integer('year');
+            $table->string('imgRoute')->default('images/others/default.jpg');
             $table->string('eWiki')->nullable();
 
             $table->bigInteger('author_id')->unsigned();

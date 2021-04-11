@@ -13,7 +13,7 @@
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
     <div class="col-lg-7">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="http://placehold.it/900x400" alt="">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src={{asset($museum->imgRoute)}} alt="">
     </div>
 
     
@@ -45,7 +45,7 @@
                             <h2 class="card-title">{{$collection->name}}</h2>
                         </div>
                         <div class="card-footer">
-                            <a href="/museums/{{$museum->id}}/{{$collection->id}}" class="btn btn-primary btn-sm">See artworks</a>
+                            <a href="/museums/{{$museum->id}}/collections/{{$collection->id}}/artworks" class="btn btn-primary btn-sm">See artworks</a>
                         </div>
                     </div>
                 </div>

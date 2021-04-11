@@ -21,7 +21,7 @@ class CreateAuthorsTable extends Migration
             $table->integer('birth_date');
             $table->string('movement');
             $table->string('eWiki')->nullable();
-        });
+            $table->string('imgRoute')->default('images/others/default.jpg');        });
     }
 
     /**

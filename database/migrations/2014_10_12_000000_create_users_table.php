@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('type')->default('visitor');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('imgRoute')->default('images/others/default.jpg');
             $table->rememberToken();
         });
     }

@@ -18,6 +18,7 @@ Route::get('/', 'PagesController@show');
 Route::get('/users/', 'UserController@getUsers');
 Route::get('/museums/', 'MuseumController@getMuseums'); 
 Route::get('/authors/', 'AuthorController@getAuthors'); 
+Route::get('/artworks/', 'ArtworkController@getArtworks'); 
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser'); 
@@ -37,7 +38,8 @@ Route::get('/authors/create', 'AuthorController@createAuthor');
 //RUTAS + COMPLEJAS
 Route::get('/museums/{id}', 'MuseumController@getMuseum'); 
 Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollection');
-Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'CollectionController@getArtwork');
+Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getArtworks');
+//Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'ArtworkController@getArtwork');
 
 
 

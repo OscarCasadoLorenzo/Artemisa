@@ -12,7 +12,7 @@
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <a href="/museums/{{$museum->id}}">
                     <img
-                        src="https://mdbootstrap.com/img/new/standard/nature/111.jpg"
+                        src= {{asset($museum->imgRoute)}}
                         class="img-fluid"
                     />
                 </a>

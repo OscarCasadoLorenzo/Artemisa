@@ -20,7 +20,7 @@ class CreateMuseumsTable extends Migration
             $table->string('location');
             $table->string('address');
             $table->string('email')->nullable();
-        });
+            $table->string('imgRoute')->default('images/others/default.jpg');        });
     }
 
     /**
