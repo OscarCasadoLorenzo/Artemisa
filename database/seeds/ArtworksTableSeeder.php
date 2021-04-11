@@ -22,6 +22,7 @@ class ArtworksTableSeeder extends Seeder
         $aut1->nacionality = 'Holandés';
         $aut1->birth_date = '1819';
         $aut1->movement = 'Impresionismo, Realismo';
+        $aut1->imgRoute = 'images/authors/johan_barthold_jongkind.png';
         $aut1->save();
 
         $aut2 = new Author();
@@ -29,6 +30,7 @@ class ArtworksTableSeeder extends Seeder
         $aut2->nacionality = 'Francés';
         $aut2->birth_date = '1830';
         $aut2->movement = 'Impresionismo, Neoimpresionismo';
+        $aut2->imgRoute = 'images/authors/jacob_abraham_camille_pissarro.png';
         $aut2->save();
 
         $aut3 = new Author();
@@ -36,6 +38,7 @@ class ArtworksTableSeeder extends Seeder
         $aut3->nacionality = 'Argentino';
         $aut3->birth_date = '1920';
         $aut3->movement = 'Arte Conceptual';
+        $aut3->imgRoute = 'images/authors/leon_ferrari.png';
         $aut3->save();
 
         $aut4 = new Author();
@@ -43,6 +46,7 @@ class ArtworksTableSeeder extends Seeder
         $aut4->nacionality = 'Rumano';
         $aut4->birth_date = '1924';
         $aut4->movement = 'Arte Conceptual';
+        $aut4->imgRoute = 'images/authors/ion_bitzan.png';
         $aut4->save();
 
         $aut4 = new Author();
@@ -50,6 +54,7 @@ class ArtworksTableSeeder extends Seeder
         $aut4->nacionality = 'Americano';
         $aut4->birth_date = '1920';
         $aut4->movement = 'Arte Pop';
+        $aut4->imgRoute = 'images/authors/wayne_thiebaud.png';
         $aut4->save();
 
         $aut5 = new Author();
@@ -57,6 +62,7 @@ class ArtworksTableSeeder extends Seeder
         $aut5->nacionality = 'Flamenco';
         $aut5->birth_date = '1554';
         $aut5->movement = 'Barroco';
+        $aut5->imgRoute = 'images/authors/paul_brill.png';
         $aut5->save();
 
         $aut6 = new Author();
@@ -64,6 +70,7 @@ class ArtworksTableSeeder extends Seeder
         $aut6->nacionality = 'Italiano';
         $aut6->birth_date = '1571';
         $aut6->movement = 'Barroco';
+        $aut6->imgRoute = 'images/authors/caravaggio.png';
         $aut6->save();
 
         $aut7 = new Author();
@@ -71,6 +78,7 @@ class ArtworksTableSeeder extends Seeder
         $aut7->nacionality = 'Flamenco';
         $aut7->birth_date = '1558';
         $aut7->movement = 'Manierismo, Barroco';
+        $aut7->imgRoute = 'images/authors/hendrick_goltzius.png';
         $aut7->save();
 
         $aut8 = new Author();
@@ -78,6 +86,7 @@ class ArtworksTableSeeder extends Seeder
         $aut8->nacionality = 'Francés';
         $aut8->birth_date = '1796';
         $aut8->movement = 'Realismo';
+        $aut8->imgRoute = 'images/authors/jean_baptiste_camille_corot.png';
         $aut8->save();
 
         $aut9 = new Author();
@@ -85,6 +94,7 @@ class ArtworksTableSeeder extends Seeder
         $aut9->nacionality = 'Americano';
         $aut9->birth_date = '1796';
         $aut9->movement = 'Realismo';
+        $aut9->imgRoute = 'images/authors/george_catlin.png';
         $aut9->save();
 
         $aut10 = new Author();
@@ -92,6 +102,7 @@ class ArtworksTableSeeder extends Seeder
         $aut10->nacionality = 'Ruso';
         $aut10->birth_date = '1780';
         $aut10->movement = 'Realismo';
+        $aut10->imgRoute = 'images/authors/aleksei_venetsianov.png';
         $aut10->save();
 /////////////////////////////////////////////////////
 

@@ -9,7 +9,7 @@ class ArtworkController extends Controller
 {
     public function getArtworks($id){
         $artworks = Artwork::where('collection_id','=', $id)->get();
-        return $artworks;
+        return view('listObjects.artwork', ['artworks'=>$artworks]);
     }
 
     public function createArtwork(){
