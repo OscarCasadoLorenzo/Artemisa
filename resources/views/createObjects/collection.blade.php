@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Museums</title> 
+        <title>Collections</title> 
     </head>
     <body>
         <h1>Create new collection</h1>

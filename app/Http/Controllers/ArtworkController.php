@@ -17,7 +17,7 @@ class ArtworkController extends Controller
     }
     
     public function saveArtwork(Request $request){
-
+        
     }
 
     public function findArtworks(){

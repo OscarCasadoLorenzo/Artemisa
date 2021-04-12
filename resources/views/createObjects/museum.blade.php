@@ -3,7 +3,7 @@
 @section('information')
     <body>
         <h1>Create new museum</h1>
-        <form action="/museums" method="post">
+        <form action="/museums" method="post" enctype="multipart/form-data">
             @csrf
             <label for="nm">Name</label>
             <input type="text" id="nm" name="name" autofocus>
@@ -17,6 +17,9 @@
             <label for="em">Email</label>
             <input type="email" id="em" name="email" autofocus>
             
+            <label for="img">Image</label>
+            <input type="file" id="img" name="imgRoute" autofocus>
+
             <button type="submit">Submit</button>
         </form>
     </body>

@@ -19,7 +19,16 @@ class MuseumController extends Controller
     }
 
     public function saveMuseum(Request $request){
-        Museum::create($request->all());
+
+        $input = $request->all();
+        if($file = $request->file('imgRoute')){
+            $filename = $file->getClientOriginalName();
+            $file->move('images/museums', $filename);
+            $path = '/images/museums/';
+            $filepath = $path . $filename;
+            $input['imgRoute'] = $filepath;
+        }
+        Museum::create($input);
         return "Museo $request->name añadido a la BD!";
     }
 
