@@ -138,6 +138,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($impre);
         $aux->movement = 'Impresionismo';
         $aux->dimensions = '27 x 37,1 cm';
+        $aux->imgRoute = 'images/artworks/view_of_a_square_in_avignon.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -148,6 +149,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($impre);
         $aux->movement = 'Impresionismo';
         $aux->dimensions = '24,5 x 37,5 cm';
+        $aux->imgRoute = 'images/artworks/view_of_rotterdam.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -158,6 +160,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($impre);
         $aux->movement = 'Impresionismo';
         $aux->dimensions = '42,5 x 56 cm';
+        $aux->imgRoute = 'images/artworks/entree_de_port.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -168,6 +171,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($impre);
         $aux->movement = 'Impresionismo';
         $aux->dimensions = '54 x 65 cm';
+        $aux->imgRoute = 'images/artworks/the_pont_royal_and_the_pavillon_de_flore.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -178,6 +182,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($impre);
         $aux->movement = 'Impresionismo';
         $aux->dimensions = '46 x 38 cm';
+        $aux->imgRoute = 'images/artworks/the_treasury_and_the_academy.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -188,6 +193,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($impre);
         $aux->movement = 'Impresionismo';
         $aux->dimensions = '41 x 33 cm';
+        $aux->imgRoute = 'images/artworks/the_malaquais_quay_in_the_morning.png';
         $aux->save();
 
         //Arte conceptual
@@ -204,6 +210,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
         $aux->dimensions = '';
+        $aux->imgRoute = 'images/artworks/peces_coloridos_y_bichos_de_comfer.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -214,6 +221,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
         $aux->dimensions = '';
+        $aux->imgRoute = 'images/artworks/western_christian_civilization.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -224,6 +232,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
         $aux->dimensions = '';
+        $aux->imgRoute = 'images/artworks/noahs_ark.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -234,6 +243,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
         $aux->dimensions = '';
+        $aux->imgRoute = 'images/artworks/the_magic_square.png';
         $aux->save();
 
         $aux = new Artwork();
@@ -244,6 +254,7 @@ class ArtworksTableSeeder extends Seeder
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
         $aux->dimensions = '';
+        $aux->imgRoute = 'images/artworks/the_fairies.png';
         $aux->save();
 
 
@@ -308,6 +319,7 @@ class ArtworksTableSeeder extends Seeder
         $aux1->collection()->associate($bar);
         $aux1->year = 1580;
         $aux1->dimensions = '29.5 x 21.5';
+        $aux1->imgRoute = 'images/artworks/landscape_with_roman_ruins.png';
         $aux1->save();
 
         $aux2 = new Artwork();
@@ -318,6 +330,7 @@ class ArtworksTableSeeder extends Seeder
         $aux2->collection()->associate($bar);
         $aux2->year = 1611;
         $aux2->dimensions = '105 x 150 cm';
+        $aux2->imgRoute = 'images/artworks/the_port.png';
         $aux2->save();
 
         $aux3 = new Artwork();
@@ -328,6 +341,7 @@ class ArtworksTableSeeder extends Seeder
         $aux3->collection()->associate($bar);
         $aux3->year = 1600;
         $aux3->dimensions = '71 x 78 cm';
+        $aux3->imgRoute = 'images/artworks/self_portrait.png';
         $aux3->save();
 
         $aux4 = new Artwork();
@@ -338,6 +352,7 @@ class ArtworksTableSeeder extends Seeder
         $aux4->collection()->associate($bar);
         $aux4->year = 1593;
         $aux4->dimensions = '67 x 53 cm';
+        $aux4->imgRoute = 'images/artworks/baco_enfermo.png';
         $aux4->save();
 
         $aux5 = new Artwork();
@@ -348,6 +363,7 @@ class ArtworksTableSeeder extends Seeder
         $aux5->collection()->associate($bar);
         $aux5->year = 1602;
         $aux5->dimensions = '156 x 113 cm';
+        $aux5->imgRoute = 'images/artworks/el_amor_victorioso.png';
         $aux5->save();
 
         $aux6 = new Artwork();
@@ -358,6 +374,7 @@ class ArtworksTableSeeder extends Seeder
         $aux6->collection()->associate($bar);
         $aux6->year = 1592;
         $aux6->dimensions = '64.4 x 75.5 cm';
+        $aux6->imgRoute = 'images/artworks/fanciullo_che_monda_un_pomo.png';
         $aux6->save();
 
         $aux7 = new Artwork();
@@ -368,6 +385,7 @@ class ArtworksTableSeeder extends Seeder
         $aux7->collection()->associate($bar);
         $aux7->year = 1600;
         $aux7->dimensions = '189 x 248 cm';
+        $aux7->imgRoute = 'images/artworks/cadmus_slays_the_dragon.png';
         $aux7->save();
 
         $aux8 = new Artwork();
@@ -378,6 +396,7 @@ class ArtworksTableSeeder extends Seeder
         $aux8->collection()->associate($bar);
         $aux8->year = 1608;
         $aux8->dimensions = '203.5 x 134 cm';
+        $aux8->imgRoute = 'images/artworks/adam_and_eve.png';
         $aux8->save();
 
         $aux9 = new Artwork();
@@ -388,6 +407,7 @@ class ArtworksTableSeeder extends Seeder
         $aux9->collection()->associate($bar);
         $aux9->year = 1608;
         $aux9->dimensions = '203.5 x 132.5 cm';
+        $aux9->imgRoute = 'images/artworks/the_baptism_of_christ.png';
         $aux9->save();
 
 
