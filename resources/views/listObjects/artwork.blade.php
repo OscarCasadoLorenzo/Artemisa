@@ -26,4 +26,5 @@
             </div>
         </div>
     @endforeach
+    {{$artworks->links()}}
 @endsection

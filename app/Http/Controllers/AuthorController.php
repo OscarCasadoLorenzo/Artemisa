@@ -8,7 +8,7 @@ use App\Author;
 class AuthorController extends Controller
 {
     public function getAuthors(){
-        $authors = Author::all();
+        $authors = Author::paginate(4);
         return view('listObjects.author', ['authors'=>$authors]);
     }
 
