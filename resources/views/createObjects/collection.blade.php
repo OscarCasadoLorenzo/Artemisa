@@ -23,11 +23,6 @@
                 </select>
             </div>
             </br>
-            <div class="form-group">
-                <label for="img">Image&nbsp;</label>
-                <input type="file" id="img" name="imgRoute" autofocus>
-            </div>
-            </br>
             <button type="submit">Submit</button>
         </form>
     </body>
