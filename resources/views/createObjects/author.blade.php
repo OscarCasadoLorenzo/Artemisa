@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Create new author</h1>
-        <form action="/authors" method="post">
+        <form action="/authors" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">    
                 <label for="nm">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
