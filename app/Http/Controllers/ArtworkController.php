@@ -17,7 +17,16 @@ class ArtworkController extends Controller
     }
     
     public function saveArtwork(Request $request){
-        
+        $input = $request->all();
+        if($file = $request->file('imgRoute')){
+            $filename = $file->getClientOriginalName();
+            $file->move('images/artworks', $filename);
+            $path = '/images/artworks/';
+            $filepath = $path . $filename;
+            $input['imgRoute'] = $filepath;
+        }
+        Museum::create($input);
+        return "Obra $request->name añadida a la BD!";
     }
 
     public function findArtworks(){

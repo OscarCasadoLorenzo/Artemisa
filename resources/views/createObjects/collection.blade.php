@@ -6,20 +6,28 @@
     </head>
     <body>
         <h1>Create new collection</h1>
-        <form action="/museums" method="post">
+        <form action="/collections" method="post">
             @csrf
-            <label for="nm">Name</label>
-            <input type="text" id="nm" name="name" autofocus>
-            
-            <label for="lc">Location</label>
-            <input type="text" id="lc" name="location" autofocus>
-            
-            <label for="ad">Address</label>
-            <input type="text" id="ad" name="address" autofocus>
-            
-            <label for="em">Email</label>
-            <input type="email" id="em" name="email" autofocus>
-            
+            <div class="form-group">
+                <label for="nm">Name&nbsp;</label>
+                <input type="text" id="nm" name="name" autofocus>
+            </div>
+            </br>
+            <div class="form-group">
+                <label for="im">Museo&nbsp;</label>
+                <select name="museum_id" id="im" class="form-control">
+                    <option value="">Escoge museo</option>
+                    @foreach ($museums as $museum)
+                    <option value="{{$museum['id']}}">{{$museum['name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+            </br>
+            <div class="form-group">
+                <label for="img">Image&nbsp;</label>
+                <input type="file" id="img" name="imgRoute" autofocus>
+            </div>
+            </br>
             <button type="submit">Submit</button>
         </form>
     </body>

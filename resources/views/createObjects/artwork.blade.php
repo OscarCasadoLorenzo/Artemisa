@@ -29,6 +29,9 @@
             <label for="ct">Collection</label>
             <input type="text" id="ct" name="collection" autofocus>
             
+            <label for="img">Imagen</label>
+            <input type="text" id="img" name="imgRoute" autofocus>
+            
             <button type="submit">Submit</button>
         </form>
     </body>
