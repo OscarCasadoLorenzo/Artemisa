@@ -111,12 +111,14 @@ class ArtworksTableSeeder extends Seeder
         $m1->name = 'El Prado';
         $m1->address = 'Calle de Ruiz de Alarcón';
         $m1->location = 'Madrid, España';
+        $m1->imgRoute = 'images/museums/museo_prado.png';
         $m1->save();
 
         $m2 = new Museum();
         $m2->name = 'El Louvre';
         $m2->address = 'Rue de Rivoli';
         $m2->location = 'Paris, Francia';
+        $m2->imgRoute = 'images/museums/museo_louvre.png';
         $m2->save();
 
 
@@ -276,6 +278,7 @@ class ArtworksTableSeeder extends Seeder
         $aux1->collection()->associate($pop);
         $aux1->year = 2004;
         $aux1->dimensions = '25.4 × 35.6 cm';
+        $aux1->imgRoute = 'images/artworks/two_candy_sticks.png';
         $aux1->save();
 
         $aux2 = new Artwork();
@@ -286,6 +289,7 @@ class ArtworksTableSeeder extends Seeder
         $aux2->collection()->associate($pop);
         $aux2->year = 2002;
         $aux2->dimensions = '14.25 X 12.25 cm';
+        $aux2->imgRoute = 'images/artworks/jolly_cones.png';
         $aux2->save();
 
         $aux3 = new Artwork();
@@ -294,6 +298,7 @@ class ArtworksTableSeeder extends Seeder
         $aux3->author()->associate($aut4);
         $aux3->movement = 'Arte Pop';
         $aux3->collection()->associate($pop);
+        $aux3->imgRoute = 'images/artworks/neapolitan_cupcakes.png';
         $aux3->year = 2008;
         $aux3->dimensions = '30.5 x 40 cm';
         $aux3->save();
@@ -424,6 +429,7 @@ class ArtworksTableSeeder extends Seeder
         $aux1->author()->associate($aut7);
         $aux1->movement = 'Realismo';
         $aux1->collection()->associate($real);
+        $aux1->imgRoute = 'images/artworks/woman_reading_in_a_landscape.png';
         $aux1->year = 1869;
         $aux1->dimensions = '54.3 x 37.5 cm';
         $aux1->save();
@@ -434,6 +440,7 @@ class ArtworksTableSeeder extends Seeder
         $aux2->author()->associate($aut7);
         $aux2->movement = 'Realismo';
         $aux2->collection()->associate($real);
+        $aux2->imgRoute = 'images/artworks/the_woman_with_a_pearl.png';
         $aux2->year = 1869;
         $aux2->dimensions = '70 x 55 cm';
         $aux2->save();
@@ -444,6 +451,7 @@ class ArtworksTableSeeder extends Seeder
         $aux3->author()->associate($aut7);
         $aux3->movement = 'Realismo';
         $aux3->collection()->associate($real);
+        $aux3->imgRoute = 'images/artworks/ah_yaw_ne_tak_oar_ron.png';
         $aux3->year = 1831;
         $aux3->dimensions = '53.7 x 41.9 cm';
         $aux3->save();
@@ -452,6 +460,7 @@ class ArtworksTableSeeder extends Seeder
         $aux4->title = 'Hól-te-mál-te-téz-te-néek-ee, Sam Perryman (Creek Chief)';
         $aux4->genre = 'Retrato';
         $aux4->author()->associate($aut7);
+        $aux4->imgRoute = 'images/artworks/hol_te_mal_te_tez_te_neek_ee.png';
         $aux4->movement = 'Realismo';
         $aux4->collection()->associate($real);
         $aux4->year = 1834;
@@ -461,6 +470,7 @@ class ArtworksTableSeeder extends Seeder
         $aux5->title = 'Mó-sho-la-túb-bee, He Who Puts Out and Kills, Chief of the Tribe';
         $aux5->genre = 'Retrato';
         $aux5->author()->associate($aut7);
+        $aux5->imgRoute = 'images/artworks/mo_sho_la_tub_bee.png';
         $aux5->movement = 'Realismo';
         $aux5->collection()->associate($real);
         $aux5->year = 1834;
@@ -472,6 +482,7 @@ class ArtworksTableSeeder extends Seeder
         $aux6->author()->associate($aut7);
         $aux6->movement = 'Realismo';
         $aux6->collection()->associate($real);
+        $aux6->imgRoute = 'images/artworks/sleeping_herd_boy.png';
         $aux6->year = 1824;
         $aux6->dimensions = '76.2 x 55.88 cm';
         $aux6->save();
@@ -481,6 +492,7 @@ class ArtworksTableSeeder extends Seeder
         $aux7->author()->associate($aut7);
         $aux7->movement = 'Realismo';
         $aux7->collection()->associate($real);
+        $aux7->imgRoute = 'images/artworks/meeting_at_the_well.png';
         $aux7->year = 1843;
         $aux7->dimensions = '75.5 x 62.0 cm';
         $aux7->save();
@@ -490,6 +502,7 @@ class ArtworksTableSeeder extends Seeder
         $aux8->author()->associate($aut7);
         $aux8->movement = 'Realismo';
         $aux8->collection()->associate($real);
+        $aux8->imgRoute = 'images/artworks/peasant_children_in_the_field.png';
         $aux8->year = 1876;
         $aux8->dimensions = '48.5 × 64.5 cm';
         $aux8->save();
