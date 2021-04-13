@@ -23,7 +23,7 @@ Route::get('/artworks/', 'ArtworkController@getArtworks');
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser'); 
 Route::post('/museums', 'MuseumController@saveMuseum'); 
-Route::post('/authors', 'AuthorController@saveAuthors'); 
+Route::post('/authors', 'AuthorController@saveAuthor'); 
 Route::post('/collections', 'CollectionController@saveCollection'); 
 Route::post('/artworks', 'ArtworkController@saveArtwork'); 
 

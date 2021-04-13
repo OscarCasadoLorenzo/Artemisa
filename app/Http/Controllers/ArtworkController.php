@@ -24,6 +24,7 @@ class ArtworkController extends Controller
         $input = $request->all();
         $path = '/images/artworks/';
         $filepath = $path . $input['imgRoute'];
+        $file->move('images/artworks', $input['imgRoute']);
         $input['imgRoute'] = $filepath;
         Artwork::create($input);
         return "Obra $request->name añadida a la BD!";
