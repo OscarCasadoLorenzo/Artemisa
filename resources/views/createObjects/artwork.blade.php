@@ -39,7 +39,12 @@
             <div class="form-group">                
                 <label for="at">Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;</label>
-                <input type="text" id="at" name="author" autofocus>
+                <select name="author_id" id="ia" class="form-control">
+                    <option value="">Escoge Autor</option>
+                    @foreach ($authors as $author)
+                    <option value="{{$author['id']}}">{{$author['name']}}</option>
+                    @endforeach
+                </select>
             </div>
             </br>
             <div class="form-group">                

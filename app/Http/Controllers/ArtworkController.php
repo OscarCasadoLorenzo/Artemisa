@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Artwork;
 use App\Collection;
+use App\Author;
 
 class ArtworkController extends Controller
 {
@@ -15,7 +16,8 @@ class ArtworkController extends Controller
 
     public function createArtwork(){
         $collections = Collection::all();
-        return view('createObjects.artwork', compact('collections'));
+        $authors = Author::all();
+        return view('createObjects.artwork', compact('collections'), compact('authors'));
     }
     
     public function saveArtwork(Request $request){
