@@ -8,29 +8,44 @@
         <h1>Create new artwork</h1>
         <form action="/artworks" method="post">
             @csrf
-            <label for="tt">Title</label>
-            <input type="text" id="tt" name="title" autofocus>
-            
-            <label for="mv">Artistic movement</label>
-            <input type="text" id="mv" name="movement" autofocus>
-            
-            <label for="gr">Genre</label>
-            <input type="text" id="gr" name="genre" autofocus>
-            
-            <label for="dm">Dimensions</label>
-            <input type="text" id="dm" name="dimensions" autofocus>
-
-            <label for="yr">Year</label>
-            <input type="number" id="yr" name="year" autofocus>
-
-            <label for="at">Author</label>
-            <input type="text" id="at" name="author" autofocus>
-
-            <label for="ct">Collection</label>
-            <input type="text" id="ct" name="collection" autofocus>
-            
-            <label for="img">Imagen</label>
-            <input type="text" id="img" name="imgRoute" autofocus>
+            <div class="form-group">
+                <label for="tt">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="tt" name="title" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="mv">Artistic movement</label>
+                <input type="text" id="mv" name="movement" autofocus>
+            </div>
+            <div class="form-group">                
+                <label for="gr">Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="gr" name="genre" autofocus>
+            </div>
+            <div class="form-group">                
+                <label for="dm">Dimensions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="dm" name="dimensions" autofocus>
+            </div>
+            <div class="form-group">                
+                <label for="yr">Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="number" id="yr" name="year" autofocus>
+            </div>
+            <div class="form-group">                
+                <label for="at">Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="at" name="author" autofocus>
+            </div>
+            <div class="form-group">                
+                <label for="ct">Collection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" id="ct" name="collection" autofocus>
+            </div>
+            <div class="form-group">                
+                <label for="img">Imagen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="file" id="img" name="imgRoute" autofocus>
+            </div>    
             
             <button type="submit">Submit</button>
         </form>

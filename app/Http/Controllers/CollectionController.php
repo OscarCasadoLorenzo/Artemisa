@@ -9,7 +9,7 @@ use App\Museum;
 class CollectionController extends Controller
 {
     public static function getCollections($id){
-        $collections = Collection::where('collection_id','=', $id)->get();
+        $collections = Collection::where('museum_id','=', $id)->get();
         return $collections;
     }
 
