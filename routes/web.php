@@ -25,7 +25,7 @@ Route::post('/users', 'UserController@saveUser');
 Route::post('/museums', 'MuseumController@saveMuseum'); 
 Route::post('/authors', 'AuthorController@saveAuthors'); 
 Route::post('/collections', 'CollectionController@saveCollection'); 
-Route::post('/artworks', 'ArtworkController@saveArtworks'); 
+Route::post('/artworks', 'ArtworkController@saveArtwork'); 
 
 
 //Creación de elementos
