@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Artworks</title> 
-    </head>
+@extends('templates.main')
+
+@section('information')
     <body>
         <h1>Create new artwork</h1>
         <form action="/artworks" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="tt">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="tt">Title</label>
                 <input type="text" id="tt" name="title" autofocus>
             </div>
             </br>
@@ -20,25 +16,22 @@
             </div>
             </br>
             <div class="form-group">                
-                <label for="gr">Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;</label>
+                <label for="gr">Genre</label>
                 <input type="text" id="gr" name="genre" autofocus>
             </div>
             </br>
             <div class="form-group">                
-                <label for="dm">Dimensions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="dm">Dimensions</label>
                 <input type="text" id="dm" name="dimensions" autofocus>
             </div>
             </br>
             <div class="form-group">                
-                <label for="yr">Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="yr">Year</label>
                 <input type="number" id="yr" name="year" autofocus>
             </div>
             </br>
             <div class="form-group">                
-                <label for="at">Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;</label>
+                <label for="at">Author</label>
                 <select name="author_id" id="ia" class="form-control">
                     <option value="">Escoge Autor</option>
                     @foreach ($authors as $author)
@@ -48,7 +41,7 @@
             </div>
             </br>
             <div class="form-group">                
-                <label for="ct">Collection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="ct">Collection</label>
                 <select name="collection_id" id="ic" class="form-control">
                     <option value="">Escoge Colección</option>
                     @foreach ($collections as $collection)
@@ -58,8 +51,7 @@
             </div>
             </br>
             <div class="form-group">                
-                <label for="img">Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;</label>
+                <label for="img">Image</label>
                 <input type="file" id="img" name="imgRoute" autofocus>
             </div>    
             </br>
@@ -67,4 +59,4 @@
             <button type="submit">Submit</button>
         </form>
     </body>
-</html>
+@endsection
