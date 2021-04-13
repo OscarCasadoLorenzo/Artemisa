@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Artwork;
+use App\Collection;
+use App\Author;
 
 class ArtworkController extends Controller
 {
@@ -13,7 +15,9 @@ class ArtworkController extends Controller
     }
 
     public function createArtwork(){
-        return view('createObjects.artwork');
+        $collections = Collection::all();
+        $authors = Author::all();
+        return view('createObjects.artwork', compact('collections'), compact('authors'));
     }
     
     public function saveArtwork(Request $request){
@@ -25,7 +29,7 @@ class ArtworkController extends Controller
             $filepath = $path . $filename;
             $input['imgRoute'] = $filepath;
         }
-        Museum::create($input);
+        Artwork::create($input);
         return "Obra $request->name añadida a la BD!";
     }
 

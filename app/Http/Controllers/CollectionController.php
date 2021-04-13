@@ -19,15 +19,7 @@ class CollectionController extends Controller
     }
 
     public function saveCollection(Request $request){
-        $input = $request->all();
-        if($file = $request->file('imgRoute')){
-            $filename = $file->getClientOriginalName();
-            $file->move('images/collection', $filename);
-            $path = '/images/collection/';
-            $filepath = $path . $filename;
-            $input['imgRoute'] = $filepath;
-        }
-        Collection::create($input);
+        Collection::create($request);
         return "Colección $request->name añadida a la BD!";
     }
 
