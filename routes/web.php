@@ -40,7 +40,7 @@ Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); /
 Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollection')->where('idM', '\d+');
 Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getArtworks')->where('idM', '\d+');
 //Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'ArtworkController@getArtwork');
-
+ 
 
 
 
