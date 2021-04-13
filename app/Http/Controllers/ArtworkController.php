@@ -22,10 +22,13 @@ class ArtworkController extends Controller
     
     public function saveArtwork(Request $request){
         $input = $request->all();
-        $path = '/images/artworks/';
-        $filepath = $path . $input['imgRoute'];
-        $file->move('images/artworks', $input['imgRoute']);
-        $input['imgRoute'] = $filepath;
+        if($file = $request->file('imgRoute')){
+            $filename = $file->getClientOriginalName();
+            $file->move('images/artworks', $filename);
+            $path = '/images/artworks/';
+            $filepath = $path . $filename;
+            $input['imgRoute'] = $filepath;
+        }
         Artwork::create($input);
         return "Obra $request->name añadida a la BD!";
     }

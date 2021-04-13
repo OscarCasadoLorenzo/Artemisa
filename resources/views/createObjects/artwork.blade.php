@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Create new artwork</h1>
-        <form action="/artworks" method="post">
+        <form action="/artworks" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="tt">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -36,6 +36,9 @@
                 <input type="number" id="yr" name="year" autofocus>
             </div>
             </br>
+                        <label for="img">Image</label>
+                        <input type="file" id="img" name="imgRoute" autofocus>
+
             <div class="form-group">                
                 <label for="at">Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;</label>
@@ -57,12 +60,15 @@
                 </select>
             </div>
             </br>
-            <div class="form-group">                
-                <label for="img">Imagen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- <div class="form-group">                 -->
+                <!-- <label for="img">Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;</label>
-                <input type="file" id="img" name="imgRoute" autofocus>
-            </div>    
+                <input type="file" id="img" name="imgRoute" autofocus> -->
+                <!-- <label for="img">Image</label>
+                <input type="file" id="img" name="imgRoute" autofocus> -->
+            <!-- </div>     -->
             </br>
+            
             <button type="submit">Submit</button>
         </form>
     </body>
