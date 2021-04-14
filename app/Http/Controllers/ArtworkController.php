@@ -19,7 +19,7 @@ class ArtworkController extends Controller
         $authors = Author::all();
         return view('createObjects.artwork', compact('collections'), compact('authors'));
     }
-    
+
     public function saveArtwork(Request $request){
         $input = $request->all();
         if($file = $request->file('imgRoute')){
@@ -33,7 +33,18 @@ class ArtworkController extends Controller
         return "Obra $request->name añadida a la BD!";
     }
 
+    public function deleteArtwork(){
+        return view('deleteObjects.artwork');
+    }
+
+    public function destroyArtwork(Request $request){
+        $art = Artwork::findOrFail($request->id);
+        $art->delete();
+
+        return redirect('/museums');
+    }
+
     public function findArtworks(){
-      
+
     }
 }

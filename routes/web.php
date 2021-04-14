@@ -15,10 +15,10 @@ use App\Museum;
 Route::get('/', 'PagesController@show');
 
 //Rutas de extracción de listados
-Route::get('/users/', 'UserController@getUsers');
-Route::get('/museums/', 'MuseumController@getMuseums');
-Route::get('/authors/', 'AuthorController@getAuthors');
-Route::get('/artworks/', 'ArtworkController@getArtworks');
+Route::get('/users', 'UserController@getUsers');
+Route::get('/museums', 'MuseumController@getMuseums');
+Route::get('/authors', 'AuthorController@getAuthors');
+Route::get('/artworks', 'ArtworkController@getArtworks');
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
@@ -28,6 +28,9 @@ Route::post('/collections', 'CollectionController@saveCollection');
 Route::post('/artworks', 'ArtworkController@saveArtworks');
 
 
+Route::delete('/artworks', 'ArtworkController@destroyArtwork');
+
+
 //Creación de elementos
 Route::get('/users/create', 'UserController@createUser');
 Route::get('/museums/create', 'MuseumController@createMuseum');
@@ -35,12 +38,20 @@ Route::get('/collections/create', 'CollectionController@createCollection');
 Route::get('/artworks/create', 'ArtworkController@createArtwork');
 Route::get('/authors/create', 'AuthorController@createAuthor');
 
+//Eliminación de elementos
+Route::get('/users/delete', 'UserController@deleteUser');
+Route::get('/museums/delete', 'MuseumController@deleteMuseum');
+Route::get('/collections/delete', 'CollectionController@deleteCollection');
+Route::get('/artworks/delete', 'ArtworkController@deleteArtwork');
+Route::get('/authors/delete', 'AuthorController@deleteAuthor');
+
+
 //RUTAS + COMPLEJAS
 Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
 Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollection')->where('idM', '\d+');
 Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getArtworks')->where('idM', '\d+');
 //Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'ArtworkController@getArtwork');
- 
+
 
 
 
