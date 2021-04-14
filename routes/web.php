@@ -27,9 +27,12 @@ Route::post('/authors', 'AuthorController@saveAuthors');
 Route::post('/collections', 'CollectionController@saveCollection');
 Route::post('/artworks', 'ArtworkController@saveArtworks');
 
-
+//Destruccion de elementos
+Route::delete('/users', 'UserController@destroyUser');
+Route::delete('/museums', 'MuseumController@destroyMuseum');
+Route::delete('/collections', 'CollectionController@destroyCollection');
 Route::delete('/artworks', 'ArtworkController@destroyArtwork');
-
+Route::delete('/authors', 'AuthorController@destroyAuthor');
 
 //Creación de elementos
 Route::get('/users/create', 'UserController@createUser');
