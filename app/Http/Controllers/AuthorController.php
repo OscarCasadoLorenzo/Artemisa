@@ -29,7 +29,20 @@ class AuthorController extends Controller
         return "Autor $request->name añadida a la BD!";
     }
 
+    public function deleteAuthor(){
+        $authors = Author::all();
+
+        return view('deleteObjects.author', compact('authors'));
+    }
+
+    public function destroyAuthor(Request $request){
+        $aux = Author::findOrFail($request->author_id);
+        $aux->delete();
+
+        return redirect('/museums');
+    }
+
     public function findAuthors(Request $request){
-      
+
     }
 }

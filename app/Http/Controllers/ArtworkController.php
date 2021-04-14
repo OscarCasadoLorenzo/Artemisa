@@ -34,11 +34,13 @@ class ArtworkController extends Controller
     }
 
     public function deleteArtwork(){
-        return view('deleteObjects.artwork');
+        $artworks = Artwork::all();
+
+        return view('deleteObjects.artwork', compact('artworks'));
     }
 
     public function destroyArtwork(Request $request){
-        $art = Artwork::findOrFail($request->id);
+        $art = Artwork::findOrFail($request->artwork_id);
         $art->delete();
 
         return redirect('/museums');

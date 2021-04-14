@@ -25,10 +25,10 @@ class CreateArtworksTable extends Migration
             $table->string('eWiki')->nullable();
 
             $table->bigInteger('author_id')->unsigned();
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
 
             $table->bigInteger('collection_id')->unsigned();
-            $table->foreign('collection_id')->references('id')->on('collections');
+            $table->foreign('collection_id')->references('id')->on('collections')->onDelete('cascade');
          });
     }
 

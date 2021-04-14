@@ -2,8 +2,8 @@
 
 @section('information')
     <body>
-        <h1>Delete an artwork:</h1>
-        <form method="POST" action="/artworks">
+        <h1>Delete an user:</h1>
+        <form method="POST" action="/users">
             @csrf @method('DELETE')
 
             </br>
@@ -11,9 +11,9 @@
             <div class="form-group">
 
                 <select name="user_id" id="ia" class="form-control">
-                    <option value="">Choose an Artwork</option>
-                    @foreach ($artworks as $artwork)
-                    <option value="{{$artwork['id']}}">{{$artwork['title']}}</option>
+                    <option value="">Choose an User</option>
+                    @foreach ($users as $user)
+                    <option value="{{$user['id']}}">{{$user['email']}}</option>
                     @endforeach
                 </select>
             </div>

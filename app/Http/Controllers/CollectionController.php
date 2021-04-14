@@ -23,7 +23,20 @@ class CollectionController extends Controller
         return "Colección $request->name añadida a la BD!";
     }
 
+    public function deleteCollection(){
+        $collections = Collection::all();
+
+        return view('deleteObjects.collection', compact('collections'));
+    }
+
+    public function destroyCollection(Request $request){
+        $col = Collection::findOrFail($request->collection_id);
+        $col->delete();
+
+        return redirect('/museums');
+    }
+
     public function findCollection(){
-      
+
     }
 }

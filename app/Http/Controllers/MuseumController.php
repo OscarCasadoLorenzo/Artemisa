@@ -38,8 +38,22 @@ class MuseumController extends Controller
       return view('singleObject.museum', ['museum'=>$museum, 'collections'=>$collections]);
     }
 
+    public function deleteMuseum(){
+        $museums = Museum::all(); //cogemos los usuarios que no son admin
+
+        return view('deleteObjects.museum', compact('museums'));
+    }
+
+    public function destroyMuseum(Request $request){
+        $aux = Museum::findOrFail($request->museum_id);
+        $aux->delete();
+
+        return redirect('/museums');
+    }
+
+
     public function findMuseum(){
-      
+
     }
 
 

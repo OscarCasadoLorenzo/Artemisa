@@ -20,7 +20,20 @@ class UserController extends Controller
 
     }
 
+    public function deleteUser(){
+        $users = User::where('type', '!=', 'admin')->get(); //cogemos los usuarios que no son admin
+
+        return view('deleteObjects.user', compact('users'));
+    }
+
+    public function destroyUser(Request $request){
+        $aux = User::findOrFail($request->user_id);
+        $aux->delete();
+
+        return redirect('/museums');
+    }
+
     public function findUsers(){
-      
+
     }
 }
