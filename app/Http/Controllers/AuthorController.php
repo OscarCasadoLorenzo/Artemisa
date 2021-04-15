@@ -35,6 +35,18 @@ class AuthorController extends Controller
         return view('deleteObjects.author', compact('authors'));
     }
 
+    public function update(Request $request)
+    {
+        $authors = Authors::find($request->input('name'));
+        //$authors -> name = $request->input('name');
+        $authors->nacionality = $request->input('nacionality');
+        $authors->birth_date = $request->input('birth_date');
+        $authors->movement = $request->input('movement');
+        $authors->imgRoute = $request->input('imgRoute');
+        $authors->save();
+        return "Autor con nombre $request->name actualizado correctamente";
+    }
+
     public function destroyAuthor(Request $request){
         $aux = Author::findOrFail($request->author_id);
         $aux->delete();

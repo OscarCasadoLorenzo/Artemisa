@@ -22,6 +22,7 @@
                     <img
                         src= {{asset($author->imgRoute)}}
                         class="img-fluid"
+                        style="width: 200px; height: 400px;"
                     />
                 </a>
 

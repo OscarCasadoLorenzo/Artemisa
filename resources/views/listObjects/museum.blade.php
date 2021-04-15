@@ -14,6 +14,7 @@
                     <img
                         src= {{asset($museum->imgRoute)}}
                         class="img-fluid"
+                        style="width: 650px; height: 400px;"
                     />
                 </a>
 
