@@ -24,7 +24,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{$museum->name}}</h5>
                 <p class="card-text"> Location: {{$museum->location}}</p>
-                <a href="/museums/{{$museum->id}}/collections" class="btn btn-primary">Show collections</a>
+                <a href="/museums/{{$museum->id}}" class="btn btn-primary">Show collections</a>
             </div>
         </div>
     @endforeach
