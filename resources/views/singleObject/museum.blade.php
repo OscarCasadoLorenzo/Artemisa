@@ -35,7 +35,17 @@
         <h3 class="text-white m-0">{{$museum->name}}'s Collections</h3>
     </div>
     </div>
+    <!-- pruebas sort -->
+                    <form action="/filterCollection" method="get">
+                        <input type="radio" name="OPCION" value="1"> Identificador&nbsp;
+                        <input type="radio" name="OPCION" value="2"> Nombre&nbsp;
+                        <input type="radio" name="OPCION" value="3"> Ultimas novedades&nbsp;
+                        <input type="hidden" name="museo" value="{{$museum->id}}">
+                        <button type="submit" class="btn btn-primary"> Ordenar </button>
+                    </form>
+    </br>
 
+    
     <div class="row">
         @foreach($collections as $collection)
             <!-- Content Row -->
