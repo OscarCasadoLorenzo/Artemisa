@@ -49,4 +49,26 @@ class ArtworkController extends Controller
     public function findArtworks(){
 
     }
+
+    public function ordenar(Request $request){
+        $opcion = $request->option;
+        $idcol = $request->collection;
+        $artworks = Artworks()::find($idcol);
+        if($opcion == 1){
+            $collections = ArtworkController::getArtworks($idcol)->sortBy('id');
+            return view('listObjects.artwork', ['artworks'=>$artworks, 'collections'=>$collections]);
+        }
+        else if($opcion == 2){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('name');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else if($opcion == 3){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('year');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else{
+            $collections = CollectionController::getCollections($idmuseo);
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+    }
 }
