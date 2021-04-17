@@ -39,4 +39,27 @@ class CollectionController extends Controller
     public function findCollection(){
 
     }
+
+
+    public function ordenar(Request $request){
+        $opcion = $request->option;
+        $idmuseo = $request->museum;
+        $museo = Museum::find($idmuseo);
+        if($opcion == 1){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('id');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else if($opcion == 2){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('name');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else if($opcion == 3){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('updated_at');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else{
+            $collections = CollectionController::getCollections($idmuseo);
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+    }
 }
