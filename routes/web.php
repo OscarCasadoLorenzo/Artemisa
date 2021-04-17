@@ -18,7 +18,6 @@ Route::get('/', 'PagesController@show');
 Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
 Route::get('/authors', 'AuthorController@getAuthors');
-Route::get('/artworks', 'ArtworkController@getArtworks');
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
