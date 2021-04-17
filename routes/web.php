@@ -57,6 +57,7 @@ Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getAr
 
 //FILTRACION DE ELEMENTOS
 Route::get('/filterCollection', 'CollectionController@ordenar')->name('collection.filter');
+Route::get('/filterArtwork', 'ArtworkController@ordenar')->name('artwork.filter');
 
 
 

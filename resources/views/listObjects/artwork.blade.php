@@ -7,6 +7,8 @@
 @endsection
 
 @section('information')
+   
+    <!-- pruebas sort -->
     @foreach($artworks as $artwork)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">

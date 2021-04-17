@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Artwork;
 use App\Collection;
+use App\Museum;
 use App\Author;
 
 class ArtworkController extends Controller
@@ -53,22 +54,28 @@ class ArtworkController extends Controller
     public function ordenar(Request $request){
         $opcion = $request->option;
         $idcol = $request->collection;
-        $artworks = Artworks()::find($idcol);
+        $idmuseo = $request->museum;
+        $museo = Museum::find($idmuseo);
+        $coleccion = Collection::find($idcol);
         if($opcion == 1){
-            $collections = ArtworkController::getArtworks($idcol)->sortBy('id');
-            return view('listObjects.artwork', ['artworks'=>$artworks, 'collections'=>$collections]);
+            $artworks = ArtworkController::getArtworks($idmuseo, $idcol)->sortBy('id');
+            return view('listObjects.artwork', ['artwork'=> $artworks, 'museum'=>$museo, 'collections'=>$artworks]);
         }
         else if($opcion == 2){
-            $collections = CollectionController::getCollections($idmuseo)->sortBy('name');
-            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+            $artworks = ArtworkController::getArtworks($idmuseo, $idcol)->sortBy('name');
+            return view('listObjects.artwork', ['artwork'=> $artworks, 'museum'=>$museo, 'collections'=>$collections]);
         }
         else if($opcion == 3){
-            $collections = CollectionController::getCollections($idmuseo)->sortBy('year');
-            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+            $artworks = ArtworkController::getArtworks($idmuseo, $idcol)->sortBy('year');
+            return view('listObjects.artwork', ['artwork'=> $artworks, 'museum'=>$museo, 'collections'=>$collections]);
+        }
+        else if($opcion == 4){
+            $artworks = ArtworkController::getArtworks($idmuseo, $idcol)->sortBy('movement');
+            return view('listObjects.artwork', ['artwork'=> $artworks, 'museum'=>$museo, 'collections'=>$collections]);
         }
         else{
-            $collections = CollectionController::getCollections($idmuseo);
-            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+            $artworks = ArtworkController::getArtworks($idmuseo, $idcol);
+            return view('listObjects.artwork', ['artwork'=> $artworks, 'museum'=>$museo, 'collections'=>$collections]);
         }
     }
 }
