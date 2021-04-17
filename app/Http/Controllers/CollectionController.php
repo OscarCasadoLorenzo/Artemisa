@@ -42,11 +42,9 @@ class CollectionController extends Controller
 
 
     public function ordenar(Request $request){
-        $opcion = $request->OPCION;
-        $idmuseo = $request->museo;
+        $opcion = $request->option;
+        $idmuseo = $request->museum;
         $museo = Museum::find($idmuseo);
-        //por si no nos pasan ningun parametro en opciones
-        $collections = CollectionController::getCollections($idmuseo);
         if($opcion == 1){
             $collections = CollectionController::getCollections($idmuseo)->sortBy('id');
             return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
@@ -60,6 +58,7 @@ class CollectionController extends Controller
             return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
         }
         else{
+            $collections = CollectionController::getCollections($idmuseo);
             return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
         }
     }
