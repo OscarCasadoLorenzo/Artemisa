@@ -37,14 +37,18 @@ class AuthorController extends Controller
 
     public function update(Request $request)
     {
-        $authors = Authors::find($request->input('name'));
-        //$authors -> name = $request->input('name');
+        $authors = Author::table('name')->where('name',$request->input('old_name'))->first();
+        $request->validate(
+        [
+            'name' => 'required|unique:Author,name'
+        ]);
+        $authors -> name = $request->input('name');
         $authors->nacionality = $request->input('nacionality');
         $authors->birth_date = $request->input('birth_date');
         $authors->movement = $request->input('movement');
         $authors->imgRoute = $request->input('imgRoute');
         $authors->save();
-        return "Autor con nombre $request->name actualizado correctamente";
+        return "Autor con nombre $request->old_name actualizado correctamente";
     }
 
     public function destroyAuthor(Request $request){

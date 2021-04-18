@@ -40,6 +40,19 @@ class CollectionController extends Controller
 
     }
 
+    public function update(Request $request)
+    {
+        $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
+        $coll->validate(
+        [
+            'name' => 'required|unique:Collection,name'
+        ]);
+        $coll -> name = $request->input('name');
+        $coll->nacionality = $request->input('nacionality');
+        $coll->museum_id = $request->input('museum_id');
+        $coll->save();
+        return "Museo con nombre $request->old_name actualizado correctamente";
+    }
 
     public function ordenar(Request $request){
         $opcion = $request->option;

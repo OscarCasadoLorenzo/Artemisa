@@ -47,6 +47,26 @@ class ArtworkController extends Controller
         return redirect('/museums');
     }
 
+    public function update(Request $request)
+    {
+        $art = Artwork::table('title')->where('title',$request->input('old_title'))->first();
+        $request->validate(
+        [
+            'title' => 'required|unique:Artwork,title'
+        ]);
+        $art->movement = $request->input('movement');
+        $art->genre = $request->input('genre');
+        $art->dimensions = $request->input('dimensions');
+        $art->title = $request->input('title');
+        $art->year = $request->input('year');
+        $art->imgRoute = $request->input('imgRoute');
+        $art->eWiki = $request->input('eWiki');
+        $art->author_id = $request->input('author_id');         //Validar foreign key?
+        $art->collection_id = $request->input('collection_id');
+        $art->save();
+        return "Artwork con nombre $request->old_title actualizado correctamente";
+    }
+
     public function findArtworks(){
 
     }
@@ -56,7 +76,7 @@ class ArtworkController extends Controller
         $idcol = $request->collection;
         $idmuseo = $request->museum;
         $museo = Museum::find($idmuseo);
-        $coleccion = Collection::find($idcol);
+        $collections = Collection::find($idcol);
         if($opcion == 1){
             $artworks = ArtworkController::getArtworks($idmuseo, $idcol)->sortBy('id');
             return view('listObjects.artwork', ['artwork'=> $artworks, 'museum'=>$museo, 'collections'=>$artworks]);
