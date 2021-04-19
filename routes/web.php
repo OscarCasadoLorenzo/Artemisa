@@ -14,6 +14,11 @@ use App\Museum;
 
 Route::get('/', 'PagesController@show');
 
+Route::get('/', function() {
+    $museums = Museum::all();
+    return view('listObjects.museum', compact('museums'));
+});
+
 //Rutas de extracción de listados
 Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
