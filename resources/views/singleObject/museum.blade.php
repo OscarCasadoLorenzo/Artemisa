@@ -45,6 +45,7 @@
                     </form>
     </br>
 
+
     
     <div class="row">
         @foreach($collections as $collection)

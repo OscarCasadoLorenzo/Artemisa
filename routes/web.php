@@ -53,7 +53,7 @@ Route::get('/collections/delete', 'CollectionController@deleteCollection');
 Route::get('/artworks/delete', 'ArtworkController@deleteArtwork');
 Route::get('/authors/delete', 'AuthorController@deleteAuthor');
 //Edición de elementos
-
+Route::put('/editmuseum', 'MuseumController@updateMuseum()'); //no se si funciona
 
 //RUTAS + COMPLEJAS
 Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
