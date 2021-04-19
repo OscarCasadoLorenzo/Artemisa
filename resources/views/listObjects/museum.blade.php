@@ -4,7 +4,8 @@
 
 @section('header')
     @include ("templates.navbar")
-@endsection
+@endsection 
+
 @section('information')
 <div class="col-sm-2">
     <form action="/busqueda" method="get">
