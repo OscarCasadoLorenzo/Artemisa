@@ -41,4 +41,41 @@ class UserController extends Controller
     public function findUsers(){
 
     }
+
+    public function modifyUser()
+    {
+        $users = User::all();
+        return view('updateObject.user', compact('users',$users));
+    }
+
+    public function getDetails($id = 0)
+    {
+        $user = User::where('id',$id)->first();
+        return response()->json($user);
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::findOrFail($request->input('user_id'));
+        if($user->email != $request->input('email')){
+            $request->validate(
+            [
+                'email' => 'required|unique:Artwork,title',
+                'birth_date' => 'date'
+            ]);
+        }
+        $request->validate(
+        [
+            'birth_date' => 'date'
+        ]);
+        $user->name = $request->input('name');
+        $user->surname1 = $request->input('surname1');
+        $user->surname2 = $request->input('surname2');
+        $user->birth_date = $request->input('birth_date');
+        $user->location = $request->input('location');
+        $user->type = $request->input('type');
+        $user->email = $request->input('email');
+        $user->save();
+        return "Usuario con email ".$request->input('email'). " actualizado correctamente";
+    }
 }

@@ -53,6 +53,14 @@ Route::get('/collections/create', 'CollectionController@createCollection');
 Route::get('/artworks/create', 'ArtworkController@createArtwork');
 Route::get('/authors/create', 'AuthorController@createAuthor');
 
+//Modificacion
+Route::get('/users/update', 'UserController@modifyUser')->name('user.modifyUser');
+Route::post('/users/update', 'UserController@update')->name('user.update');
+Route::get('/museums/update', 'MuseumController@modifyMuseum');
+Route::get('/collections/update', 'CollectionController@modifyCollection');
+Route::get('/artworks/update', 'ArtworkController@modifyArtwork');
+Route::get('/authors/update', 'AuthorController@modifyAuthor');
+
 //Eliminación de elementos
 Route::get('/users/delete', 'UserController@deleteUser');
 Route::get('/museums/delete', 'MuseumController@deleteMuseum');
@@ -70,5 +78,8 @@ Route::get('/filterCollection', 'CollectionController@ordenar')->name('collectio
 Route::get('/filterArtwork', 'ArtworkController@ordenar')->name('artwork.filter');
 Route::get('/busqueda', 'MuseumController@buscar')->name('museum.search');
 
+
+//AJAX
+Route::get('get/details/user{id}', 'UserController@getDetails')->name('getDetailsUser');
 
 
