@@ -12,6 +12,11 @@ class UserController extends Controller
        return $u;
     }
 
+    public function getUser($id){
+        $user = User::find($id);
+        return view('singleObject.user', ['user'=>$user]);
+    }
+
     public function createUser(){
         return view('createObjects.user');
     }

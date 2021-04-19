@@ -13,6 +13,12 @@ class CollectionController extends Controller
         return $collections;
     }
 
+    public function getCollection($id){
+        $collection = Collection::find($id);
+
+        return view('singleObject.collection', ['collection'=>$collection]);
+    }
+
     public function createCollection(){
         $museums = Museum::all();
         return view('createObjects.collection', compact('museums'));  //modificado compact para el desplegable

@@ -12,6 +12,11 @@ class AuthorController extends Controller
         return view('listObjects.author', ['authors'=>$authors]);
     }
 
+    public static function getAuthor($id){
+        $author = Author::find($id);
+        return view('singleObject.author', ['author'=>$author]);
+    }
+
     public function createAuthor(){
         return view('createObjects.author');
     }

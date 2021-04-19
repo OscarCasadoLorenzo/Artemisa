@@ -8,6 +8,11 @@ use \App\Http\Controllers\CollectionController;
 
 class MuseumController extends Controller
 {
+    public function paginaInicial(){
+        $museums = Museum::all();
+        return view('listObjects.museum', compact('museums'));
+    }
+
     public function getMuseums(){
         $museums = Museum::all();
         //Pasar un array como 2º parámetro a la view
