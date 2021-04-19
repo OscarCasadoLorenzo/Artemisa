@@ -52,6 +52,7 @@ Route::get('/museums/delete', 'MuseumController@deleteMuseum');
 Route::get('/collections/delete', 'CollectionController@deleteCollection');
 Route::get('/artworks/delete', 'ArtworkController@deleteArtwork');
 Route::get('/authors/delete', 'AuthorController@deleteAuthor');
+//Edición de elementos
 
 
 //RUTAS + COMPLEJAS

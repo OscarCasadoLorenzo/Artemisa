@@ -46,18 +46,19 @@ class MuseumController extends Controller
 
     public function updateMuseum(Request $request)
     {
-        $authors = Museum::table('name')->where('name',$request->input('old_name'))->first();
+        $museum = Museum::table('name')->where('name',$request->input('old_name'))->first();
         $request->validate(
         [
-            'name' => 'required|unique:Museum,name'
+            'name' => 'required|unique:Museum.name'
         ]);
-        $authors -> name = $request->input('name');
-        $authors->location = $request->input('location');
-        $authors->address = $request->input('address');
-        $authors->email = $request->input('email');
-        $authors->imgRoute = $request->input('imgRoute');
-        $authors->save();
-        return "Museo con nombre $request->old_name actualizado correctamente";
+        $museum -> name = $request->input('name');
+        $museum->location = $request->input('location');
+        $museum->address = $request->input('address');
+        $museum->email = $request->input('email');
+        $museum->imgRoute = $request->input('imgRoute');
+        $museum->save();
+        // return "Museo con nombre $request->old_name actualizado correctamente";
+        return view('singleObject.editmuseum', ['museum' => $museum]);
     }
 
     public function destroyMuseum(Request $request){
