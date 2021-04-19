@@ -13,6 +13,11 @@ class ArtworkController extends Controller
         $artworks = Artwork::where('collection_id','=', $idC)->paginate(3);
         return view('listObjects.artwork', ['artworks'=>$artworks]);
     }
+    public function getSingleArtwork($id){
+        $artwork = Artwork::findOrFail($id);
+
+        return view('singleObject.artwork');
+    }
 
     public function createArtwork(){
         $collections = Collection::all();
