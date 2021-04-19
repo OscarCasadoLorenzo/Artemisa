@@ -7,7 +7,7 @@
 @endsection
 
 @section('information')
-   
+
     <!-- pruebas sort -->
     @foreach($artworks as $artwork)
         <div class="card">
@@ -25,7 +25,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">{{$artwork->title}}</h5>
-                <a href="/museums/{/collections" class="btn btn-primary">More info</a>
+                <a href="/artworks/{{$artwork->id}}" class="btn btn-primary">More info</a>
             </div>
         </div>
     @endforeach
