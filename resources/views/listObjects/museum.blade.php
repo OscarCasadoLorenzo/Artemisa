@@ -4,9 +4,18 @@
 
 @section('header')
     @include ("templates.navbar")
-@endsection
+@endsection 
 
 @section('information')
+<div class="col-sm-2">
+    <form action="/busqueda" method="get">
+        <h5> Nombre<input type="text" name="name"> </h5>
+        <h5> Localización<input type="text" name="location"> </h5>                        
+        <br/>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form >
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     @foreach($museums as $museum)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -24,7 +33,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{$museum->name}}</h5>
                 <p class="card-text"> Location: {{$museum->location}}</p>
-                <a href="/museums/{{$museum->id}}/collections" class="btn btn-primary">Show collections</a>
+                <a href="/museums/{{$museum->id}}" class="btn btn-primary">Show collections</a>
             </div>
         </div>
     @endforeach

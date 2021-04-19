@@ -26,9 +26,9 @@
     </style>
 
     <body>
-        <section class="content" id="header">
+        <!-- <section class="content" id="header">
             @yield("header")
-        </section>
+        </section> -->
 
         <section class="content" id="information">
             @yield("information")

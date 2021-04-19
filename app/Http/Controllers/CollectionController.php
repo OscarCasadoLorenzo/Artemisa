@@ -13,6 +13,12 @@ class CollectionController extends Controller
         return $collections;
     }
 
+    public function getCollection($id){
+        $collection = Collection::find($id);
+
+        return view('singleObject.collection', ['collection'=>$collection]);
+    }
+
     public function createCollection(){
         $museums = Museum::all();
         return view('createObjects.collection', compact('museums'));  //modificado compact para el desplegable
@@ -40,6 +46,19 @@ class CollectionController extends Controller
 
     }
 
+    public function update(Request $request)
+    {
+        $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
+        $coll->validate(
+        [
+            'name' => 'required|unique:Collection,name'
+        ]);
+        $coll -> name = $request->input('name');
+        $coll->nacionality = $request->input('nacionality');
+        $coll->museum_id = $request->input('museum_id');
+        $coll->save();
+        return "Museo con nombre $request->old_name actualizado correctamente";
+    }
 
     public function ordenar(Request $request){
         $opcion = $request->option;

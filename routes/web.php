@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ArtworkController;
 use App\Museum;
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,20 @@ use App\Museum;
 
 Route::get('/', 'PagesController@show');
 
+Route::get('/', 'MuseumController@paginaInicial');
+
 //Rutas de extracción de listados
 Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
 Route::get('/authors', 'AuthorController@getAuthors');
+
+//Rutas de extracción de objeto unico
+Route::get('/artworks/{id}', 'ArtworkController@getArtwork')->where('id', '\d+');
+Route::get('/authors/{id}', 'AuthorController@getAuthor')->where('id', '\d+');
+Route::get('/users/{id}', 'UserController@getUser')->where('id', '\d+');
+Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
+Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id', '\d+'); //solo permite que id sean numeros
+
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
@@ -47,15 +59,15 @@ Route::get('/collections/delete', 'CollectionController@deleteCollection');
 Route::get('/artworks/delete', 'ArtworkController@deleteArtwork');
 Route::get('/authors/delete', 'AuthorController@deleteAuthor');
 
-
 //RUTAS + COMPLEJAS
-Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
 Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollection')->where('idM', '\d+');
 Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getArtworks')->where('idM', '\d+');
 //Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'ArtworkController@getArtwork');
 
 //FILTRACION DE ELEMENTOS
 Route::get('/filterCollection', 'CollectionController@ordenar')->name('collection.filter');
+Route::get('/filterArtwork', 'ArtworkController@ordenar')->name('artwork.filter');
+Route::get('/busqueda', 'MuseumController@buscar')->name('museum.search');
 
 
 
