@@ -14,6 +14,11 @@ use App\Museum;
 
 Route::get('/', 'PagesController@show');
 
+Route::get('/', function() {
+    $museums = Museum::all();
+    return view('listObjects.museum', compact('museums'));
+});
+
 //Rutas de extracción de listados
 Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
@@ -47,7 +52,8 @@ Route::get('/museums/delete', 'MuseumController@deleteMuseum');
 Route::get('/collections/delete', 'CollectionController@deleteCollection');
 Route::get('/artworks/delete', 'ArtworkController@deleteArtwork');
 Route::get('/authors/delete', 'AuthorController@deleteAuthor');
-
+//Edición de elementos
+Route::put('/editmuseum', 'MuseumController@updateMuseum()'); //no se si funciona
 
 //RUTAS + COMPLEJAS
 Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
@@ -55,7 +61,10 @@ Route::get('/museums/{idM}/collections/{idC}', 'CollectionController@getCollecti
 Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getArtworks')->where('idM', '\d+');
 //Route::get('/museums/{idM}/collections/{idC}/artworks/{idA}', 'ArtworkController@getArtwork');
 
-
+//FILTRACION DE ELEMENTOS
+Route::get('/filterCollection', 'CollectionController@ordenar')->name('collection.filter');
+Route::get('/filterArtwork', 'ArtworkController@ordenar')->name('artwork.filter');
+Route::get('/busqueda', 'MuseumController@buscar')->name('museum.search');
 
 
 

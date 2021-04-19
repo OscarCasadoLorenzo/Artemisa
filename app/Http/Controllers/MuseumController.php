@@ -44,6 +44,23 @@ class MuseumController extends Controller
         return view('deleteObjects.museum', compact('museums'));
     }
 
+    public function updateMuseum(Request $request)
+    {
+        $museum = Museum::table('name')->where('name',$request->input('old_name'))->first();
+        $request->validate(
+        [
+            'name' => 'required|unique:Museum.name'
+        ]);
+        $museum -> name = $request->input('name');
+        $museum->location = $request->input('location');
+        $museum->address = $request->input('address');
+        $museum->email = $request->input('email');
+        $museum->imgRoute = $request->input('imgRoute');
+        $museum->save();
+        // return "Museo con nombre $request->old_name actualizado correctamente";
+        return view('singleObject.editmuseum', ['museum' => $museum]);
+    }
+
     public function destroyMuseum(Request $request){
         $aux = Museum::findOrFail($request->museum_id);
         $aux->delete();
@@ -51,6 +68,23 @@ class MuseumController extends Controller
         return redirect('/museums');
     }
 
+    public function buscar(Request $request){
+        $nombre = $request->get('name');
+        $location = $request->get('location');
+        if(isset($nombre) && isset($location)){ //si nos pasan los dos criterios
+            $museums = Museum::where([['name', 'like', '%'.$nombre.'%'], ['location', '=', $location]])->paginate(2);
+            return view('listObjects.museum',compact('museums'));
+        }else if(isset($nombre)){               //si nos pasan solo el criterio nombre
+            $museums = Museum::where([['name', 'like', '%'.$nombre.'%']])->paginate(2);
+            return view('listObjects.museum',compact('museums'));
+        }else if(isset($location)){             //si nos pasan solo el criterio location
+            $museums = Museum::where([['location', 'like', '%'.$location.'%']])->paginate(2);
+            return view('listObjects.museum',compact('museums'));
+        }else{                                  //si no nos pasan ningun criterio
+            $museums = Museum::all();
+            return view('listObjects.museum', compact('museums'));
+        }
+    }
 
     public function findMuseum(){
 

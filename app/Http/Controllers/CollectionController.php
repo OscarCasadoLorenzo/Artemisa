@@ -39,4 +39,40 @@ class CollectionController extends Controller
     public function findCollection(){
 
     }
+
+    public function update(Request $request)
+    {
+        $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
+        $coll->validate(
+        [
+            'name' => 'required|unique:Collection,name'
+        ]);
+        $coll -> name = $request->input('name');
+        $coll->nacionality = $request->input('nacionality');
+        $coll->museum_id = $request->input('museum_id');
+        $coll->save();
+        return "Museo con nombre $request->old_name actualizado correctamente";
+    }
+
+    public function ordenar(Request $request){
+        $opcion = $request->option;
+        $idmuseo = $request->museum;
+        $museo = Museum::find($idmuseo);
+        if($opcion == 1){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('id');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else if($opcion == 2){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('name');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else if($opcion == 3){
+            $collections = CollectionController::getCollections($idmuseo)->sortBy('updated_at');
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+        else{
+            $collections = CollectionController::getCollections($idmuseo);
+            return view('singleObject.museum', ['museum'=>$museo, 'collections'=>$collections]);
+        }
+    }
 }
