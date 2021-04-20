@@ -40,12 +40,25 @@ class AuthorController extends Controller
         return view('deleteObjects.author', compact('authors'));
     }
 
+    public function getDetails($id = 0)
+    {
+        $authors = Author::where('id',$id)->first();
+        return response()->json($authors);
+    }
+
+    public function modifyAuthor()
+    {
+        $authors = Author::all();
+        return view('updateObject.author', compact('authors',$authors));
+    }
+
     public function update(Request $request)
     {
-        $authors = Author::table('name')->where('name',$request->input('old_name'))->first();
+        $authors = Author::findOrFail($request->input('author_id'));
         $request->validate(
         [
-            'name' => 'required|unique:Author,name'
+            'name' => 'required|unique:authors,name',
+            //'birth_date' => 'date' Multivalidación?
         ]);
         $authors -> name = $request->input('name');
         $authors->nacionality = $request->input('nacionality');
@@ -53,7 +66,7 @@ class AuthorController extends Controller
         $authors->movement = $request->input('movement');
         $authors->imgRoute = $request->input('imgRoute');
         $authors->save();
-        return "Autor con nombre $request->old_name actualizado correctamente";
+        return "Autor con nombre $request->name actualizado correctamente";
     }
 
     public function destroyAuthor(Request $request){

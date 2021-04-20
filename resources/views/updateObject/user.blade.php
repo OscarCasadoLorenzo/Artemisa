@@ -14,19 +14,20 @@
             </select>
         <table>
         <tr>
-        <td><input type="text" class="form-control" id="name" name="name"/></td>
-        <td><input type="text" class="form-control" id="surname1" name="surname1"/></td>
-        <td><input type="text" class="form-control" id="surname2" name="surname2"/></td>
+        <td><input type="text" class="form-control" id="name" name="name" placeholder="nombre"/></td>
+        <td><input type="text" class="form-control" id="surname1" name="surname1" placeholder="apellido1"/></td>
+        <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="apellido2"/></td>
         <tr>
         </table>
-        <input type="text" class="form-control" id="birth_date" name="birth_date"/>
-        <input type="text" class="form-control" id="location" name="location"/>
+        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="año de nacimiento"/>
+        <input type="text" class="form-control" id="location" name="location" placeholder="localización"/>
         <select  name="type" id="type" class="form-control">
+                <option style="display:none"> </option>
                 <option value="visitor">visitor</option>
                 <option value="admin">admin</option>
         </select>
         <!--<input type="text" class="form-control" id="type" />-->
-        <input type="text" class="form-control" id="email" name="email"/>
+        <input type="text" class="form-control" id="email" name="email" placeholder="email"/>
         </br>
         <button type="submit" >Update</button>
         </div>

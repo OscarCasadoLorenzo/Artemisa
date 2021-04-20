@@ -58,6 +58,8 @@ Route::get('/museums/update', 'MuseumController@modifyMuseum');
 Route::get('/collections/update', 'CollectionController@modifyCollection');
 Route::get('/artworks/update', 'ArtworkController@modifyArtwork');
 Route::get('/authors/update', 'AuthorController@modifyAuthor');
+Route::post('/artworks/update', 'AuthorController@update')->name('author.update');
+
 
 //Eliminación de elementos
 Route::get('/users/delete', 'UserController@deleteUser');
@@ -79,5 +81,6 @@ Route::get('/busqueda', 'MuseumController@buscar')->name('museum.search');
 
 //AJAX
 Route::get('get/details/user{id}', 'UserController@getDetails')->name('getDetailsUser');
+Route::get('get/details/author{id}', 'AuthorController@getDetails')->name('getDetailsAuthor');
 
 

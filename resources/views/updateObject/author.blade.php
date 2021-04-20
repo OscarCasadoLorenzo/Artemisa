@@ -1,41 +1,60 @@
 @extends('templates.main')
-
 @section('information')
-    <body>
-        <h1>Create new author</h1>
-        <form action="/authors" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">    
-                <label for="nm">Name</label>
-                <input type="text" id="nm" name="name" autofocus>
-            </div>
-            </br>
-            <div class="form-group">       
-                <label for="nc">Nacionality</label>
-                <input type="text" id="nc" name="nacionality" autofocus>
-            </div>
-            </br>
-            <div class="form-group">       
-                <label for="bd">Birth date</label>
-                <input type="number" id="bd" name="birth_date" autofocus>
-            </div>
-            </br>
-            <div class="form-group">       
-                <label for="mv">Artistic movement&nbsp;&nbsp;</label>
-                <input type="text" id="mv" name="movement" autofocus>
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="ew">WikiLink</label>
-                <input type="text" id="ew" name="eWiki" autofocus>
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus>
-            </div>
-            </br>
-            <button type="submit">Submit</button>
-        </form>
-    </body>
+<body>
+    <h1 style="position:absolute;left:35%">Update Author</h1>
+    <form method="POST" action="{{route('author.update')}}" >
+    @csrf
+        </br>
+        <div style="position:absolute;top:10%;right:40%;width: 500px;">
+        <select  name="author_id" id="author_id" class="form-control">
+                <option value="-1">Choose an Author</option>
+                @foreach ($authors as $author)
+                <option value="{{$author['id']}}">{{$author['name']}}</option>
+                @endforeach
+            </select>
+        <input type="text" class="form-control" id="name" name="name" placeholder="nombre"/>
+        <input type="text" class="form-control" id="movement" name="movement" placeholder="movimiento"/>
+        <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="nacionalidad"/>
+        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="año de nacimiento"/>
+        <input type="text" class="form-control" id="eWiki" name="eWiki" placeholder="eWiki"/>
+        <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
+        <!--<input type="text" class="form-control" id="type" />-->
+        </br>
+        <button type="submit" >Update</button>
+        </div>
+    </form>
+</body>
+<script type=text/javascript>
+$('#author_id').change(function(){
+    var id = $(this).val();
+    var url = '{{ route("getDetailsAuthor", ":id") }}';
+    url = url.replace(':id', id);
+
+    $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        success: function(response){
+            if(response != null){
+                $('#movement').val(response.movement);
+                $('#nacionality').val(response.nacionality);
+                $('#name').val(response.name);
+                $('#birth_date').val(response.birth_date);
+                $('#imgRoute').val(response.imgRoute);
+                $('#eWiki').val(response.eWiki);
+
+            }
+            else{
+                $('#movement').val('');
+                $('#nacionality').val('');
+                $('#name').val('');
+                $('#birth_date').val('');
+                $('#imgRoute').val('');
+                $('#eWiki').val('');
+            }
+        }
+    });
+});
+
+</script>
 @endsection
