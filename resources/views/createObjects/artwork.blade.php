@@ -1,5 +1,7 @@
 @extends('templates.main')
 
+@section('title', 'Create artwork')
+
 @section('information')
     <body>
         <h1>Create new artwork</h1>
@@ -15,22 +17,22 @@
                 <input type="text" id="mv" name="movement" autofocus>
             </div>
             </br>
-            <div class="form-group">                
+            <div class="form-group">
                 <label for="gr">Genre</label>
                 <input type="text" id="gr" name="genre" autofocus>
             </div>
             </br>
-            <div class="form-group">                
+            <div class="form-group">
                 <label for="dm">Dimensions</label>
                 <input type="text" id="dm" name="dimensions" autofocus>
             </div>
             </br>
-            <div class="form-group">                
+            <div class="form-group">
                 <label for="yr">Year</label>
                 <input type="number" id="yr" name="year" autofocus>
             </div>
             </br>
-            <div class="form-group">                
+            <div class="form-group">
                 <label for="at">Author</label>
                 <select name="author_id" id="ia" class="form-control">
                     <option value="">Escoge Autor</option>
@@ -40,7 +42,7 @@
                 </select>
             </div>
             </br>
-            <div class="form-group">                
+            <div class="form-group">
                 <label for="ct">Collection</label>
                 <select name="collection_id" id="ic" class="form-control">
                     <option value="">Escoge Colección</option>
@@ -50,12 +52,12 @@
                 </select>
             </div>
             </br>
-            <div class="form-group">                
+            <div class="form-group">
                 <label for="img">Image</label>
                 <input type="file" id="img" name="imgRoute" autofocus>
-            </div>    
+            </div>
             </br>
-            
+
             <button type="submit">Submit</button>
         </form>
     </body>

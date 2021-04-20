@@ -1,6 +1,6 @@
 @extends("templates.main")
 
-@section('title', 'Obras de arte')
+@section('title', 'Artworks')
 
 @section('header')
     @include ("templates.navbar")
@@ -12,7 +12,7 @@
     @foreach($artworks as $artwork)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <a href="/museums/{{$artwork->id}}">
+                <a href="/artworks/{{$artwork->id}}">
                     <img
                         src= {{asset($artwork->imgRoute)}}
                         class="img-fluid"

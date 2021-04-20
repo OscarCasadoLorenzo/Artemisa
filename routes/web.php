@@ -14,7 +14,6 @@ use App\Museum;
 */
 
 
-Route::get('/', 'PagesController@show');
 
 Route::get('/', 'MuseumController@paginaInicial');
 
@@ -22,7 +21,6 @@ Route::get('/', 'MuseumController@paginaInicial');
 Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
 Route::get('/authors', 'AuthorController@getAuthors');
-Route::get('/artworks', 'ArtworkController@getArtworks');
 
 //Rutas de extracción de objeto unico
 Route::get('/artworks/{id}', 'ArtworkController@getArtwork')->where('id', '\d+');

@@ -1,5 +1,7 @@
 @extends('templates.main')
 
+@section('title', 'Delete author')
+
 @section('information')
     <body>
         <h1>Delete an author:</h1>

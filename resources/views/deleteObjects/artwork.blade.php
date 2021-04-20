@@ -1,5 +1,7 @@
 @extends('templates.main')
 
+@section('title', 'Delete artwork')
+
 @section('information')
     <body>
         <h1>Delete an artwork:</h1>
