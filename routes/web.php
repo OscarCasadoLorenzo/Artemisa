@@ -35,7 +35,7 @@ Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
 Route::post('/museums', 'MuseumController@saveMuseum');
-Route::post('/authors', 'AuthorController@saveAuthors');
+Route::post('/authors', 'AuthorController@saveAuthor');
 Route::post('/collections', 'CollectionController@saveCollection');
 Route::post('/artworks', 'ArtworkController@saveArtworks');
 

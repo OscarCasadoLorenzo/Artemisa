@@ -77,7 +77,7 @@ class MuseumController extends Controller
         $nombre = $request->get('name');
         $location = $request->get('location');
         if(isset($nombre) && isset($location)){ //si nos pasan los dos criterios
-            $museums = Museum::where([['name', 'like', '%'.$nombre.'%'], ['location', '=', $location]])->paginate(2);
+            $museums = Museum::where([['name', 'like', '%'.$nombre.'%'], ['location', 'like', '%'.$location.'%' ]])->paginate(2);
             return view('listObjects.museum',compact('museums'));
         }else if(isset($nombre)){               //si nos pasan solo el criterio nombre
             $museums = Museum::where([['name', 'like', '%'.$nombre.'%']])->paginate(2);
