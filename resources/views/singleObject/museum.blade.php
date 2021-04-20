@@ -60,10 +60,6 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> cf7a3bb9bc34890e8a6cdf12541278ccad13d85a
         @endforeach
         
     </div>

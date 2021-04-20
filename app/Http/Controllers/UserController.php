@@ -60,7 +60,7 @@ class UserController extends Controller
         if($user->email != $request->input('email')){
             $request->validate(
             [
-                'email' => 'required|unique:Artwork,title',
+                'email' => 'required|unique:users,email',
                 'birth_date' => 'date'
             ]);
         }
