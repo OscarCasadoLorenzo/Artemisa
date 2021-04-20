@@ -55,11 +55,13 @@ class AuthorController extends Controller
     public function update(Request $request)
     {
         $authors = Author::findOrFail($request->input('author_id'));
-        $request->validate(
-        [
-            'name' => 'required|unique:authors,name',
-            //'birth_date' => 'date' Multivalidación?
-        ]);
+        if($authors->name != $request->input('name')){
+            $request->validate(
+            [
+                'name' => 'required|unique:authors,name',
+                //'birth_date' => 'date' Multivalidación?
+            ]);
+        }
         $authors -> name = $request->input('name');
         $authors->nacionality = $request->input('nacionality');
         $authors->birth_date = $request->input('birth_date');

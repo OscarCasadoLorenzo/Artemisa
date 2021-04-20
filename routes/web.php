@@ -55,6 +55,7 @@ Route::get('/authors/create', 'AuthorController@createAuthor');
 Route::get('/users/update', 'UserController@modifyUser')->name('user.modifyUser');
 Route::post('/users/update', 'UserController@update')->name('user.update');
 Route::get('/museums/update', 'MuseumController@modifyMuseum');
+Route::post('/museums/update', 'MuseumController@update')->name('museum.update');
 Route::get('/collections/update', 'CollectionController@modifyCollection');
 Route::get('/artworks/update', 'ArtworkController@modifyArtwork');
 Route::get('/authors/update', 'AuthorController@modifyAuthor');
@@ -82,5 +83,5 @@ Route::get('/busqueda', 'MuseumController@buscar')->name('museum.search');
 //AJAX
 Route::get('get/details/user{id}', 'UserController@getDetails')->name('getDetailsUser');
 Route::get('get/details/author{id}', 'AuthorController@getDetails')->name('getDetailsAuthor');
-
+Route::get('get/details/museum{id}', 'MuseumController@getDetails')->name('getDetailsMuseum');
 

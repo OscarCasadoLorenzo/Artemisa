@@ -1,40 +1,58 @@
 @extends('templates.main')
-
 @section('information')
-    <body>
-        <h1>Create new museum</h1>
-        <form action="/museums" method="post" enctype="multipart/form-data">
-            @csrf
-            </br>
-            <div class="form-group">
-                <label for="nm">Name</label>
-                <input type="text" id="nm" name="name" autofocus>
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="lc">Location</label>
-                <input type="text" id="lc" name="location" autofocus>
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="ad">Address</label>
-                <input type="text" id="ad" name="address" autofocus>
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="em">Email</label>
-                <input type="email" id="em" name="email" autofocus>
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus>
-            </div>
-            </br>
-            <button type="submit">Submit</button>
-        </form>
-    </body>
+<body>
+    <h1 style="position:absolute;left:35%">Update Museum</h1>
+    <form method="POST" action="{{route('museum.update')}}" >
+    @csrf
+        </br>
+        <div style="position:absolute;top:10%;right:40%;width: 500px;">
+        <select  name="museum_id" id="museum_id" class="form-control">
+                <option value="-1">Choose a museum</option>
+                @foreach ($museums as $museum)
+                <option value="{{$museum['id']}}">{{$museum['name']}}</option>
+                @endforeach
+            </select>
+        <input type="text" class="form-control" id="name" name="name" placeholder="nombre"/>
+        <input type="text" class="form-control" id="location" name="location" placeholder="localización"/>
+        <input type="text" class="form-control" id="address" name="address" placeholder="address"/>
+        <input type="text" class="form-control" id="email" name="email" placeholder="email"/>
+        <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
+        <!--<input type="text" class="form-control" id="type" />-->
+        </br>
+        <button type="submit" >Update</button>
+        </div>
+    </form>
+</body>
+<script type=text/javascript>
+$('#museum_id').change(function(){
+    var id = $(this).val();
+    var url = '{{ route("getDetailsMuseum", ":id") }}';
+    url = url.replace(':id', id);
+
+    $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        success: function(response){
+            if(response != null){
+                $('#location').val(response.location);
+                $('#address').val(response.address);
+                $('#name').val(response.name);
+                $('#email').val(response.email);
+                $('#imgRoute').val(response.imgRoute);
+
+            }
+            else{
+                $('#location').val('');
+                $('#address').val('');
+                $('#name').val('');
+                $('#email').val('');
+                $('#imgRoute').val('');
+            }
+        }
+    });
+});
+
+</script>
 @endsection
-
-
 
