@@ -1,16 +1,10 @@
-
-@extends('templates.main')
-
-@section('title', 'Create collection')
-
-
-@section('information')
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
-        <title>Collections</title>
+        <title>Collections</title> 
     </head>
     <body>
-
         <h1>Create new collection</h1>
         <form action="/collections" method="post">
             @csrf
@@ -32,4 +26,4 @@
             <button type="submit">Submit</button>
         </form>
     </body>
-@endsection
+</html>

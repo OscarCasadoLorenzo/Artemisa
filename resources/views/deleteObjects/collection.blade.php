@@ -1,5 +1,7 @@
 @extends('templates.main')
 
+@section('title', 'Delete collection')
+
 @section('information')
     <body>
         <h1>Delete a collection:</h1>

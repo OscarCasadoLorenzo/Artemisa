@@ -1,6 +1,6 @@
 @extends("templates.main")
 
-@section('title', 'Museo xxx')
+@section('title', 'Museum')
 
 @section('header')
     @include ("templates.navbar")
@@ -16,7 +16,7 @@
         <img class="img-fluid rounded mb-4 mb-lg-0" src={{asset($museum->imgRoute)}} alt="">
     </div>
 
-    
+
     <!-- /.col-lg-8 -->
     <div class="col-lg-5">
         <h1 class="font-weight-light">{{$museum->name}}</h1>
@@ -46,7 +46,7 @@
     </br>
 
 
-    
+
     <div class="row">
         @foreach($collections as $collection)
             <!-- Content Row -->
@@ -60,6 +60,10 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf7a3bb9bc34890e8a6cdf12541278ccad13d85a
         @endforeach
         
     </div>

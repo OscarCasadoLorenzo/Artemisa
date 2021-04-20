@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Artemisa | @yield('title', 'Default')</title>
     </head>
 

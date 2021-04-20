@@ -1,6 +1,6 @@
 @extends("templates.main")
 
-@section('title', 'Artwork xxx')
+@section('title', 'Collection')
 
 @section('header')
     @include ("templates.navbar")

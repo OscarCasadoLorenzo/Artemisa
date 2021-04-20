@@ -1,5 +1,7 @@
 @extends('templates.main')
 
+@section('title', 'Delete museums')
+
 @section('information')
     <body>
         <h1>Delete a museum:</h1>

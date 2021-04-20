@@ -1,5 +1,7 @@
 @extends('templates.main')
 
+@section('title', 'Delete users')
+
 @section('information')
     <body>
         <h1>Delete an user:</h1>

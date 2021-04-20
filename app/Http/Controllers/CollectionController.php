@@ -25,7 +25,8 @@ class CollectionController extends Controller
     }
 
     public function saveCollection(Request $request){
-        Collection::create($request);
+        $valores = array('_token' => $request->_token, 'name' => $request->name, 'museum_id' => $request->museum_id);
+        Collection::create($valores);
         return "Colección $request->name añadida a la BD!";
     }
 

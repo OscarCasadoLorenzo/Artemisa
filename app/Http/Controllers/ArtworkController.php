@@ -17,7 +17,6 @@ class ArtworkController extends Controller
     public function getArtwork($id){
         $artwork = Artwork::find($id);
         $author = Author::find($artwork->author_id);
-        //$author = AuthorController::getAuthor($id);
 
 
         return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author]);

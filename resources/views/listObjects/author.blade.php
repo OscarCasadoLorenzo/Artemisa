@@ -1,6 +1,6 @@
 @extends("templates.main")
 
-@section('title', 'Obras de arte')
+@section('title', 'Authors')
 
 @section('header')
     @include ("templates.navbar")
@@ -31,7 +31,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">{{$author->name}}</h5>
-                <a href="/museums/{/collections" class="btn btn-primary">More info</a>
+                <a href="/authors/{{$author->id}}" class="btn btn-primary">More info</a>
             </div>
         </div>
     @endforeach

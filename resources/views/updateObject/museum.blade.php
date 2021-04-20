@@ -1,7 +1,5 @@
 @extends('templates.main')
 
-@section('title', 'Create museum')
-
 @section('information')
     <body>
         <h1>Create new museum</h1>
