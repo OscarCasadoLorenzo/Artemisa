@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Collections</title> 
+        <title>Collections</title>
     </head>
     <body>
         <h1>Create new collection</h1>
@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="im">Museo&nbsp;</label>
                 <select name="museum_id" id="im" class="form-control">
-                    <option value="">Escoge museo</option>
+                    <option value="">Choose a museum</option>
                     @foreach ($museums as $museum)
                     <option value="{{$museum['id']}}">{{$museum['name']}}</option>
                     @endforeach

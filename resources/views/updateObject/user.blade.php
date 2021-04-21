@@ -1,7 +1,7 @@
 @extends('templates.main')
 @section('information')
 <body>
-    <h1 style="position:absolute;left:35%">Update user</h1>
+    <h1 style="position:absolute;left:35%">Update User</h1>
     <form method="POST" action="{{route('user.update')}}">
     @csrf
         </br>
@@ -14,13 +14,13 @@
             </select>
         <table>
         <tr>
-        <td><input type="text" class="form-control" id="name" name="name" placeholder="nombre"/></td>
-        <td><input type="text" class="form-control" id="surname1" name="surname1" placeholder="apellido1"/></td>
-        <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="apellido2"/></td>
+        <td><input type="text" class="form-control" id="name" name="name" placeholder="Name"/></td>
+        <td><input type="text" class="form-control" id="surname1" name="surname1" placeholder="First surname"/></td>
+        <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="Second surname"/></td>
         <tr>
         </table>
-        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="año de nacimiento"/>
-        <input type="text" class="form-control" id="location" name="location" placeholder="localización"/>
+        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth"/>
+        <input type="text" class="form-control" id="location" name="location" placeholder="Location"/>
         <select  name="type" id="type" class="form-control">
                 <option style="display:none"> </option>
                 <option value="visitor">visitor</option>

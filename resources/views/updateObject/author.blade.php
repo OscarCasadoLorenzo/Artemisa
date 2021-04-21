@@ -12,10 +12,10 @@
                 <option value="{{$author['id']}}">{{$author['name']}}</option>
                 @endforeach
             </select>
-        <input type="text" class="form-control" id="name" name="name" placeholder="nombre"/>
-        <input type="text" class="form-control" id="movement" name="movement" placeholder="movimiento"/>
-        <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="nacionalidad"/>
-        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="año de nacimiento"/>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
+        <input type="text" class="form-control" id="movement" name="movement" placeholder="Movement"/>
+        <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="Nacionality"/>
+        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth"/>
         <input type="text" class="form-control" id="eWiki" name="eWiki" placeholder="eWiki"/>
         <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
         <!--<input type="text" class="form-control" id="type" />-->

@@ -12,9 +12,9 @@
                 <option value="{{$museum['id']}}">{{$museum['name']}}</option>
                 @endforeach
             </select>
-        <input type="text" class="form-control" id="name" name="name" placeholder="nombre"/>
-        <input type="text" class="form-control" id="location" name="location" placeholder="localización"/>
-        <input type="text" class="form-control" id="address" name="address" placeholder="address"/>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
+        <input type="text" class="form-control" id="location" name="location" placeholder="Location"/>
+        <input type="text" class="form-control" id="address" name="address" placeholder="Address"/>
         <input type="text" class="form-control" id="email" name="email" placeholder="email"/>
         <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
         <!--<input type="text" class="form-control" id="type" />-->
