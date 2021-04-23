@@ -9,6 +9,8 @@
         <title>Museums</title>
     </head>
     <body>
+        <div class ="container">
+
         <h1>Create new user</h1>
         <form action="/museums" method="post">
             @csrf
@@ -24,7 +26,8 @@
             <label for="em">Email</label>
             <input type="email" id="em" name="email" autofocus>
 
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
+        </div>
     </body>
 @endsection

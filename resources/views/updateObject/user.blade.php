@@ -29,7 +29,7 @@
         <!--<input type="text" class="form-control" id="type" />-->
         <input type="text" class="form-control" id="email" name="email" placeholder="email"/>
         </br>
-        <button type="submit" >Update</button>
+        <button class="btn btn-primary" type="submit" >Update</button>
         </div>
     </form>
 </body>

@@ -23,7 +23,7 @@
                 </select>
             </div>
             </br>
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </body>
 </html>

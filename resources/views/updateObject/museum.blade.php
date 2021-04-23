@@ -19,7 +19,7 @@
         <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
         <!--<input type="text" class="form-control" id="type" />-->
         </br>
-        <button type="submit" >Update</button>
+        <button class="btn btn-primary" type="submit" >Update</button>
         </div>
     </form>
 </body>

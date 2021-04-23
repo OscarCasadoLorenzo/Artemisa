@@ -2,7 +2,13 @@
 @extends('templates.main')
 
 @section('title', 'Create collection')
-
+<style>
+    #im{
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+    }
+</style>
 
 @section('information')
     <head>
@@ -10,6 +16,7 @@
         <title>Collections</title>
     </head>
     <body>
+        <div class ="container">
 
         <h1>Create new collection</h1>
         <form action="/collections" method="post">
@@ -29,7 +36,8 @@
                 </select>
             </div>
             </br>
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary"  type="submit">Submit</button>
         </form>
+        </div>
     </body>
 @endsection

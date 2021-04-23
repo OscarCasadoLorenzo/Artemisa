@@ -4,6 +4,8 @@
 
 @section('information')
     <body>
+        <div class ="container">
+
         <h1>Create new museum</h1>
         <form action="/museums" method="post" enctype="multipart/form-data">
             @csrf
@@ -33,8 +35,9 @@
                 <input type="file" id="img" name="imgRoute" autofocus>
             </div>
             </br>
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary"  type="submit">Submit</button>
         </form>
+        </div>
     </body>
 @endsection
 

@@ -1,9 +1,17 @@
 @extends('templates.main')
-
+<style>
+    #select{
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+    }
+</style>
 @section('title', 'Create artwork')
 
 @section('information')
     <body>
+        <div class ="container">
+
         <h1>Create new artwork</h1>
         <form action="/artworks" method="post" enctype="multipart/form-data">
             @csrf
@@ -34,8 +42,8 @@
             </br>
             <div class="form-group">
                 <label for="at">Author</label>
-                <select name="author_id" id="ia" class="form-control">
-                    <option value="">Escoge Autor</option>
+                <select name="author_id" id ="select" class="form-control">
+                    <option value="">Choose an Author</option>
                     @foreach ($authors as $author)
                     <option value="{{$author['id']}}">{{$author['name']}}</option>
                     @endforeach
@@ -44,8 +52,8 @@
             </br>
             <div class="form-group">
                 <label for="ct">Collection</label>
-                <select name="collection_id" id="ic" class="form-control">
-                    <option value="">Escoge Colección</option>
+                <select name="collection_id" id ="select" class="form-control">
+                    <option value="">Choose a Collection</option>
                     @foreach ($collections as $collection)
                     <option value="{{$collection['id']}}">{{$collection['name']}}</option>
                     @endforeach
@@ -58,7 +66,8 @@
             </div>
             </br>
 
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
+        </div>
     </body>
 @endsection

@@ -1,9 +1,17 @@
 @extends('templates.main')
 
 @section('title', 'Delete author')
-
+<style>
+    #ia{
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+    }
+</style>
 @section('information')
     <body>
+        <div class ="container">
+
         <h1>Delete an author:</h1>
         <form method="POST" action="/authors">
             @csrf @method('DELETE')
@@ -22,8 +30,8 @@
 
             </br>
 
-            <button type="submit">Delete</button>
+            <button class="btn btn-primary" type="submit">Delete</button>
         </form>
-
+        </div>
     </body>
 @endsection
