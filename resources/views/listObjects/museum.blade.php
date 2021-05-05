@@ -14,6 +14,10 @@
         <br/>
         <button type="submit" class="btn btn-primary">Buscar</button>
     </form >
+    <form action="/busqueda" method="get">
+        <br/>
+        <button type="submit" class="btn btn-primary">Mostrar todo</button>
+    </form >
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     @foreach($museums as $museum)
