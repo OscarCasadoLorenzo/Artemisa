@@ -111,6 +111,7 @@ class ArtworksTableSeeder extends Seeder
         $m1->name = 'El Prado';
         $m1->address = 'Calle de Ruiz de Alarcón';
         $m1->location = 'Madrid, España';
+        $m1->email = 'elprado@madrid.com';
         $m1->imgRoute = 'images/museums/museo_prado.png';
         $m1->save();
 
@@ -118,6 +119,7 @@ class ArtworksTableSeeder extends Seeder
         $m2->name = 'El Louvre';
         $m2->address = 'Rue de Rivoli';
         $m2->location = 'Paris, Francia';
+        $m2->email = 'ellouvre@francia.com';
         $m2->imgRoute = 'images/museums/museo_louvre.png';
         $m2->save();
 

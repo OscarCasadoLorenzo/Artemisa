@@ -19,7 +19,7 @@ class CreateMuseumsTable extends Migration
             $table->string('name')->unique();
             $table->string('location');
             $table->string('address');
-            $table->string('email')->nullable();
+            $table->string('email');
             $table->string('imgRoute')->default('images/others/default.jpg');        });
     }
 
