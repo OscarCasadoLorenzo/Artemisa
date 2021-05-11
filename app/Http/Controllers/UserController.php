@@ -22,7 +22,10 @@ class UserController extends Controller
     }
 
     public function saveUser(Request $request){
-
+        $encript = bcrypt($request->password);
+        $request['password']= $encript;
+        User::create($request->all());
+        return "Usuario $request->name añadido a la BD!";
     }
 
     public function deleteUser(){
