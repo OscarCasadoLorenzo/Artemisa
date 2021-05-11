@@ -14,6 +14,12 @@ class ArtworkController extends Controller
         $artworks = Artwork::where('collection_id','=', $idC)->paginate(3);
         return view('listObjects.artwork', ['artworks'=>$artworks]);
     }
+
+    public static function getArtworksAuthor($idA){
+        $artworks = Artwork::where('author_id','=', $idA)->get();
+        return $artworks;
+    }
+
     public function getArtwork($id){
         $artwork = Artwork::find($id);
         $author = Author::find($artwork->author_id);

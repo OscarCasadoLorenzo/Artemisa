@@ -14,7 +14,8 @@ class AuthorController extends Controller
 
     public static function getAuthor($id){
         $author = Author::find($id);
-        return view('singleObject.author', ['author'=>$author]);
+        $artworks = ArtworkController::getArtworksAuthor($id);
+        return view('singleObject.author', ['author'=>$author], ['artworks'=>$artworks]);
     }
 
     public function createAuthor(){

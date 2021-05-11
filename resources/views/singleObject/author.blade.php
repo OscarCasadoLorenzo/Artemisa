@@ -30,9 +30,27 @@
     </div>
     <!-- /.row -->
 
-
-
-
     </div>
+
     <!-- /.container -->
+ 
+        
+    <div class="row">
+        @foreach($artworks as $artwork)
+            <!-- Content Row -->
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">{{$artwork->name}}</h2>
+                                <img src= {{asset($artwork->imgRoute)}} class="img-fluid" style="width: 200px; height: 400px;"/>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/artworks/{{$artwork->id}}" class="btn btn-primary btn-sm">Info</a>
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+</div>
 @endsection
+
+    
