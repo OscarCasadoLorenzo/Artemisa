@@ -2,24 +2,12 @@
 
 @section('title', 'Museums')
 
-@section('header')
-    @include ("templates.navbar")
+@section('filters')
+    @include ("filters.museum")
 @endsection
 
 @section('information')
-<div class="col-sm-2">
-    <form action="/busqueda" method="get">
-        <h5> Nombre<input type="text" name="name"> </h5>
-        <h5> Localización<input type="text" name="location"> </h5>
-        <br/>
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </form >
-    <form action="/busqueda" method="get">
-        <br/>
-        <button type="submit" class="btn btn-primary">Mostrar todo</button>
-    </form >
-</div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
     @foreach($museums as $museum)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">

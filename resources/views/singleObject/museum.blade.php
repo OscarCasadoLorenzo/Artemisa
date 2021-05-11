@@ -68,4 +68,3 @@
     
     <!-- /.container -->
 @endsection
-<a href="/museums/" class="btn btn-primary"> Volver atrás</a>
