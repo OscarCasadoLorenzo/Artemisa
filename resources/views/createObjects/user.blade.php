@@ -1,23 +1,16 @@
 @extends("templates.main")
 <style>
     body{ 
-            background-image: url("images/others/wallpaper.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-image: url("images/others/wallpaper.jpg") !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
         }
 </style>
 @section('title', 'Create user')
 
 @section('information')
 
-<head>
-        <meta charset="utf-8">
-        <title>Users</title>
-    </head>
-    <body>
-        <div class ="container">
-
-        <h1>Create new user</h1>
+    <div class="container">
         <form action="/users" method="post">
             @csrf
             <label for="nm">Name</label>
@@ -47,6 +40,5 @@
             
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
-        </div>
-    </body>
+    </div>
 @endsection

@@ -25,13 +25,11 @@ class UserController extends Controller
                 return redirect('/museums');
             }
             else{
-                // return redirect('/');
-                return "hola";
+                return redirect('/');
             }
         }
         else{
-            return "f";
-            // return redirect('/');
+            return redirect('/');
         }
     }
 
@@ -48,7 +46,7 @@ class UserController extends Controller
         $encript = bcrypt($request->password);
         $request['password']= $encript;
         User::create($request->all());
-        return "Usuario $request->name añadido a la BD!";
+        return redirect('/');
     }
 
     public function deleteUser(){
