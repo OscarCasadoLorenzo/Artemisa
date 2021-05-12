@@ -9,8 +9,9 @@ use \App\Http\Controllers\CollectionController;
 class MuseumController extends Controller
 {
     public function paginaInicial(){
-        $museums = Museum::all();
-        return view('listObjects.museum', compact('museums'));
+        // $museums = Museum::all();
+        // return view('listObjects.museum', compact('museums'));
+        return view('templates.index');
     }
 
     public function getMuseums(){

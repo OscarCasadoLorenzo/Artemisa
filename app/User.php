@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     protected $guarded = ['id']; 
 
-    protected $hidden = ['password'];
+    // protected $hidden = ['password'];
 
     //Relacion N:N con Artworks (loved)
     public function artworks(){

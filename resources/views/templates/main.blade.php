@@ -14,6 +14,10 @@
             text-align:center;
         }
 
+        .pat{
+            display: block;
+        }
+
         .content{
             width:80%;
             margin: 0 auto;
@@ -36,6 +40,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/museums">Museums</a>
+                        </li>
                         <li class="nav-item">
                         <a class="nav-link" href="/authors">Authors</a>
                         </li>
@@ -46,7 +53,7 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <section class="content" id="hola">
+                        <section class="content" id="filters">
                                 @yield("filters")
                         </section>
                     </form>

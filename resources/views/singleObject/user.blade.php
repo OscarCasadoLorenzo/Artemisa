@@ -2,9 +2,7 @@
 
 @section('title', 'User')
 
-@section('header')
-    @include ("templates.navbar")
-@endsection
+
 
 @section('information')
     <!-- Page Content -->

@@ -2,9 +2,6 @@
 
 @section('title', 'Artworks')
 
-@section('header')
-    @include ("templates.navbar")
-@endsection
 
 @section('information')
 

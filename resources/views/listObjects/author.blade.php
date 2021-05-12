@@ -2,9 +2,6 @@
 
 @section('title', 'Authors')
 
-@section('header')
-    @include ("templates.navbar")
-@endsection
 
 <style>
 .img-fluid{
@@ -13,6 +10,10 @@
     object-fit:fill;
 }
 </style>
+
+@section('filters')
+    @include ("filters.author")
+@endsection
 
 @section('information')
     @foreach($authors as $author)

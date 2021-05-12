@@ -1,5 +1,11 @@
-@extends('templates.main')
-
+@extends("templates.main")
+<style>
+    body{ 
+            background-image: url("images/others/wallpaper.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+</style>
 @section('title', 'Create user')
 
 @section('information')

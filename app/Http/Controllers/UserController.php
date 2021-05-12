@@ -4,12 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function getUsers(){
        $u = User::all();
        return $u;
+    }
+
+    public function login(Request $request){
+        
+        // $pass = bcrypt($request->password);
+        // return $user->password;
+        if(isset($request->email) && isset($request->password)){
+            $user = User::where('email', '=', $request->email)->first();
+            // if($pass == $user->password){
+            if(Hash::check($request->password, $user->password)){
+                //continuará...
+                return redirect('/museums');
+            }
+            else{
+                // return redirect('/');
+                return "hola";
+            }
+        }
+        else{
+            return "f";
+            // return redirect('/');
+        }
     }
 
     public function getUser($id){

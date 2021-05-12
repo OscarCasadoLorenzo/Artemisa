@@ -79,6 +79,17 @@ class AuthorController extends Controller
         return redirect('/museums');
     }
 
+    public function buscar(Request $request){
+        $nombre = $request->get('name');
+        if(isset($nombre)){               //si nos pasan solo el criterio nombre
+            $authors = Author::where([['name', 'like', '%'.$nombre.'%']])->paginate(3);
+            return view('listObjects.author',compact('authors'));
+        }else{                                  //si no nos pasan ningun criterio
+            $authors = Author::paginate(3);
+            return view('listObjects.author', compact('authors'));
+        }
+    }
+
     public function findAuthors(Request $request){
 
     }

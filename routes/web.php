@@ -29,6 +29,8 @@ Route::get('/users/{id}', 'UserController@getUser')->where('id', '\d+');
 Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
 Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id', '\d+'); //solo permite que id sean numeros
 
+//Rutas para login
+Route::post('/users/login', 'UserController@login');
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
@@ -77,7 +79,8 @@ Route::get('/museums/{idM}/collections/{idC}/artworks', 'ArtworkController@getAr
 //FILTRACION DE ELEMENTOS
 Route::get('/filterCollection', 'CollectionController@ordenar')->name('collection.filter');
 Route::get('/filterArtwork', 'ArtworkController@ordenar')->name('artwork.filter');
-Route::get('/busqueda', 'MuseumController@buscar')->name('museum.search');
+Route::get('/museums', 'MuseumController@buscar');
+Route::get('/authors', 'AuthorController@buscar');
 
 
 //AJAX
