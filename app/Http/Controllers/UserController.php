@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
-        
+
         // $pass = bcrypt($request->password);
         // return $user->password;
         if(isset($request->email) && isset($request->password)){
@@ -42,7 +43,7 @@ class UserController extends Controller
         return view('createObjects.user');
     }
 
-    public function saveUser(Request $request){
+    public function saveUser(UserRequest $request){
         $encript = bcrypt($request->password);
         $request['password']= $encript;
         User::create($request->all());
