@@ -15,4 +15,10 @@ php artisan migrate //lanza las migraciones
 php artisan make:model Artwork -m //crea migracion CreateArtworksTable y model Artwork.php
 
 
-ALTER TABLE <name> AUTO_INCREMENT = 1;
+¿Cómo ejecutar la API despues de clonar el repositorio?
+1º) Instalar las dependencias: 
+    composer install
+2º) Copiar el archivo .env.example a un nuevo archivo .env:
+    cp .env.example .env
+3º) Editar el archivo .env con las contraseñas de la BD y la IP del servidor, etc.
+4º) php artisan key:generate
