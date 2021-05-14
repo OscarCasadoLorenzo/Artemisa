@@ -100,6 +100,7 @@ class UserController extends Controller
         $user->type = $request->input('type');
         $user->email = $request->input('email');
         $user->save();
-        return "Usuario con email ".$request->input('email'). " actualizado correctamente";
+        // return "Usuario con email ".$request->input('email'). " actualizado correctamente";
+        return redirect('/');
     }
 }
