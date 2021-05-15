@@ -24,7 +24,10 @@ class MuseumRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'min:4|max:50|required',
+            'location' => 'min:4|max:50|required',
+            'address' => 'min:4|max:50|required',
+            'email' => 'min:6|max:50|nullable|email',
         ];
     }
 }

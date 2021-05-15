@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Collection;
 use App\Museum;
+use App\Http\Requests\CollectionRequest;
 
 class CollectionController extends Controller
 {
@@ -24,7 +25,7 @@ class CollectionController extends Controller
         return view('createObjects.collection', compact('museums'));  //modificado compact para el desplegable
     }
 
-    public function saveCollection(Request $request){
+    public function saveCollection(CollectionRequest $request){
         $valores = array('_token' => $request->_token, 'name' => $request->name, 'museum_id' => $request->museum_id);
         Collection::create($valores);
         return "Colección $request->name añadida a la BD!";
@@ -47,7 +48,7 @@ class CollectionController extends Controller
 
     }
 
-    public function update(Request $request)
+    public function update(CollectionRequest $request)
     {
         $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
         $coll->validate(

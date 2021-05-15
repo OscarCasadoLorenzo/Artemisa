@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Museum;
 use \App\Http\Controllers\CollectionController;
+use App\Http\Requests\MuseumRequest;
+
 
 class MuseumController extends Controller
 {
@@ -24,7 +26,7 @@ class MuseumController extends Controller
         return view('createObjects.museum');
     }
 
-    public function saveMuseum(Request $request){
+    public function saveMuseum(MuseumRequest $request){
 
         $input = $request->all();
         if($file = $request->file('imgRoute')){
@@ -62,7 +64,7 @@ class MuseumController extends Controller
         return view('updateObject.museum', compact('museums',$museums));
     }
 
-    public function update(Request $request)
+    public function update(MuseumRequest $request)
     {
         $museum = Museum::findOrFail($request->input('museum_id'));
         if($museum->name != $request->input('name')){

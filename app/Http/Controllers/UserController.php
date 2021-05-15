@@ -80,7 +80,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
         $user = User::findOrFail($request->input('user_id'));
         if($user->email != $request->input('email')){
