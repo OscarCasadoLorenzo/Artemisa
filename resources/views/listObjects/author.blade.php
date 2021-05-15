@@ -9,6 +9,17 @@
     height:150px !important;
     object-fit:fill;
 }
+
+
+#information{
+    display:block !important;
+}
+
+#autores{
+    display:flex;
+    justify-content:center;
+}
+
 </style>
 
 @section('filters')
@@ -16,6 +27,7 @@
 @endsection
 
 @section('information')
+    <div id="autores">
     @foreach($authors as $author)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -36,5 +48,13 @@
             </div>
         </div>
     @endforeach
-    {{$authors->links()}}
+    </div>
+
+
+    <div class="d-flex" style= "margin-top:30px">
+    <div class="mx-auto">
+        {{$authors->links()}}
+    </div>
+</div>
+
 @endsection
