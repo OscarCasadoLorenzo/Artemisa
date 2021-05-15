@@ -12,11 +12,11 @@
                 <option value="{{$museum['id']}}">{{$museum['name']}}</option>
                 @endforeach
             </select>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
-        <input type="text" class="form-control" id="location" name="location" placeholder="Location"/>
-        <input type="text" class="form-control" id="address" name="address" placeholder="Address"/>
-        <input type="text" class="form-control" id="email" name="email" placeholder="email"/>
-        <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}"/>
+        <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{ old('location') }}"/>
+        <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}"/>
+        <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ old('email') }}"/>
+        <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute" value="{{ old('imgRoute') }}"/>
         <!--<input type="text" class="form-control" id="type" />-->
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>

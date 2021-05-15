@@ -28,9 +28,9 @@ class UserRequest extends FormRequest
             'name' => 'min:4|max:50|required',
             'surname1' => 'min:4|max:50|required',
             'surname2' => 'min:4|max:50|required',
-            'email' => 'min:8|max:50|required|unique:users|email',
+            'email' => 'min:6|max:50|required|email',
             'birth_date' => 'date',
-            'location' => 'min:10|max:75|required',
+            'location' => 'min:3|max:75|required',
             //'password' => ['required', Password::min(8)->mixedCase()->symbols()],
         ];
     }
