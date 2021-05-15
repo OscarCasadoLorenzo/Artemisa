@@ -14,8 +14,7 @@ class AuthorController extends Controller
 
     public static function getAuthor($id){
         $author = Author::find($id);
-        $artworks = ArtworkController::getArtworksAuthor($id);
-        return view('singleObject.author', ['author'=>$author], ['artworks'=>$artworks]);
+        return view('singleObject.author', ['author'=>$author]);
     }
 
     public function createAuthor(){
@@ -68,6 +67,7 @@ class AuthorController extends Controller
         $authors->birth_date = $request->input('birth_date');
         $authors->movement = $request->input('movement');
         $authors->imgRoute = $request->input('imgRoute');
+        $authors->ewiki = $request->input('eWiki');
         $authors->save();
         return "Autor con nombre $request->name actualizado correctamente";
     }
@@ -77,17 +77,6 @@ class AuthorController extends Controller
         $aux->delete();
 
         return redirect('/museums');
-    }
-
-    public function buscar(Request $request){
-        $nombre = $request->get('name');
-        if(isset($nombre)){               //si nos pasan solo el criterio nombre
-            $authors = Author::where([['name', 'like', '%'.$nombre.'%']])->paginate(3);
-            return view('listObjects.author',compact('authors'));
-        }else{                                  //si no nos pasan ningun criterio
-            $authors = Author::paginate(3);
-            return view('listObjects.author', compact('authors'));
-        }
     }
 
     public function findAuthors(Request $request){
