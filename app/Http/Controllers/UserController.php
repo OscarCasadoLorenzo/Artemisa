@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -86,7 +87,7 @@ class UserController extends Controller
             $request->validate(
             [
                 'email' => 'required|unique:users,email',
-                'birth_date' => 'date'
+                //'birth_date' => 'date' ???
             ]);
         }
         $request->validate(
@@ -100,8 +101,22 @@ class UserController extends Controller
         $user->location = $request->input('location');
         $user->type = $request->input('type');
         $user->email = $request->input('email');
+        if(($password = $request->input('aPassword')) != "")
+        {
+            if(Hash::check($password, $user->password))
+            {
+                if(($password = $request->input('nPassword')) == $request->input('nPassword2'))
+                { 
+                    $user->password = Hash::make($password);
+                }
+                else return Redirect::to('/users/update')->withErrors(['La nueva contraseñas no coincide', 'No coinciden las nuevas contraseñas'])
+                                                         ->with(['user' => $request->all()])->withInput();
+            }
+            else return Redirect::to('/users/update')->withErrors(['Antigua contraseña no coincide', 'Antigua contraseña no coincide'])
+                                                     ->with(['user' => $request->all()])->withInput();
+        }
         $user->save();
         // return "Usuario con email ".$request->input('email'). " actualizado correctamente";
-        return redirect('/');
+        return Redirect::to('/users/update')->withErrors(['ACTUALIZADO CON EXITO', 'No coinciden las nuevas contraseñas']);
     }
 }
