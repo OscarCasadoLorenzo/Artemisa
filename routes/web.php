@@ -13,7 +13,8 @@ use App\Museum;
 |
 */
 
-
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'MuseumController@paginaInicial');
 
@@ -88,3 +89,7 @@ Route::get('get/details/user{id}', 'UserController@getDetails')->name('getDetail
 Route::get('get/details/author{id}', 'AuthorController@getDetails')->name('getDetailsAuthor');
 Route::get('get/details/museum{id}', 'MuseumController@getDetails')->name('getDetailsMuseum');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
