@@ -23,7 +23,7 @@
             @csrf
             <div class="form-group">
                 <label for="nm">Name&nbsp;</label>
-                <input type="text" id="nm" name="name" autofocus>
+                <input type="text" id="nm" name="name" autofocus value="{{ old('imgRoute') }}">
             </div>
             </br>
             <div class="form-group">
@@ -37,6 +37,17 @@
             </div>
             </br>
             <button class="btn btn-primary"  type="submit">Submit</button>
+
+            @if(count($errors) > 0)
+                <div class="alert alert-danger" role="alert" style="width:auto;">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li> {{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
         </form>
         </div>
     </body>

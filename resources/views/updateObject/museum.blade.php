@@ -21,6 +21,17 @@
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
         </div>
+
+    @if(count($errors) > 0)
+        <div class="alert alert-danger" role="alert" style="width:auto;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li> {{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     </form>
 </body>
 <script type=text/javascript>
