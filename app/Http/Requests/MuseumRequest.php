@@ -26,8 +26,8 @@ class MuseumRequest extends FormRequest
         return [
             'name' => 'regex:/^[a-zA-Z]+$/u|min:4|max:50|required',
             'location' => 'regex:/^[a-zA-Z]+$/u|min:4|max:50|required',
-            'address' => 'regex:/^[a-zA-Z]+$/u|min:4|max:50|required',
-            'email' => 'regex:/^[a-zA-Z]+$/u|min:6|max:50|nullable|email',
+            'address' => 'min:4|max:50|required',
+            'email' => 'min:6|max:50|nullable|email',
         ];
     }
 }
