@@ -77,18 +77,20 @@ class ArtworkController extends Controller
     }
     public function update(Request $request)
     {
-        $art = Artwork::query()->where('title', '=',$request->input('old_title'))->get();
-        $request->validate(
-        [
-            'title' => 'required|unique:Artwork,title'
-        ]);
+        $art = Artwork::findOrFail($request->input('id'));
+        if($art->title != $request->input('title'))
+        {
+            $request->validate(
+            [
+                'title' => 'required|unique:Artwork,title'
+            ]);
+            $art->title = $request->input('title');
+        }
         $art->movement = $request->input('movement');
         $art->genre = $request->input('genre');
         $art->dimensions = $request->input('dimensions');
-        $art->title = $request->input('title');
         $art->year = $request->input('year');
-        $art->imgRoute = $request->input('imgRoute');
-        $art->eWiki = $request->input('eWiki');
+        //$art->imgRoute = $request->input('imgRoute');
         try
         {
             Author::findOrFail($request->input('author_id'));
@@ -98,10 +100,19 @@ class ArtworkController extends Controller
             Redirect::to('/artwork/update')->withErrors(['El artista ya no existe en la BD'])
                                                      ->with(['art' => $request->all()])->withInput();
         }
-        $art->author_id = $request->input('author_id');         //Validar foreign key por si han eliminado el artista antes de comitear
+        $art->author_id = $request->input('author_id');         //Validar foreign key por si han eliminado el artista antes de guardar
+        try
+        {
+            Collection::findOrFail($request->input('collection_id'));
+        }
+        catch(ModelNotFoundException $e)
+        {
+            Redirect::to('/artwork/update')->withErrors(['La coleccion ya no existe en la BD'])
+                                                     ->with(['art' => $request->all()])->withInput();
+        }
         $art->collection_id = $request->input('collection_id');
         $art->save();
-        return "Artwork con nombre $request->old_title actualizado correctamente";
+        return Redirect::to('/artwork/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function findArtworks(){
