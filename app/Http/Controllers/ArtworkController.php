@@ -7,6 +7,8 @@ use App\Artwork;
 use App\Collection;
 use App\Museum;
 use App\Author;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Redirect;
 
 class ArtworkController extends Controller
 {
@@ -60,9 +62,16 @@ class ArtworkController extends Controller
         return redirect('/museums');
     }
 
+    public function modifyArtwork()
+    {
+        $artworks = Artwork::all();
+        $authors = Author::all();
+        $collections = Collection::all();
+        return view('updateObject.artwork') -> with(compact('artworks','authors','collections'));
+    }
     public function update(Request $request)
     {
-        $art = Artwork::table('title')->where('title',$request->input('old_title'))->first();
+        $art = Artwork::query()->where('title', '=',$request->input('old_title'))->get();
         $request->validate(
         [
             'title' => 'required|unique:Artwork,title'
@@ -74,7 +83,16 @@ class ArtworkController extends Controller
         $art->year = $request->input('year');
         $art->imgRoute = $request->input('imgRoute');
         $art->eWiki = $request->input('eWiki');
-        $art->author_id = $request->input('author_id');         //Validar foreign key?
+        try
+        {
+            Author::findOrFail($request->input('author_id'));
+        }
+        catch(ModelNotFoundException $e)
+        {
+            Redirect::to('/artwork/update')->withErrors(['El artista ya no existe en la BD'])
+                                                     ->with(['art' => $request->all()])->withInput();
+        }
+        $art->author_id = $request->input('author_id');         //Validar foreign key por si han eliminado el artista antes de comitear
         $art->collection_id = $request->input('collection_id');
         $art->save();
         return "Artwork con nombre $request->old_title actualizado correctamente";

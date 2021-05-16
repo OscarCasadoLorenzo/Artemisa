@@ -72,7 +72,7 @@ class UserController extends Controller
     public function modifyUser()
     {
         $users = User::all();
-        return view('updateObject.user', compact('users',$users));
+        return view('updateObject.user', compact('users'));
     }
 
     public function getDetails($id = 0)
