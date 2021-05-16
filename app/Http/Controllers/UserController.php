@@ -101,7 +101,7 @@ class UserController extends Controller
         $user->location = $request->input('location');
         $user->type = $request->input('type');
         $user->email = $request->input('email');
-        if(($password = $request->input('aPassword')) != "")
+        if(($password = $request->input('aPassword')) != "" && $request->input('nPassword') != "")
         {
             if(Hash::check($password, $user->password))
             {
