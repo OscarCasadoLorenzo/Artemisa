@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\UserCreateRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -90,7 +91,7 @@ class UserController extends Controller
     public function modifyUser()
     {
         $users = User::all();
-        return view('updateObject.user', compact('users',$users));
+        return view('updateObject.user', compact('users'));
     }
 
     public function getDetails($id = 0)
@@ -99,7 +100,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(UserRequest $request)
+    public function update(UserUpdateRequest $request)
     {
         $user = User::findOrFail($request->input('user_id'));
         if($user->email != $request->input('email')){
@@ -125,7 +126,7 @@ class UserController extends Controller
             if(Hash::check($password, $user->password))
             {
                 if(($password = $request->input('nPassword')) == $request->input('nPassword2'))
-                { 
+                {
                     $user->password = Hash::make($password);
                 }
                 else return Redirect::to('/users/update')->withErrors(['La nuevas contraseñas no coinciden'])

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Password;
 
-class UserRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'min:4|max:50|required',
-            'surname1' => 'min:4|max:50|required',
-            'surname2' => 'min:4|max:50|required',
-            'email' => 'min:6|max:50|required|email',
+            'name' => 'regex:/^[a-zA-Z]+$/u|min:3|max:50|required',
+            'surname1' => 'regex:/^[a-zA-Z]+$/u|min:3|max:50|required',
+            'surname2' => 'regex:/^[a-zA-Z]+$/u|min:3|max:50|required',
+            'email' => 'required',
             'birth_date' => 'date',
-            'location' => 'min:3|max:75|required',
+            'location' => 'regex:/^[a-zA-Z]+$/u|min:3|max:75|required',
             //'password' => ['required', Password::min(8)->mixedCase()->symbols()],
         ];
     }

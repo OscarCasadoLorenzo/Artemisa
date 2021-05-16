@@ -58,6 +58,7 @@ Route::get('/museums/update', 'MuseumController@modifyMuseum');
 Route::post('/museums/update', 'MuseumController@update')->name('museum.update');
 Route::get('/collections/update', 'CollectionController@modifyCollection');
 Route::get('/artworks/update', 'ArtworkController@modifyArtwork');
+Route::post('/artworks/update', 'ArtworkController@update')->name('artwork.update');
 Route::get('/authors/update', 'AuthorController@modifyAuthor');
 Route::post('/artworks/update', 'AuthorController@update')->name('author.update');
 
