@@ -3,7 +3,7 @@
 <body>
     <h1 style="position:absolute;left:35%">Update User</h1>
     @if($errors->any())
-    <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+    <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
     <form method="POST" action="{{route('user.update')}}">
     @csrf
