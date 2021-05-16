@@ -3,7 +3,7 @@
 <body>
     <h1 style="position:absolute;left:35%">Update User</h1>
     @if($errors->any())
-    <h4 style="position:absolute;right:30%;color:red;">{{$errors->first()}}</h4>
+    <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
     <form method="POST" action="{{route('user.update')}}">
     @csrf
@@ -17,7 +17,6 @@
             </select>
         <table>
         <tr>
-<<<<<<< HEAD
         <td><input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{old('name')}}"/></td>
         <td><input type="text" class="form-control" id="surname1" name="surname1" placeholder="First surname" value="{{old('surname1')}}"/></td>
         <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="Second surname" value="{{old('surname2')}}"/></td>
@@ -25,34 +24,21 @@
         </table>
         <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth" value="{{old('birth_date')}}"/>
         <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{old('location')}}"/>
-=======
-        <td><input type="text" class="form-control" id="name" name="name" placeholder="Name"  value="{{ old('name') }}"  /></td>
-        <td><input type="text" class="form-control" id="surname1" name="surname1" placeholder="First surname" value="{{ old('surname1') }}"/></td>
-        <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="Second surname" value="{{ old('surname2') }}"/></td>
-        <tr>
-        </table>
-        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth" value="{{ old('birth_date') }}"/>
-        <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{ old('location') }}"/>
->>>>>>> d5184387ffef83ae017d9b75529c4c0429034b31
         <select  name="type" id="type" class="form-control">
                 <option style="display:none"> </option>
                 <option value="visitor" @if (old('type') == "visitor") selected="selected" @endif >visitor</option>
                 <option value="admin" @if (old('type') == "admin") selected="selected" @endif>admin</option>
         </select>
         <!--<input type="text" class="form-control" id="type" />-->
-<<<<<<< HEAD
         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{old('email')}}"/>
         <input type="text" class="form-control" id="aPassword" name="aPassword" placeholder="Old password" value="{{old('aPassword')}}"/>
         <input type="text" class="form-control" id="nPassword" name="nPassword" placeholder="New password" value="{{old('nPassword')}}"/>
         <input type="text" class="form-control" id="nPassword2" name="nPassword2" placeholder="Repeat your new password" value="{{old('nPassword2')}}"/>
-=======
-        <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ old('email') }}" />
->>>>>>> d5184387ffef83ae017d9b75529c4c0429034b31
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
 
     </br> </br>
-        @if(count($errors) > 0)
+        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
         <div class="alert alert-danger" role="alert" style="width:auto;">
             <ul>
                 @foreach ($errors->all() as $error)

@@ -109,14 +109,14 @@ class UserController extends Controller
                 { 
                     $user->password = Hash::make($password);
                 }
-                else return Redirect::to('/users/update')->withErrors(['La nueva contraseñas no coincide', 'No coinciden las nuevas contraseñas'])
+                else return Redirect::to('/users/update')->withErrors(['La nuevas contraseñas no coinciden'])
                                                          ->with(['user' => $request->all()])->withInput();
             }
-            else return Redirect::to('/users/update')->withErrors(['Antigua contraseña no coincide', 'Antigua contraseña no coincide'])
+            else return Redirect::to('/users/update')->withErrors(['Antigua contraseña no coincide'])
                                                      ->with(['user' => $request->all()])->withInput();
         }
         $user->save();
         // return "Usuario con email ".$request->input('email'). " actualizado correctamente";
-        return Redirect::to('/users/update')->withErrors(['ACTUALIZADO CON EXITO', 'No coinciden las nuevas contraseñas']);
+        return Redirect::to('/users/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 }
