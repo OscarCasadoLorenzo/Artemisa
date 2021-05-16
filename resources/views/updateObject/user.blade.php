@@ -22,7 +22,7 @@
         <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="Second surname" value="{{old('surname2')}}"/></td>
         <tr>
         </table>
-        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth" value="{{old('birth_date')}}"/>
+        <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth" value="{{old('birth_date')}}"/>
         <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{old('location')}}"/>
         <select  name="type" id="type" class="form-control">
                 <option style="display:none"> </option>
@@ -31,9 +31,9 @@
         </select>
         <!--<input type="text" class="form-control" id="type" />-->
         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{old('email')}}"/>
-        <input type="text" class="form-control" id="aPassword" name="aPassword" placeholder="Old password" value="{{old('aPassword')}}"/>
-        <input type="text" class="form-control" id="nPassword" name="nPassword" placeholder="New password" value="{{old('nPassword')}}"/>
-        <input type="text" class="form-control" id="nPassword2" name="nPassword2" placeholder="Repeat your new password" value="{{old('nPassword2')}}"/>
+        <input type="password" class="form-control" id="aPassword" name="aPassword" placeholder="Old password" value="{{old('aPassword')}}"/>
+        <input type="password" class="form-control" id="nPassword" name="nPassword" placeholder="New password" value="{{old('nPassword')}}"/>
+        <input type="password" class="form-control" id="nPassword2" name="nPassword2" placeholder="Repeat your new password" value="{{old('nPassword2')}}"/>
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
 
