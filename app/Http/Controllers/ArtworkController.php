@@ -30,6 +30,12 @@ class ArtworkController extends Controller
         return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author]);
     }
 
+    public function getDetails($id = 0)
+    {
+        $art = Artwork::where('id',$id)->first();
+        return response()->json($art);
+    }
+
     public function createArtwork(){
         $collections = Collection::all();
         $authors = Author::all();

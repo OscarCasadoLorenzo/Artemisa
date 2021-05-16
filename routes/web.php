@@ -89,7 +89,7 @@ Route::get('/authors', 'AuthorController@buscar');
 Route::get('get/details/user{id}', 'UserController@getDetails')->name('getDetailsUser');
 Route::get('get/details/author{id}', 'AuthorController@getDetails')->name('getDetailsAuthor');
 Route::get('get/details/museum{id}', 'MuseumController@getDetails')->name('getDetailsMuseum');
-
+Route::get('get/details/artwork{id}', 'ArtworkController@getDetails')->name('getDetailsArtwork');
 
 Auth::routes();
 
