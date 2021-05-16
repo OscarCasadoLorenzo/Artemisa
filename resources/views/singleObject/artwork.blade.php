@@ -32,9 +32,9 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
     <div class="card-body">
-        <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">View Author</h2> </a>
-    </br>
-        <!-- <a class="btn btn-primary" href="/authors/{{$author->id}}">WikiArt</a> -->
+        <!-- <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">View Author</h2> </a> -->
+        <h2>Author</h2>
+        <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">{{$author->name}}</h2> </a>
 
     </div>
     </div>
