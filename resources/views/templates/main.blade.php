@@ -6,6 +6,7 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <title>Artemisa | @yield('title', 'Default')</title>
     </head>
 
@@ -21,6 +22,7 @@
         .content{
             width:80%;
             margin: 0 auto;
+            margin-left: 20px;
         }
 
         #information{
@@ -32,6 +34,7 @@
         #filters{
             display:flex;
         }
+
     </style>
 
     <body>
@@ -51,9 +54,24 @@
                         <a class="nav-link" href="/authors">Authors</a>
                         </li> 
                         @if (Auth::user()->type == "admin")
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Administration</a>
-                            </li>
+  
+                    <li class="nav-item">
+                        <div class="form-group">
+                                <select class="form-control" style="width:140px !important; margin-left: 10px" >
+                                    <option value="" selected disabled hidden>Administration</option>
+                                    <optgroup label="Swedish Cars">
+                                        <option value="volvo">Volvo</option>
+                                        <option value="saab">Saab</option>
+                                    </optgroup>
+                                    <optgroup label="German Cars">
+                                        <option value="mercedes">Mercedes</option>
+                                        <option value="audi">Audi</option>
+                                    </optgroup>
+                                </select>
+                        </div>
+
+
+                    </li>
                         @endif
                     </ul>
 
@@ -62,7 +80,12 @@
                                 @yield("filters")
                                 @if (Auth::check())
                             <div style="margin-left:30px">
-                                <a href="/home"> {{Auth::user()->name}} </a>
+                                <div class="flex-shrink-0 dropdown">
+                                    <a href="/home" class="d-block link-dark text-decoration-none show" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">             
+                                        <img src="{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                    </a>                
+                                    <p>{{Auth::user()->name}}</p>
+                                </div>
                             </div>
                         @endif
                         </section>

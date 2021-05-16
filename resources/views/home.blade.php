@@ -18,6 +18,7 @@
                     @endif
 
                     You are logged in!
+                    <a href="/museums"> Home </a>
                 </div>
             </div>
         </div>
