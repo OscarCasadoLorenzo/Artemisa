@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Author;
+use App\Artwork;
 
 class AuthorController extends Controller
-{
+{   
     public function getAuthors(){
         $authors = Author::paginate(4);
         return view('listObjects.author', ['authors'=>$authors]);
@@ -14,7 +15,8 @@ class AuthorController extends Controller
 
     public static function getAuthor($id){
         $author = Author::find($id);
-        return view('singleObject.author', ['author'=>$author]);
+        $artworks = ArtworkController::getArtworksAuthor($id);
+        return view('singleObject.author', ['author'=>$author], ['artworks'=>$artworks]);
     }
 
     public function createAuthor(){
@@ -69,7 +71,8 @@ class AuthorController extends Controller
         $authors->imgRoute = $request->input('imgRoute');
         $authors->ewiki = $request->input('eWiki');
         $authors->save();
-        return "Autor con nombre $request->name actualizado correctamente";
+        //cambiar el redirect para que lleve a la pagina del author modificado
+        return redirect('/authors');
     }
 
     public function destroyAuthor(Request $request){
@@ -77,6 +80,17 @@ class AuthorController extends Controller
         $aux->delete();
 
         return redirect('/museums');
+    }
+
+    public function buscar(Request $request){
+        $nombre = $request->get('name');
+        if(isset($nombre)){               //si nos pasan solo el criterio nombre
+            $authors = Author::where([['name', 'like', '%'.$nombre.'%']])->paginate(3);
+            return view('listObjects.author',compact('authors'));
+        }else{                                  //si no nos pasan ningun criterio
+            $authors = Author::paginate(3);
+            return view('listObjects.author', compact('authors'));
+        }
     }
 
     public function findAuthors(Request $request){

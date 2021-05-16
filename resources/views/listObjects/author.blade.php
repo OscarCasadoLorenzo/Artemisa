@@ -31,7 +31,7 @@
     @foreach($authors as $author)
         <div class="card">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <a href="/museums/{{$author->id}}">
+                <a href="/authors/{{$author->id}}">
                     <img
                         src= {{asset($author->imgRoute)}}
                         class="img-fluid"
