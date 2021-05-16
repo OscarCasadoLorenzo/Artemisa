@@ -49,20 +49,29 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="/authors">Authors</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Administration</a>
-                        </li>
+                        </li> 
+                        @if (Auth::user()->type == "admin")
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Administration</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <form class="d-flex">
                         <section class="content" id="filters">
                                 @yield("filters")
+                                @if (Auth::check())
+                            <div style="margin-left:30px">
+                                <a href="/home"> {{Auth::user()->name}} </a>
+                            </div>
+                        @endif
                         </section>
                     </form>
+
                     </div>
                 </div>
             </nav>
+
         </section>
 
         <section class="content" id="information">

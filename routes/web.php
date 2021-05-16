@@ -13,9 +13,6 @@ use App\Museum;
 |
 */
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/', 'MuseumController@paginaInicial');
 
 //Rutas de extracción de listados

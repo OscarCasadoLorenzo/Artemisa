@@ -44,11 +44,30 @@ class UserController extends Controller
         return view('createObjects.user');
     }
 
-    public function saveUser(UserRequest $request){
-        $encript = bcrypt($request->password);
-        $request['password']= $encript;
-        User::create($request->all());
-        return redirect('/');
+    public function saveUser(User $user){
+    // public function saveUser(UserRequest $request){
+        // $encript = bcrypt($request->password);
+        // $request['password']= $encript;
+        // User::create($request->all());
+        // return redirect('/');
+        $name = request('name');
+        $surname1 = request('surname1');
+        $surname2 = request('surname2');
+        $location = request('location');
+        $birth_date = request('birth_date');
+        $email = request('email');
+        $password = request('password');
+
+        User::create([
+            'name' => $name,
+            'surname1' => $surname1 ,
+            'surname2' => $surname2 ,
+            'location' => $location,
+            'birth_date' => $birth_date,
+            'email' => $email,
+            'password' => $password
+        ]);
+        return redirect('/museums');
     }
 
     public function deleteUser(){

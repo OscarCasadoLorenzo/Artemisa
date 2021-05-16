@@ -52,12 +52,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'phone' => [ 'string', 'max:9'],
-            'birthday' => ['required', 'date'],
+            'surname1' => ['required', 'string', 'max:255'],
+            'surname1' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
+            'birth_date' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'facturationAddress' => ['required', 'string', 'max:255'],
-            'sendAddress' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -69,16 +68,16 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {       
         return User::create([
             'name' => $data['name'],
-            'surname' => $data['surname'],
-            'phone' => $data['phone'],
-            'birthday' => $data['birthday'],
+            'surname1' => $data['surname1'],
+            'surname2' => $data['surname2'],
+            'location' => $data['location'],
+            'birth_date' => $data['birth_date'],
             'email' => $data['email'],
-            'facturationAddress' => $data['facturationAddress'],
-            'sendAddress' => $data['sendAddress'],
             'password' => Hash::make($data['password']),
         ]);
     }
 }
+
