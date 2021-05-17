@@ -16,7 +16,7 @@ use App\Museum;
 Route::get('/', 'MuseumController@paginaInicial');
 
 //Rutas de extracción de listados
-Route::get('/users', 'UserController@getUsers');
+// Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
 Route::get('/authors', 'AuthorController@getAuthors');
 
