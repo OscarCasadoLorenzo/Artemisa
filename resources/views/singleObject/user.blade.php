@@ -27,7 +27,7 @@
      
     </div>
     <ul class="no-bullets">
-        <li class="nav-item dropdown" style="margin-top: 3px">
+        <a class="nav-item dropdown no-bullets" style="margin-top: 3px">
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -37,7 +37,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-        </li>
+        </a>
     </ul>
     <!-- /.col-md-4 -->
     

@@ -7,6 +7,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
         <title>Artemisa | @yield('title', 'Default')</title>
     </head>
 
@@ -134,33 +140,34 @@
                         <section class="content" id="filters">
                             @yield("filters")
                             @if (Auth::check())
-                                <div style="margin-left:30px">
+                                <!-- <div style="margin-left:30px">
                                     <div class="flex-shrink-0 dropdown">
                                         <a href="/users/{{Auth::user()->id}}" class="d-block link-dark text-decoration-none show" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">             
                                             <img src="/{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
                                         </a>                
                                         <p>{{Auth::user()->name}}</p>
                                     </div>
-                                </div>
-                                <!-- <nav id="profile" class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{Auth::user()->name}}
+                                </div> -->
+                                <nav id="profile" class="dropdown">
+                                    <button class="btn btn-primary" type="button" data-toggle="dropdown">{{Auth::user()->name}}
                                     <span class="caret"></span></button>
                                     <ul id="subprofile" class="dropdown-menu">
-                                        <li><a href="#">HTML</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><a href="#">JavaScript</a></li>
+                                        <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
+                                        <li>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
                                     </ul>
-                                </nav> -->
+                                </nav>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </div>
+                                    
+                                </div>
                             @endif
                         </section>
                     </form>
