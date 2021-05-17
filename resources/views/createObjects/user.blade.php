@@ -50,6 +50,15 @@
             <label for="lc">Location</label>
             <input type="text" id="lc" name="location" autofocus value="{{ old('location') }}">
         </div>
+        @if (Auth::user()->type == "admin")
+        <div class="col-md-7 mb-3">
+            <label for="tp">Type</label>
+            <select name="type">
+                <option value="admin">Admin user</option>
+                <option selected value="visitor">Visiting user</option>
+            </select>
+        </div>
+        @endif
         <div class="col-md-7 mb-3">
             <label for="em">Email</label>
             <input type="email" id="em" name="email" autofocus value="{{ old('email') }}">
