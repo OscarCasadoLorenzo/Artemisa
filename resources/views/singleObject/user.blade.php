@@ -24,8 +24,23 @@
         <p>Type: {{$user->type}}</p>
         <p>Email: {{$user->email}}</p>
 
+     
     </div>
+    <ul class="no-bullets">
+        <li class="nav-item dropdown" style="margin-top: 3px">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
+    </ul>
     <!-- /.col-md-4 -->
+    
     </div>
     <!-- /.row -->
 

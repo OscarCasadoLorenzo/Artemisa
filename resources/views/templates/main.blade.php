@@ -35,9 +35,6 @@
             display:flex;
         }
 
-
-
-
         .dropbtn {
             background-color: #04AA6D;
             color: white;
@@ -46,10 +43,14 @@
             border: none;
         }
 
-        .dropdown {
+        .administration{
+            margin-left: 18px;
+            margin-right: 18px;
+        }
+        /* .dropdown {
             position: relative;
             display: inline-block;
-        }
+        } 
 
         .dropdown-content {
             display: none;
@@ -67,17 +68,13 @@
             display: block;
         }
         
-        .administration{
-            margin-left: 18px;
-            margin-right: 18px;
-        }
 
         .dropdown-content a:hover {background-color: #ddd;}
 
         .dropdown:hover .dropdown-content {display: block;}
 
         .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
+        */
     </style>
 
     <body>
@@ -97,7 +94,6 @@
                         <a class="nav-link" href="/authors">Authors</a>
                         </li> 
                         @if (Auth::user()->type == "admin")
-
                         <li class="nav-item">
                             <form name="admin" class="administration" style="width: 100px">
                                 <select name="action">
@@ -136,17 +132,36 @@
 
                     <form class="d-flex">
                         <section class="content" id="filters">
-                                @yield("filters")
-                                @if (Auth::check())
-                            <div style="margin-left:30px">
-                                <div class="flex-shrink-0 dropdown">
-                                    <a href="/users/{{Auth::user()->id}}" class="d-block link-dark text-decoration-none show" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">             
-                                        <img src="/{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
-                                    </a>                
-                                    <p>{{Auth::user()->name}}</p>
+                            @yield("filters")
+                            @if (Auth::check())
+                                <div style="margin-left:30px">
+                                    <div class="flex-shrink-0 dropdown">
+                                        <a href="/users/{{Auth::user()->id}}" class="d-block link-dark text-decoration-none show" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">             
+                                            <img src="/{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                        </a>                
+                                        <p>{{Auth::user()->name}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                                <!-- <nav id="profile" class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{Auth::user()->name}}
+                                    <span class="caret"></span></button>
+                                    <ul id="subprofile" class="dropdown-menu">
+                                        <li><a href="#">HTML</a></li>
+                                        <li><a href="#">CSS</a></li>
+                                        <li><a href="#">JavaScript</a></li>
+                                    </ul>
+                                </nav> -->
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+                            @endif
                         </section>
                     </form>
 
