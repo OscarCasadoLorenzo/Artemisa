@@ -35,6 +35,49 @@
             display:flex;
         }
 
+
+
+
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .administration{
+            margin-left: 18px;
+            margin-right: 18px;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
     </style>
 
     <body>
@@ -54,24 +97,40 @@
                         <a class="nav-link" href="/authors">Authors</a>
                         </li> 
                         @if (Auth::user()->type == "admin")
-  
-                    <li class="nav-item">
-                        <div class="form-group">
-                                <select class="form-control" style="width:140px !important; margin-left: 10px" >
-                                    <option value="" selected disabled hidden>Administration</option>
-                                    <optgroup label="Swedish Cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
+
+                        <li class="nav-item">
+                            <form name="admin" class="administration" style="width: 100px">
+                                <select name="action">
+                                    <option hidden default value="/museums">Admin</option>
+                                    <optgroup label="Users">
+                                        <option value="/users/create">Create</option>
+                                        <option value="/users/update">Update</option>
+                                        <option value="/users/delete">Delete</option>
                                     </optgroup>
-                                    <optgroup label="German Cars">
-                                        <option value="mercedes">Mercedes</option>
-                                        <option value="audi">Audi</option>
+                                    <optgroup label="Authors">
+                                        <option value="/authors/create">Create</option>
+                                        <option value="/authors/update">Update</option>
+                                        <option value="/authors/delete">Delete</option>
+                                    </optgroup>
+                                    <optgroup label="Artworks">
+                                        <option value="/artworks/create">Create</option>
+                                        <option value="/artworks/update">Update</option>
+                                        <option value="/artworks/delete">Delete</option>
+                                    </optgroup>
+                                    <optgroup label="Collections">
+                                        <option value="/collections/create">Create</option>
+                                        <option value="/collections/update">Update</option>
+                                        <option value="/collections/delete">Delete</option>
+                                    </optgroup>
+                                    <optgroup label="Museums">
+                                        <option value="/museums/create">Create</option>
+                                        <option value="/museums/update">Update</option>
+                                        <option value="/museums/delete">Delete</option>
                                     </optgroup>
                                 </select>
-                        </div>
-
-
-                    </li>
+                                <input type="button" value="Go" onclick=window.open(admin.action.value)>
+                            </form>
+                        </li>
                         @endif
                     </ul>
 
