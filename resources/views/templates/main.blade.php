@@ -141,7 +141,7 @@
                             <div style="margin-left:30px">
                                 <div class="flex-shrink-0 dropdown">
                                     <a href="/home" class="d-block link-dark text-decoration-none show" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">             
-                                        <img src="{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                        <img src="/{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
                                     </a>                
                                     <p>{{Auth::user()->name}}</p>
                                 </div>
