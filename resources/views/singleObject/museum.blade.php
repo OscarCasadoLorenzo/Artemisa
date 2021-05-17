@@ -19,7 +19,6 @@
         <p>Location: {{$museum->location}}</p>
         <p>Address: {{$museum->address}}</p>
         <p>Email: {{$museum->email}}</p>
-        <a class="btn btn-primary" href="#">WikiArt</a>
     </div>
     <!-- /.col-md-4 -->
     </div>

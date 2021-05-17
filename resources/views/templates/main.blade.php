@@ -14,6 +14,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
         <title>Artemisa | @yield('title', 'Default')</title>
     </head>
 
@@ -56,30 +60,33 @@
             margin-right: 18px;
         }
     </style>
-@if (Auth::check())
     <body>
         <section class="content" id="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/museums">Artemisa</a>
+                    
+                    <a class="navbar-brand" href="/museums" style="padding-top: 22px">Artemisa</a>
+                    <div class="dropdown" style="padding-top: 18px; margin-left: -35px">
+                        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
+                        <li><a class="dropdown-item" href="/authors">Authors</a></li>
+                        <li><a class="dropdown-item" href="/museums">Museums</a></li>
+                        </ul>
+                    </div>
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/museums">Museums</a>
-                            </li>
+                            @if (Auth::check() && Auth::user()->type == "admin")
                             <li class="nav-item">
-                            <a class="nav-link" href="/authors">Authors</a>
-                            </li> 
-                            @if (Auth::user()->type == "admin")
-                            <li class="nav-item">
-                                <form name="admin" class="administration" style="width: 100px">
+                                <form name="admin" class="administration" style="display: flex; margin-top: 22px">
                                     <select name="action">
                                         <option hidden default value="/museums">Admin</option>
                                         <optgroup label="Users">
-                                            <option value="/users/create">Create</option>
+                                            <!-- <option value="/users/create">Create</option> -->
                                             <option value="/users/update">Update</option>
                                             <option value="/users/delete">Delete</option>
                                         </optgroup>
@@ -107,46 +114,50 @@
                                     <input type="button" value="Go" onclick=window.open(admin.action.value)>
                                 </form>
                             </li>
-                            @endif
-                        <!-- </ul> -->
+                        @endif
+                    <!-- </ul> -->
 
-                        <form class="d-flex">
-                            <section class="content" id="filters">
-                                @yield("filters")
-                                @if (Auth::check())
-                                    <!-- <div style="margin-left:30px">
-                                        <div class="flex-shrink-0 dropdown">
-                                            <a href="/users/{{Auth::user()->id}}" class="d-block link-dark text-decoration-none show" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">             
-                                                <img src="/{{Auth::user()->imgRoute}}" alt="mdo" width="32" height="32" class="rounded-circle">
-                                            </a>                
-                                            <p>{{Auth::user()->name}}</p>
-                                        </div>
-                                    </div> -->
-                                    <nav id="profile" class="dropdown">
-                                        <button class="btn btn-primary" type="button" data-toggle="dropdown">{{Auth::user()->name}}
-                                        <span class="caret"></span></button>
-                                        <ul id="subprofile" class="dropdown-menu">
-                                            <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
-                                            <li>
-                                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
-                                                </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        
-                                    </div>
-                                @endif
-                            </section>
-                        </form>
-                        </ul>
-                        </div>
+                    <form class="d-flex">
+                        <section class="content" id="filters">
+                            @yield("filters")
+                            @if (Auth::check())
+                                <!-- <div class="dropdown text-end">           
+                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
+                                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">           
+                                </a>           
+                                <ul class="dropdown-menu text-small show" aria-labelledby="dropdownUser1" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 34px);">             
+                                <li><a class="dropdown-item" href="#">New project...</a></li>             
+                                <li><a class="dropdown-item" href="#">Settings</a></li>             
+                                <li><a class="dropdown-item" href="#">Profile</a></li>             
+                                <li><hr class="dropdown-divider"></li>             
+                                <li><a class="dropdown-item" href="#">Sign out</a></li>           
+                                </ul>         
+                                </div> -->
+
+
+                                <div id="profile" class="dropdown" style="margin-top: 18px; margin-left: 15px;">
+                                    <button class="btn btn-primary" type="button" data-toggle="dropdown">{{Auth::user()->name}}
+                                    <span class="caret"></span></button>
+                                    <ul id="subprofile" class="dropdown-menu">
+                                        <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
+                                        <li>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            @endif
+                        </section>
+                    </form>
+                    </ul>
+                    </div>
                 </div>
             </nav>
 
@@ -161,9 +172,4 @@
         </section>
     <body>
 </html>
-@else
-    <body>
-        <h1>No tienes permisos para acceder</h1>
-        <a href="/login">Login</a>
-    </body>
-@endif
+

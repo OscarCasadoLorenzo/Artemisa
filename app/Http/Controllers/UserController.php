@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Artwork;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserCreateRequest;
@@ -14,6 +15,21 @@ class UserController extends Controller
     public function getUsers(){
        $u = User::all();
        return $u;
+    }
+
+    public static function favArt(Request $request){
+            $user_id = $request->get('id_user');
+            $artwork_id = $request->get('id_artwork');
+            $user = User::find($user_id);
+        if(User::find($user_id)->artworks()->having('pivot_artwork_id','=',$artwork_id)->get()->isEmpty()){
+            Artwork::find($artwork_id)->users()->attach($user);
+            $ruta = "/artworks/" . $artwork_id;
+            return redirect($ruta);
+        }
+        else{
+            $ruta = "/artworks/" . $artwork_id;
+            return redirect($ruta);
+        }
     }
 
     public function login(Request $request){

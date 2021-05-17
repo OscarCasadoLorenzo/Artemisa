@@ -4,6 +4,37 @@
 
 
 @section('information')
+
+<style>
+    #swapHeart > span {
+    color: red;
+    font-size:20px;
+    }
+
+    #swapHeart:active {
+    box-shadow: none;
+    }
+
+    #swapHeart:active, #swapHeart:hover, #swapHeart:focus {
+    background-color:white;
+    }
+
+    #swapHeart{
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+
+<script>
+    jQuery(function($) {
+  $('#swapHeart').on('click', function() {
+    var $el = $(this),
+      textNode = this.lastChild;
+    $el.find('span').toggleClass('glyphicon-heart glyphicon-heart-empty');
+    $el.toggleClass('swap');
+  });
+});
+</script>
     <!-- Page Content -->
     <div class="container">
 
@@ -22,8 +53,17 @@
         <p>Dimensions: {{$artwork->dimensions}}</p>
         <p>Year: {{$artwork->year}}</p>
         <p>Dimensions: {{$artwork->dimensions}}</p>
-        <p>eWiki: {{$artwork->eWiki}}</p>
-
+        <!-- aqui va el corazoncito -->
+        @if(Auth::check())
+        <form method="POST" action="{{ route('fav') }}">
+            @csrf
+            <input type="hidden" name="id_user" value="{{Auth::User()->id}}">
+            <input type="hidden" name="id_artwork" value="{{$artwork->id}}">
+            <button type="submit" id="swapHeart" class="btn btn-default swap">
+                <span class="glyphicon glyphicon-heart-empty"></span>
+            </button>
+        </form>
+        @endif
     </div>
     <!-- /.col-md-4 -->
     </div>

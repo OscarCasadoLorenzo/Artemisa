@@ -45,7 +45,7 @@ Route::delete('/artworks', 'ArtworkController@destroyArtwork');
 Route::delete('/authors', 'AuthorController@destroyAuthor');
 
 //Creación de elementos
-Route::get('/users/create', 'UserController@createUser');
+// Route::get('/users/create', 'UserController@createUser');
 Route::get('/museums/create', 'MuseumController@createMuseum');
 Route::get('/collections/create', 'CollectionController@createCollection');
 Route::get('/artworks/create', 'ArtworkController@createArtwork');
@@ -91,3 +91,6 @@ Route::get('get/details/artwork{id}', 'ArtworkController@getDetails')->name('get
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//EXPERIMENTOS
+Route::post('/artworks/fav', 'UserController@favArt')->name('fav');
