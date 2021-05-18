@@ -19,7 +19,7 @@ class UserController extends Controller
     
     public function getUser($id){
         $user = User::find($id);
-        $artworks = ArtworkController::getArtworksAuthor($id);
+        $artworks = $user->artworks()->get();
         return view('singleObject.user', ['user'=>$user, 'artworks'=>$artworks]);
     }
 
