@@ -7,7 +7,7 @@ use App\Author;
 use App\Artwork;
 
 class AuthorController extends Controller
-{   
+{
     public function getAuthors(){
         $authors = Author::paginate(4);
         return view('listObjects.author', ['authors'=>$authors]);

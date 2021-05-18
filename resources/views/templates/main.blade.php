@@ -64,10 +64,11 @@
         <section class="content" id="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    
+
                     <a class="navbar-brand" href="/museums" style="padding-top: 22px">Artemisa</a>
                     <div class="dropdown" style="padding-top: 18px; margin-left: -35px">
-                        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle"
+                        id="dropdownNavLink" data-bs-toggle="dropdown" style="width: 50px !important; height: 50px !important;" aria-expanded="false">
                         </a>
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
                         <li><a class="dropdown-item" href="/authors">Authors</a></li>
