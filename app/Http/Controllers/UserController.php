@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Artwork;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserUpdateRequest;
-use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -16,7 +15,7 @@ class UserController extends Controller
         $u = User::all();
         return $u;
     }
-    
+
     public function getUser($id){
         $user = User::find($id);
         $artworks = $user->artworks()->get();
@@ -118,7 +117,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(UserUpdateRequest $request)
+    public function update(UserRequest $request)
     {
         $user = User::findOrFail($request->input('user_id'));
         if($user->email != $request->input('email')){
