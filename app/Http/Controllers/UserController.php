@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Redirect;
 class UserController extends Controller
 {
     public function getUsers(){
-       $u = User::all();
-       return $u;
+        $u = User::all();
+        return $u;
+    }
+    
+    public function getUser($id){
+        $user = User::find($id);
+        $artworks = ArtworkController::getArtworksAuthor($id);
+        return view('singleObject.user', ['user'=>$user, 'artworks'=>$artworks]);
     }
 
     public static function favArt(Request $request){
@@ -52,10 +58,6 @@ class UserController extends Controller
         }
     }
 
-    public function getUser($id){
-        $user = User::find($id);
-        return view('singleObject.user', ['user'=>$user]);
-    }
 
     public function createUser(){
         return view('createObjects.user');

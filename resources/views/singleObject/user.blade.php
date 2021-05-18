@@ -26,21 +26,31 @@
 
      
     </div>
-    <ul class="no-bullets">
-        <a class="nav-item dropdown no-bullets" style="margin-top: 3px">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </a>
-    </ul>
+        
+    </div>
     <!-- /.col-md-4 -->
-    
+    </br>
+    @foreach($artworks as $artwork)
+        <div class="card"  style="display:flex">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <a href="/artworks/{{$artwork->id}}">
+                    <img
+                        src= {{asset($artwork->imgRoute)}}
+                        class="img-fluid"
+                        style="width: 200px; height: 150px;"
+                    />
+                </a>
+
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">{{$artwork->title}}</h5>
+                <a href="/artworks/{{$artwork->id}}" class="btn btn-primary">More info</a>
+            </div>
+        </div>
+    @endforeach
+
     </div>
     <!-- /.row -->
 

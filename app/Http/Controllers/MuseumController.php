@@ -13,7 +13,7 @@ class MuseumController extends Controller
     public function paginaInicial(){
         // $museums = Museum::all();
         // return view('listObjects.museum', compact('museums'));
-        return redirect('/login');
+        return redirect('/museums');
     }
 
     public function getMuseums(){

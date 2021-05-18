@@ -90,7 +90,7 @@ Route::get('get/details/artwork{id}', 'ArtworkController@getDetails')->name('get
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //EXPERIMENTOS
 Route::post('/artworks/fav', 'UserController@favArt')->name('fav');
