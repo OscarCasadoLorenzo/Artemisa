@@ -31,13 +31,6 @@
     </br>
 
 
-        <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </a>
-
-
 
 
     <div style="display:flex;">
@@ -61,9 +54,14 @@
                 </div>
             </div>
         @endforeach
-    </div>
+        </br>
 
     </div>
+    <div class="d-flex" style= "display:flex, margin-top:30px">
+            <div class="mx-auto">
+                {{$artworks->links()}}
+            </div>
+        </div>
     <!-- /.row -->
 
 
