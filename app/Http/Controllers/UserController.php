@@ -31,7 +31,10 @@ class UserController extends Controller
             Artwork::find($artwork_id)->users()->attach($user);
             $artwork = Artwork::find($artwork_id);
             $author = Author::find($artwork->author_id);
-            return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'corazon'=> 1]);
+            $collection = Collection::find($artwork->collection_id);
+            $museum = Museum::find($collection->museum_id);
+
+            return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'museum'=> $museum, 'corazon'=> 1]);
         }
         else{
             $ruta = "/artworks/" . $artwork_id;

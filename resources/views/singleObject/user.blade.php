@@ -33,7 +33,7 @@
 
 
 
-    <div style="display:flex;">
+    <div style="display:flex; text-align:center">
         @foreach($artworks as $artwork)
             <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -61,7 +61,7 @@
             <div class="mx-auto">
                 {{$artworks->links()}}
             </div>
-        </div>
+    </div>
     <!-- /.row -->
 
 

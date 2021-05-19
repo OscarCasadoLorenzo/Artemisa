@@ -32,13 +32,15 @@
     </div>
     </div>
     <!-- pruebas sort -->
-                    <form action="/filterCollection" method="get">
-                        <input type="radio" name="option" value="1"> Identificador&nbsp;
-                        <input type="radio" name="option" value="2"> Nombre&nbsp;
-                        <input type="radio" name="option" value="3"> Ultimas novedades&nbsp;
-                        <input type="hidden" name="museum" value="{{$museum->id}}">
-                        <button type="submit" class="btn btn-primary"> Ordenar </button>
-                    </form>
+    <div style="text-align:center">
+        <form action="/filterCollection" method="get">
+            <input type="radio" name="option" value="1"> Identificador&nbsp;
+            <input type="radio" name="option" value="2"> Nombre&nbsp;
+            <input type="radio" name="option" value="3"> Ultimas novedades&nbsp;
+            <input type="hidden" name="museum" value="{{$museum->id}}">
+            <button type="submit" class="btn btn-primary"> Ordenar </button>
+        </form>
+    </div>
     </br>
 
 
@@ -47,7 +49,7 @@
         @foreach($collections as $collection)
             <!-- Content Row -->
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100">
+                    <div class="card h-100" style="text-align:center">
                         <div class="card-body">
                             <h2 class="card-title">{{$collection->name}}</h2>
                         </div>
@@ -57,7 +59,6 @@
                     </div>
                 </div>
         @endforeach
-        
     </div>
 
     </div>
