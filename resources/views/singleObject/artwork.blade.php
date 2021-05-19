@@ -23,6 +23,12 @@
         margin: 0 auto;
         display: block;
     }
+
+    .img-fluid{
+        width:400px;
+       
+        object-fit:fill;
+    }
 </style>
 
 <script>

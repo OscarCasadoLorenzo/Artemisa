@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Artwork;
 use App\Author;
+use App\Collection;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
