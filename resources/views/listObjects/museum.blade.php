@@ -16,14 +16,14 @@
 @section('information')
 
     @foreach($museums as $museum)
-        <div class="card" style="display:flex;  margin:10px; ">
+        <div class="card" style="display:flex;  margin:10px; overflow:hidden; "">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="margin:15px">
                 <a href="/museums/{{$museum->id}}">
                     <img
                         src= {{asset($museum->imgRoute)}}
                         class="img-fluid"
-                        style="width: 100%;
-                        height: auto;"
+                        style="min-width: 700px;
+                        min-height: 500px; width:auto; height:auto;"
                     />
                 </a>
 
