@@ -9,6 +9,15 @@
         margin-right:10px;
     }
 
+    @media (max-width: 768px){
+        .textboxs{
+            display:none;
+        }
+
+        #boton{
+            display:none;
+        }
+    }
 
 </style>
 
