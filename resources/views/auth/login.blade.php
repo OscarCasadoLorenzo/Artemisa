@@ -62,9 +62,7 @@
                             </div>
                     
                             <div style="display:flex; justify-content:right; padding-right: 15px">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             </div>
                         </div>
                     </form>
