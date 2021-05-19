@@ -26,7 +26,10 @@
             </br>
             <button class="btn btn-primary" type="submit">Submit</button>
 
-        @if(count($errors) > 0)
+        </br>
+        <div class="container">
+        </br>
+            @if(count($errors) > 0)
             <div class="alert alert-danger" role="alert" style="width:auto;">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -35,6 +38,7 @@
                 </ul>
             </div>
         @endif
+        </div>
 
         </form>
     </body>

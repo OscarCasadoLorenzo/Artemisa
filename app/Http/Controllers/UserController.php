@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Artwork;
 use App\Author;
+use App\Collection;
+use App\Museum;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -73,6 +75,12 @@ class UserController extends Controller
         // $request['password']= $encript;
         // User::create($request->all());
         // return redirect('/');
+
+        $user->validate(
+            [
+                'email' => 'unique:users',
+            ]);
+
         $name = request('name');
         $surname1 = request('surname1');
         $surname2 = request('surname2');

@@ -39,16 +39,19 @@
             </br>
             <button class="btn btn-primary"  type="submit">Submit</button>
 
+        </br>
+        <div class="container">
+        </br>
             @if(count($errors) > 0)
-                <div class="alert alert-danger" role="alert" style="width:auto;">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li> {{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
+            <div class="alert alert-danger" role="alert" style="width:auto;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        </div>
         </form>
         </div>
     </body>

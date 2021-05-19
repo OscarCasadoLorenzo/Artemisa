@@ -28,6 +28,11 @@ class MuseumController extends Controller
 
     public function saveMuseum(MuseumRequest $request){
 
+        $request->validate(
+            [
+                'name' => 'unique:museums',
+            ]);
+
         $input = $request->all();
         if($file = $request->file('imgRoute')){
             $filename = $file->getClientOriginalName();

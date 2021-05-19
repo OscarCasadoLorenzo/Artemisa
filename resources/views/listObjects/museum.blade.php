@@ -10,7 +10,7 @@
 
     .grid-container{
         display:grid;
-        grid-template-columns: 50% 50%; 
+        grid-template-columns: 50% 50%;
     }
 
     .grid-item{

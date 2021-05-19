@@ -26,6 +26,11 @@ class CollectionController extends Controller
     }
 
     public function saveCollection(CollectionRequest $request){
+        $request->validate(
+            [
+                'name' => 'unique:users',
+            ]);
+
         $valores = array('_token' => $request->_token, 'name' => $request->name, 'museum_id' => $request->museum_id);
         Collection::create($valores);
         $museums = Museum::all();

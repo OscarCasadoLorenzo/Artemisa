@@ -30,7 +30,7 @@
 
         body{
             font-family:sans-serif;
-            padding: 90px 20px 0; 
+            padding: 90px 20px 0;
             position:relative;
         }
 
@@ -69,7 +69,7 @@
             padding: 0 40px;
             line-height:80px;
             color:white;
-            
+
         }
 
         .logo:hover{
@@ -103,7 +103,7 @@
         }
 
         @media (max-width: 988px){
-            
+
             body{
                 padding-top: 70px;
             }
@@ -115,7 +115,7 @@
             .logo{
                 font-size: 25px;
                 padding: 0 20px;
-                line-height:60px;                
+                line-height:60px;
             }
 
             .nav-menu{
@@ -162,7 +162,7 @@
         }
 
 
-    </style>        
+    </style>
 
     <body>
         <section class="header">
@@ -176,7 +176,7 @@
                 <li class = "nav-menu-item"><a href="/authors" class="nav-menu-link">Authors</a>
                 <li class = "nav-menu-item"><a href="/museums" class="nav-menu-link">Museums</a>
                 <li class = "nav-menu-item"><a href="/aboutUs" class="nav-menu-link">About us</a>
-            
+
             @if (Auth::check() && Auth::user()->type == "admin")
                             <li class="nav-item">
                                 <form name="admin" class="administration" style="display: flex; margin-top: 22px">
@@ -208,16 +208,17 @@
                                             <option value="/museums/delete">Delete</option>
                                         </optgroup>
                                     </select>
-                                    <input type="button" value="Go" onclick=window.open(admin.action.value)>
+                                    &nbsp &nbsp
+                                    <input type="button" value="Go" onclick="window.open(admin.action.value); window.top.close();">
                                 </form>
                             </li>
                 @endif
-                
+
                 @if (Auth::check())
                     <li class="nav-menu-item">
                         <a class="nav-menu-link" href="/users/{{Auth::user()->id}}">Profile</a>
                     </li>
-                    
+
                     <li class="nav-menu-item">
                         <a class="nav-menu-link" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -236,11 +237,11 @@
                     <li class="nav-menu-item">
                         <a class="nav-menu-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
-                                
+
                 @endif
-            
+
             </ul>
-        </nav> 
+        </nav>
         </section>
 
         <section class="content" id="information">

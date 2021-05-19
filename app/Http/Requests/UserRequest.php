@@ -25,17 +25,17 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'regex:/^[a-zA-Z]+$/u|min:3|max:50|required',
-            'surname1' => 'regex:/^[a-zA-Z]+$/u|min:3|max:50|required',
-            'surname2' => 'regex:/^[a-zA-Z]+$/u|min:3|max:50|required',
-            'email' => 'required|unique:users',
+            'name' => 'regex:/^([^0-9]*)$/|min:3|max:50|required',
+            'surname1' => 'regex:/^([^0-9]*)$/|min:3|max:50|required',
+            'surname2' => 'regex:/^([^0-9]*)$/|min:3|max:50|required',
+            'email' => 'required',
             'birth_date' => 'date',
-            'location' => 'regex:/^[a-zA-Z]+$/u|min:3|max:75|required',
+            'location' => 'min:3|max:75|required',
             'password' => ['required',
                             'min:6',
                             'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
                             'confirmed'
-                        ] //should contain at least 3 of a-z or A-Z and number and special character.
+                        ] //should contain at least 3 of a-z or A-Z and number.
         ];
     }
 }
