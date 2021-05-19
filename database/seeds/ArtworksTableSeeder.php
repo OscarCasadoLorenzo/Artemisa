@@ -213,7 +213,6 @@ class ArtworksTableSeeder extends Seeder
         $aux->genre = 'Instalación';
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
-        $aux->dimensions = '';
         $aux->imgRoute = 'images/artworks/peces_coloridos_y_bichos_de_comfer.png';
         $aux->save();
 
@@ -224,7 +223,6 @@ class ArtworksTableSeeder extends Seeder
         $aux->genre = 'Instalación';
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
-        $aux->dimensions = '';
         $aux->imgRoute = 'images/artworks/western_christian_civilization.png';
         $aux->save();
 
@@ -235,7 +233,6 @@ class ArtworksTableSeeder extends Seeder
         $aux->genre = 'Pintura Fugitiva';
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
-        $aux->dimensions = '';
         $aux->imgRoute = 'images/artworks/noahs_ark.png';
         $aux->save();
 
@@ -246,7 +243,6 @@ class ArtworksTableSeeder extends Seeder
         $aux->genre = 'Pintura Fugitiva';
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
-        $aux->dimensions = '';
         $aux->imgRoute = 'images/artworks/the_magic_square.png';
         $aux->save();
 
@@ -257,7 +253,6 @@ class ArtworksTableSeeder extends Seeder
         $aux->genre = 'Instalación';
         $aux->collection()->associate($concep);
         $aux->movement = 'Arte Conceptual';
-        $aux->dimensions = '';
         $aux->imgRoute = 'images/artworks/the_fairies.png';
         $aux->save();
 

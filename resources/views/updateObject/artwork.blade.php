@@ -3,14 +3,14 @@
 <body>
     <h1 style="position:absolute;left:40%">Update Artwork</h1>
     @if($errors->any())
-        <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
-    <form method="POST" action="/artworks/update">
+    <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data"> 
     @csrf
         <div style="position:absolute;top:17%;left:35%;">
 
             <select name="id" style="width: 400px;" id="id" class="form-control">
-                <option value="">Choose an Artwork</option>
+                <option value="-1">Choose an Artwork</option>
                 @foreach ($artworks as $artwork)
                 <option value="{{$artwork['id']}}" @if (old('id') == $artwork['id']) selected="selected" @endif >{{$artwork['title']}}</option>
                 @endforeach
@@ -21,18 +21,18 @@
             <input type="text" style="width: 400px;" id="dimensions" name="dimensions" value="{{old('dimensions')}}" placeholder="Dimensions"></br>
             <input type="number" style="width: 400px;" id="year" name="year" value="{{old('year')}}" placeholder="YYYY"></br>
             <select name="author_id" style="width: 400px;" id="author_id" class="form-control">
-                <option value="">Choose an author</option>
+                <option style="display:none"> </option>
                 @foreach ($authors as $author)
                 <option value="{{$author['id']}}" @if (old('author_id') == $author['id']) selected="selected" @endif >{{$author['name']}}</option>
                 @endforeach
             </select>
             <select style="width: 400px;" name="collection_id" id="collection_id" class="form-control">
-                <option value="">Choose a Collection</option>
+                <option style="display:none"> </option>
                 @foreach ($collections as $collection)
                 <option value="{{$collection['id']}}" @if (old('collection_id') == $collection['id']) selected="selected" @endif>{{$collection['name']}}</option>
                 @endforeach
             </select></br>
-            <input style="width: 400px;" type="file" id="img" name="imgRoute" value="{{old('img')}}" placeholder="Route of image"></br>
+            <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('img')}}" placeholder="Route of image"></br>
             <button class="btn btn-primary" type="submit">Submit</button>
         </br> </br>
         @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
@@ -44,6 +44,9 @@
             </ul>
         </div>
         @endif
+    </div>
+    <div id="preview" style="position:absolute;top:25%;right:50%;">
+ 
     </div>
     </form>
 </body>
@@ -66,7 +69,7 @@ $('#id').change(function(){
                 $('#year').val(response.year);
                 $('#author_id').val(response.author_id);
                 $('#collection_id').val(response.collection_id);
-
+                $('#imgRoute').val('');
             }
             else{
                 $('#title').val(response.movement);
@@ -76,10 +79,40 @@ $('#id').change(function(){
                 $('#year').val('');
                 $('#author_id').val('');
                 $('#collection_id').val('');
+                $('#imgRoute').val('');
             }
         }
     });
+    document.getElementById("preview").innerHTML="";
 });
 
 </script>
+<!--No hay que reinventar tampoco la rueda-->
+<script>
+ 
+// Funcion para previsualizar la imagen
+function preview(e)
+{
+	if(e.files && e.files[0])
+	{
+        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // ficheros (o información en buffer) almacenados en el cliente de forma
+        // asíncrona
+        var reader=new FileReader();
+
+        // El evento onload se ejecuta cada vez que se ha leido el archivo
+        // correctamente
+        reader.onload=function(e) {
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+        }
+        // El evento onerror se ejecuta si ha encontrado un error de lectura
+        reader.onerror=function(e) {
+            document.getElementById("preview").innerHTML="Error de lectura";
+        }
+        // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+        reader.readAsDataURL(e.files[0]);
+	}
+}
+</script>
+
 @endsection

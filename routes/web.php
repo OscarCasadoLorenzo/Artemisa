@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtworkController;
 use App\Museum;
+use App\Providers\RouteServiceProvider;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,7 +64,7 @@ Route::get('/collections/update', 'CollectionController@modifyCollection');
 Route::get('/artworks/update', 'ArtworkController@modifyArtwork');
 Route::post('/artworks/update', 'ArtworkController@update')->name('artwork.update');
 Route::get('/authors/update', 'AuthorController@modifyAuthor');
-Route::post('/artworks/update', 'AuthorController@update')->name('author.update');
+Route::post('/authors/update', 'AuthorController@update')->name('author.update');
 
 
 //Eliminación de elementos

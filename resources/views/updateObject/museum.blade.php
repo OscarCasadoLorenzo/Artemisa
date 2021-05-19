@@ -3,9 +3,12 @@
 <body>
     <h1 style="position:absolute;left:35%">Update Museum</h1>
     <form method="POST" action="{{route('museum.update')}}" >
+    @if($errors->any())
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+    @endif
     @csrf
         </br>
-        <div style="position:absolute;top:10%;right:40%;width: 500px;">
+        <div style="position:absolute;top:18%;right:40%;width: 500px;">
         <select  name="museum_id" id="museum_id" class="form-control">
                 <option value="-1">Choose a museum</option>
                 @foreach ($museums as $museum)

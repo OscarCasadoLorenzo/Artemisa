@@ -9,6 +9,7 @@ use App\Museum;
 use App\Author;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ArtworkRequest;
 
 class ArtworkController extends Controller
 {
@@ -75,7 +76,8 @@ class ArtworkController extends Controller
         $collections = Collection::all();
         return view('updateObject.artwork') -> with(compact('artworks','authors','collections'));
     }
-    public function update(Request $request)
+
+    public function update(ArtworkRequest $request)
     {
         $art = Artwork::findOrFail($request->input('id'));
         if($art->title != $request->input('title'))
@@ -88,7 +90,8 @@ class ArtworkController extends Controller
         }
         $art->movement = $request->input('movement');
         $art->genre = $request->input('genre');
-        $art->dimensions = $request->input('dimensions');
+        if($request->input('dimensions') == "") $art->dimensions = 'Desconocido';
+        else $art->dimensions = $request->input('dimensions');
         $art->year = $request->input('year');
         //$art->imgRoute = $request->input('imgRoute');
         try
@@ -97,7 +100,7 @@ class ArtworkController extends Controller
         }
         catch(ModelNotFoundException $e)
         {
-            Redirect::to('/artwork/update')->withErrors(['El artista ya no existe en la BD'])
+            return Redirect::to('/artworks/update')->withErrors(['El artista ya no existe en la BD'])
                                                      ->with(['art' => $request->all()])->withInput();
         }
         $art->author_id = $request->input('author_id');         //Validar foreign key por si han eliminado el artista antes de guardar
@@ -107,12 +110,47 @@ class ArtworkController extends Controller
         }
         catch(ModelNotFoundException $e)
         {
-            Redirect::to('/artwork/update')->withErrors(['La coleccion ya no existe en la BD'])
+            return Redirect::to('/artworks/update')->withErrors(['La coleccion ya no existe en la BD'])
                                                      ->with(['art' => $request->all()])->withInput();
         }
         $art->collection_id = $request->input('collection_id');
+        //Subir fichero
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name'])) 
+        {
+            //Validamos que el archivo tenga contenido
+            if(empty($_FILES['imgRoute']['name']))
+            {
+                return Redirect::to('/artworks/update')->withErrors(['Archivo no encontrado']);
+            }
+
+            $upload_file_name = $_FILES['imgRoute']['name'];
+            //Compruebo que el nombre no sea demasiado largo
+            if(strlen ($upload_file_name)>100)
+            {
+                return Redirect::to('/artworks/update')->withErrors(['Nombre del archivo demasiado grande']);
+            }
+            //Elimino todos los caracteres "raros"
+            $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+            //Limite fichero
+            if ($_FILES['imgRoute']['size'] > 1000000) 
+            {
+                return Redirect::to('/artworks/update')->withErrors(['Imagen demasiado grande']);
+            }
+            //Save the file
+            $dest=dirname(__DIR__, 3).'/public/';
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/artworks/'.$upload_file_name)) 
+            {
+                return Redirect::to('/artworks/update')->withErrors(['Error subiendo el archivo']);
+            }
+            //Muevo y renombro
+            $dbroute = $dest.$art->imgRoute;
+            $extension_pos = strrpos($dbroute, '.');
+            $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
+            rename($dbroute, $old);
+            rename($dest.'images/artworks/'.$upload_file_name,$dbroute);
+        }   
         $art->save();
-        return Redirect::to('/artwork/update')->withErrors(['ACTUALIZADO CON EXITO']);
+        return Redirect::to('/artworks/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function findArtworks(){
