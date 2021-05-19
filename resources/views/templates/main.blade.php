@@ -23,19 +23,19 @@
 
     <style>
         body{
-            text-align:center;
+ /*            text-align:center;
             margin-left: 100px;
-        }
+ */        }
 
         .pat{
             display: block;
         }
 
         .content{
-            width:80%;
-            margin: 0 auto;
-            margin-left: 20px;
-        }
+            width:100%;
+            margin:auto;
+/*             margin-left: 20px;
+ */        }
 
         #information{
             margin-top:20px;
@@ -63,12 +63,12 @@
     <body>
         <section class="content" id="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+                <div  class="container" style=" width:100%;">
 
-                    <a class="navbar-brand" href="/museums" style="padding-top: 22px">Artemisa</a>
-                    <div class="dropdown" style="padding-top: 18px; margin-left: -35px">
+                    <a class="navbar-brand" href="/museums" style="padding-top: 10px">Artemisa</a>
+                    <div class="dropdown" style="padding-top: 10px; padding-right:10em">
                         <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownNavLink" data-bs-toggle="dropdown" style="width: 50px !important; height: 50px !important;" aria-expanded="false">
+                        id="dropdownNavLink" data-bs-toggle="dropdown" style="width: 35px !important; height: 35px !important; padding-top:1px" aria-expanded="false">
                         </a>
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
                         <li><a class="dropdown-item" href="/authors">Authors</a></li>
@@ -116,43 +116,43 @@
                                 </form>
                             </li>
                         @endif
-                    <!-- </ul> -->
+                        <!-- </ul> -->
 
-                    <form class="d-flex">
-                        <section class="content" id="filters">
-                            @yield("filters")
-                            @if (Auth::check())
-                                <!-- Botón user logeado -->
-                                <div id="profile" class="dropdown" style="margin-top: 18px; margin-left: 620px; position:absolute">
-                                    <button class="btn btn-primary" type="button" data-toggle="dropdown">{{Auth::user()->name}}
-                                    <span class="caret"></span></button>
-                                    <ul id="subprofile" class="dropdown-menu">
-                                        <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
-                                        <li>
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </li>
-                                    </ul>
+                        <form class="d-flex"  >
+                            <section class="container" id="filters" style="width:1200px; text-align:right;">
+                                @yield("filters")
+                                @if (Auth::check())
+                                    <!-- Botón user logeado -->
+                                    <div id="profile" class="dropdown" style="margin-top: 22px; display: flex; padding-left:20%; ">
+                                        <button class="btn btn-primary" type="button" data-toggle="dropdown" >{{Auth::user()->name}}
+                                        <span class="caret"></span></button>
+                                        <ul id="subprofile" class="dropdown-menu">
+                                            <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
+                                            <li>
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @else
+                                <!-- botón para logear o registrarse -->
+                                <div class="container-fluid" style="margin-top: 22px; display: flex; padding-left:20%;">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
                                 </div>
-                            @else
-                            <!-- botón para logear o registrarse -->
-                            <div style="margin-top: 18px; display: flex">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            </div>
-                            @endif
-                        </section>
-                    </form>
+                                @endif
+                            </section>
+                        </form>
                     </ul>
                     </div>
                 </div>

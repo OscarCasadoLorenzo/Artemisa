@@ -2,6 +2,13 @@
 
 @section('title', 'Museums')
 
+<style>
+    .img-fluid{
+        width:1200px;
+        height:450px !important;
+        object-fit:fill;
+    }
+</style>
 @section('filters')
     @include ("filters.museum")
 @endsection
@@ -9,13 +16,14 @@
 @section('information')
 
     @foreach($museums as $museum)
-        <div class="card">
-            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <div class="card" style="display:flex;  margin:10px; ">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="margin:15px">
                 <a href="/museums/{{$museum->id}}">
                     <img
                         src= {{asset($museum->imgRoute)}}
                         class="img-fluid"
-                        style="width: 650px; height: 400px;"
+                        style="width: 100%;
+                        height: auto;"
                     />
                 </a>
 
