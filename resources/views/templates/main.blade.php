@@ -63,10 +63,10 @@
     <body>
         <section class="content" id="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div  class="container" style=" width:100%;">
+                <div class="container" style=" width:100%;">
 
                     <a class="navbar-brand" href="/museums" style="padding-top: 10px">Artemisa</a>
-                    <div class="dropdown" style="padding-top: 10px; padding-right:10em">
+                    <div class="dropdown" style="padding-top: 10px; padding-right:5%">
                         <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle"
                         id="dropdownNavLink" data-bs-toggle="dropdown" style="width: 35px !important; height: 35px !important; padding-top:1px" aria-expanded="false">
                         </a>
@@ -120,11 +120,11 @@
                         <!-- </ul> -->
 
                         <form class="d-flex"  >
-                            <section class="container" id="filters" style="width:1200px; text-align:right;">
+                            <section class="container" id="filters" style="width:100%;">
                                 @yield("filters")
                                 @if (Auth::check())
                                     <!-- Botón user logeado -->
-                                    <div id="profile" class="dropdown" style="margin-top: 22px; display: flex; padding-left:20%; ">
+                                    <div id="profile" class="dropdown" style="margin-top: 22px; display: flex; ">
                                         <button class="btn btn-primary" type="button" data-toggle="dropdown" >{{Auth::user()->name}}
                                         <span class="caret"></span></button>
                                         <ul id="subprofile" class="dropdown-menu">
@@ -143,7 +143,7 @@
                                     </div>
                                 @else
                                 <!-- botón para logear o registrarse -->
-                                <div class="container-fluid" style="margin-top: 22px; display: flex; padding-left:20%;">
+                                <div class="container-fluid" style="margin-top: 22px; display: flex; ">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>

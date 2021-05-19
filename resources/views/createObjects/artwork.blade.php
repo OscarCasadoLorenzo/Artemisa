@@ -79,5 +79,5 @@
         <a href="/login">Login</a>
     </div>
 </body>
-@endsection
 @endif
+@endsection

@@ -24,6 +24,11 @@ class ArtworkController extends Controller
         return $artworks;
     }
 
+    public function getArtworksList(){              //funcion de pruba, borrar
+        $artworks = Artwork::paginate(4);
+        return view('listObjects.artwork', ['artworks' => $artworks]);
+    }
+
     public function getArtwork($id){
         $artwork = Artwork::find($id);
         $author = Author::find($artwork->author_id);

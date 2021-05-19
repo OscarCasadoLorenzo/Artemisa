@@ -31,6 +31,16 @@
     <!-- /.col-md-4 -->
     </br>
 
+
+        <a class="dropdown-item" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </a>
+
+
+
+
     <div style="display:flex;">
         @foreach($artworks as $artwork)
             <div class="card">
