@@ -158,4 +158,9 @@ class UserController extends Controller
         // return "Usuario con email ".$request->input('email'). " actualizado correctamente";
         return Redirect::to('/users/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
+
+    public function aboutus(){
+        return view('singleObject.aboutus');
+    }
+
 }

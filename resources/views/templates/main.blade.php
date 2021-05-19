@@ -73,6 +73,7 @@
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
                         <li><a class="dropdown-item" href="/authors">Authors</a></li>
                         <li><a class="dropdown-item" href="/museums">Museums</a></li>
+                        <li><a class="dropdown-item" href="/aboutUs">About us</a></li>
                         </ul>
                     </div>
 
@@ -129,9 +130,9 @@
                                     <ul id="subprofile" class="dropdown-menu">
                                         <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
                                         <li>
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();"> 
                                                 {{ __('Logout') }}
                                             </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

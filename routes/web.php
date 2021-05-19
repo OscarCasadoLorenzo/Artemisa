@@ -28,7 +28,7 @@ Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); /
 Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id', '\d+'); //solo permite que id sean numeros
 
 //Rutas para login
-Route::post('/users/login', 'UserController@login');  //esta creo que sobra
+Route::post('/users/login', 'UserController@- añadir pagina about me y contact usin');  //esta creo que sobra
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
@@ -94,3 +94,4 @@ Auth::routes();
 
 //EXPERIMENTOS
 Route::post('/artworks/fav', 'UserController@favArt')->name('fav');
+Route::get('/aboutUs', 'UserController@aboutus');
