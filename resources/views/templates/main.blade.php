@@ -158,6 +158,7 @@
         #information{
             position:absolute;
             z-index:-50;
+            width: 100%;
         }
 
 
