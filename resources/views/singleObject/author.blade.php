@@ -28,7 +28,7 @@
 </style>
 
 @section('information')
-
+@if (Auth::check() && Auth::User()->type == "admin")
     <div id=ficha style="display:flex;
     justify-content:center;">
         <div class="col-lg-7" style = "width:auto;">
@@ -64,6 +64,14 @@
                 </div>
         @endforeach
     </div>
+    @else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection
 
 

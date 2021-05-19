@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Collections</title>
     </head>
+    @if (Auth::check() && Auth::User()->type == "admin")
     <body>
         <h1>Create new collection</h1>
         <form action="/collections" method="post">
@@ -37,4 +38,12 @@
 
         </form>
     </body>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 </html>

@@ -1,5 +1,6 @@
 @extends('templates.main')
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
 <body>
     <h1 style="position:absolute;left:35%">Update Museum</h1>
     <form method="POST" action="{{route('museum.update')}}" >
@@ -65,5 +66,13 @@ $('#museum_id').change(function(){
 });
 
 </script>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection
 

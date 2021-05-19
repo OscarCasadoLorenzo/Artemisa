@@ -11,6 +11,7 @@
 </style>
 
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
     <head>
         <meta charset="utf-8">
         <title>Collections</title>
@@ -51,4 +52,12 @@
         </form>
         </div>
     </body>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection
