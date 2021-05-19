@@ -7,7 +7,7 @@ use App\Author;
 use App\Artwork;
 
 class AuthorController extends Controller
-{   
+{
     public function getAuthors(){
         $authors = Author::paginate(4);
         return view('listObjects.author', ['authors'=>$authors]);
@@ -33,7 +33,9 @@ class AuthorController extends Controller
             $input['imgRoute'] = $filepath;
         }
         Author::create($input);
-        return "Autor $request->name añadida a la BD!";
+        // return "Autor $request->name añadida a la BD!";
+        $authors = Author::all();
+        return view('createObjects.author', compact('authors'));
     }
 
     public function deleteAuthor(){
@@ -79,7 +81,9 @@ class AuthorController extends Controller
         $aux = Author::findOrFail($request->author_id);
         $aux->delete();
 
-        return redirect('/museums');
+        $authors = Author::all();
+
+        return view('deleteObjects.author', compact('authors'));
     }
 
     public function buscar(Request $request){

@@ -4,16 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Artwork;
+use App\Author;
+use App\Collection;
+use App\Museum;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserUpdateRequest;
-use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
     public function getUsers(){
-       $u = User::all();
-       return $u;
+        $u = User::all();
+        return $u;
+    }
+
+    public function getUser($id){
+        $user = User::find($id);
+        $artworks = $user->artworks()->paginate(5);
+        return view('singleObject.user', ['user'=>$user, 'artworks'=>$artworks]);
+    }
+
+    public static function favArt(Request $request){
+            $user_id = $request->get('id_user');
+            $artwork_id = $request->get('id_artwork');
+            $user = User::find($user_id);
+        if(User::find($user_id)->artworks()->having('pivot_artwork_id','=',$artwork_id)->get()->isEmpty()){
+            Artwork::find($artwork_id)->users()->attach($user);
+            $artwork = Artwork::find($artwork_id);
+            $author = Author::find($artwork->author_id);
+            $collection = Collection::find($artwork->collection_id);
+            $museum = Museum::find($collection->museum_id);
+
+            return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'museum'=> $museum, 'corazon'=> 1]);
+        }
+        else{
+            $ruta = "/artworks/" . $artwork_id;
+            return redirect($ruta);
+        }
     }
 
     public function login(Request $request){
@@ -36,20 +64,41 @@ class UserController extends Controller
         }
     }
 
-    public function getUser($id){
-        $user = User::find($id);
-        return view('singleObject.user', ['user'=>$user]);
-    }
 
     public function createUser(){
         return view('createObjects.user');
     }
 
-    public function saveUser(UserCreateRequest $request){
-        $encript = bcrypt($request->password);
-        $request['password']= $encript;
-        User::create($request->all());
-        return redirect('/');
+    public function saveUser(User $user){
+    // public function saveUser(UserRequest $request){
+        // $encript = bcrypt($request->password);
+        // $request['password']= $encript;
+        // User::create($request->all());
+        // return redirect('/');
+
+        $user->validate(
+            [
+                'email' => 'unique:users',
+            ]);
+
+        $name = request('name');
+        $surname1 = request('surname1');
+        $surname2 = request('surname2');
+        $location = request('location');
+        $birth_date = request('birth_date');
+        $email = request('email');
+        $password = request('password');
+
+        User::create([
+            'name' => $name,
+            'surname1' => $surname1 ,
+            'surname2' => $surname2 ,
+            'location' => $location,
+            'birth_date' => $birth_date,
+            'email' => $email,
+            'password' => $password
+        ]);
+        return redirect('/museums');
     }
 
     public function deleteUser(){
@@ -62,7 +111,10 @@ class UserController extends Controller
         $aux = User::findOrFail($request->user_id);
         $aux->delete();
 
-        return redirect('/museums');
+        // return redirect('/museums');
+        $users = User::where('type', '!=', 'admin')->get(); //cogemos los usuarios que no son admin
+
+        return view('deleteObjects.user', compact('users'));
     }
 
     public function findUsers(){
@@ -81,7 +133,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(UserUpdateRequest $request)
+    public function update(UserRequest $request)
     {
         $user = User::findOrFail($request->input('user_id'));
         if($user->email != $request->input('email')){
@@ -120,4 +172,9 @@ class UserController extends Controller
         // return "Usuario con email ".$request->input('email'). " actualizado correctamente";
         return Redirect::to('/users/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
+
+    public function aboutus(){
+        return view('singleObject.aboutus');
+    }
+
 }

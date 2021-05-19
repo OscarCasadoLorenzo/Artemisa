@@ -13,7 +13,7 @@ class MuseumController extends Controller
     public function paginaInicial(){
         // $museums = Museum::all();
         // return view('listObjects.museum', compact('museums'));
-        return view('templates.index');
+        return redirect('/museums');
     }
 
     public function getMuseums(){
@@ -28,6 +28,11 @@ class MuseumController extends Controller
 
     public function saveMuseum(MuseumRequest $request){
 
+        $request->validate(
+            [
+                'name' => 'unique:museums',
+            ]);
+
         $input = $request->all();
         if($file = $request->file('imgRoute')){
             $filename = $file->getClientOriginalName();
@@ -37,7 +42,9 @@ class MuseumController extends Controller
             $input['imgRoute'] = $filepath;
         }
         Museum::create($input);
-        return "Museo $request->name añadido a la BD!";
+        // return "Museo $request->name añadido a la BD!";
+        $museums = Museum::all();
+        return view('createObjects.museum', compact('museums'));
     }
 
     public function getMuseum($id){
@@ -79,14 +86,17 @@ class MuseumController extends Controller
         $museum->email = $request->input('email');
         $museum->imgRoute = $request->input('imgRoute');
         $museum->save();
-        return "Museo con nombre $request->old_name actualizado correctamente";
+        $museums = Museum::all();
+        return view('updateObject.museum', compact('museums',$museums));
     }
 
     public function destroyMuseum(Request $request){
         $aux = Museum::findOrFail($request->museum_id);
         $aux->delete();
 
-        return redirect('/museums');
+        $museums = Museum::all(); //cogemos los usuarios que no son admin
+
+        return view('deleteObjects.museum', compact('museums'));
     }
 
     public function buscar(Request $request){

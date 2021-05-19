@@ -14,15 +14,13 @@ use App\Providers\RouteServiceProvider;
 |
 */
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/', 'MuseumController@paginaInicial');
 
 //Rutas de extracción de listados
-Route::get('/users', 'UserController@getUsers');
+// Route::get('/users', 'UserController@getUsers');
 Route::get('/museums', 'MuseumController@getMuseums');
 Route::get('/authors', 'AuthorController@getAuthors');
+
 
 //Rutas de extracción de objeto unico
 Route::get('/artworks/{id}', 'ArtworkController@getArtwork')->where('id', '\d+');
@@ -31,8 +29,6 @@ Route::get('/users/{id}', 'UserController@getUser')->where('id', '\d+');
 Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
 Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id', '\d+'); //solo permite que id sean numeros
 
-//Rutas para login
-Route::post('/users/login', 'UserController@login');
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
@@ -49,7 +45,7 @@ Route::delete('/artworks', 'ArtworkController@destroyArtwork');
 Route::delete('/authors', 'AuthorController@destroyAuthor');
 
 //Creación de elementos
-Route::get('/users/create', 'UserController@createUser');
+// Route::get('/users/create', 'UserController@createUser');
 Route::get('/museums/create', 'MuseumController@createMuseum');
 Route::get('/collections/create', 'CollectionController@createCollection');
 Route::get('/artworks/create', 'ArtworkController@createArtwork');
@@ -94,4 +90,8 @@ Route::get('get/details/artwork{id}', 'ArtworkController@getDetails')->name('get
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+//EXPERIMENTOS
+Route::post('/artworks/fav', 'UserController@favArt')->name('fav');
+Route::get('/aboutUs', 'UserController@aboutus');

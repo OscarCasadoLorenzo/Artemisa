@@ -10,7 +10,7 @@ class Artwork extends Model
     
     //Relacion N:N con Users (loved)
     public function users(){
-        return $this->belongToMany('App\User');
+        return $this->belongsToMany('App\User');
     }
 
     //Relacion 1:N con Artwork (realizado)

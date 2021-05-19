@@ -1,14 +1,17 @@
 @extends('templates.main')
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
+
+
 <body>
-    <h1 style="position:absolute;left:35%">Update User</h1>
+    <h1 style="text-align:center">Update User</h1>
     @if($errors->any())
-    <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
+    <h4 style="float:right;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
     <form method="POST" action="{{route('user.update')}}">
     @csrf
         </br>
-        <div style="position:absolute;top:20%;right:40%;">
+        <div style="margin-left:25%; margin-right:25%; ">
         <select  name="user_id" id="user_id" class="form-control">
                 <option value="-1">Choose an User</option>
                 @foreach ($users as $user)
@@ -38,15 +41,18 @@
         <button class="btn btn-primary" type="submit" >Update</button>
 
     </br> </br>
-        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
-        <div class="alert alert-danger" role="alert" style="width:auto;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li> {{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+<div class="container">
+</br>
+    @if(count($errors) > 0)
+    <div class="alert alert-danger" role="alert" style="width:auto;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li> {{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+</div>
         </div>
 
 
@@ -92,4 +98,12 @@ $('#user_id').change(function(){
 });
 
 </script>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection

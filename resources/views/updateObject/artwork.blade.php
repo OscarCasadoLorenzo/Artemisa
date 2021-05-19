@@ -1,5 +1,6 @@
 @extends('templates.main')
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
 <body>
     <h1 style="position:absolute;left:40%">Update Artwork</h1>
     @if($errors->any())
@@ -50,6 +51,14 @@
     </div>
     </form>
 </body>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 <script type=text/javascript>
 $('#id').change(function(){
     var id = $(this).val();
@@ -85,7 +94,6 @@ $('#id').change(function(){
     });
     document.getElementById("preview").innerHTML="";
 });
-
 </script>
 <!--No hay que reinventar tampoco la rueda-->
 <script>
@@ -114,5 +122,4 @@ function preview(e)
 	}
 }
 </script>
-
 @endsection

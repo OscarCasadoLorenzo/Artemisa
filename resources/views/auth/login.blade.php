@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+        <!-- Bootstrap CSS -->
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -51,17 +54,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-0" >
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                            </div>
+                    
+                            <div style="display:flex; justify-content:right; padding-right: 15px">
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             </div>
                         </div>
                     </form>

@@ -50,6 +50,15 @@
             <label for="lc">Location</label>
             <input type="text" id="lc" name="location" autofocus value="{{ old('location') }}">
         </div>
+        @if (Auth::user()->type == "admin")
+        <div class="col-md-7 mb-3">
+            <label for="tp">Type</label>
+            <select name="type">
+                <option value="admin">Admin user</option>
+                <option selected value="visitor">Visiting user</option>
+            </select>
+        </div>
+        @endif
         <div class="col-md-7 mb-3">
             <label for="em">Email</label>
             <input type="email" id="em" name="email" autofocus value="{{ old('email') }}">
@@ -63,15 +72,19 @@
             <button class="btn btn-primary" type="submit">Submit</button>
         </div>
 
+    </br>
+    <div class="container">
+    </br>
         @if(count($errors) > 0)
-            <div class="alert alert-danger" role="alert" style="width:auto;">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li> {{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="alert alert-danger" role="alert" style="width:auto;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li> {{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    </div>
 
         </form>
     </div>

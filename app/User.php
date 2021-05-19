@@ -14,6 +14,6 @@ class User extends Authenticatable
 
     //Relacion N:N con Artworks (loved)
     public function artworks(){
-        return $this->belongToMany('App\Artwork');
+        return $this->belongsToMany('App\Artwork');
     }
 }

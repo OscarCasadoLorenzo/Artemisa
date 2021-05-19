@@ -5,8 +5,8 @@
 
 <style>
 .img-fluid{
-    width:400px;
-    height:150px !important;
+    width:1200px;
+    height:450px !important;
     object-fit:fill;
 }
 
@@ -30,12 +30,12 @@
     <div id="autores">
     @foreach($authors as $author)
         <div class="card">
-            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="">
                 <a href="/authors/{{$author->id}}">
                     <img
                         src= {{asset($author->imgRoute)}}
                         class="img-fluid"
-                        style="width: 200px; height: 400px;"
+                        style="width:auto; height:auto; "
                     />
                 </a>
 

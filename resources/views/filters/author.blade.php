@@ -1,13 +1,9 @@
 <style>
     .textboxs{
         display:flex;
-        margin-left:500px;
-    }
-
-    #boton{
-        height: 35px;
-        margin-top: 5px;
-        margin-right: 20px;
+        justify-content:center;
+        margin-top: 13px;
+        margin-bottom: 10px;
     }
 </style>
 

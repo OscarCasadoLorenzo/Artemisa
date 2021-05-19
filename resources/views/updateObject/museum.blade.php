@@ -1,14 +1,15 @@
 @extends('templates.main')
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
 <body>
-    <h1 style="position:absolute;left:35%">Update Museum</h1>
+    <h1 style="text-align:center;">Update Museum</h1>
     <form method="POST" action="{{route('museum.update')}}" >
     @if($errors->any())
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
     @csrf
         </br>
-        <div style="position:absolute;top:18%;right:40%;width: 500px;">
+        <div style="float:center; margin-right:35%; margin-left:35%;">
         <select  name="museum_id" id="museum_id" class="form-control">
                 <option value="-1">Choose a museum</option>
                 @foreach ($museums as $museum)
@@ -22,10 +23,11 @@
         <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute" value="{{ old('imgRoute') }}"/>
         <!--<input type="text" class="form-control" id="type" />-->
         </br>
-        <button class="btn btn-primary" type="submit" >Update</button>
-        </div>
-
-    @if(count($errors) > 0)
+        <button class="btn btn-primary" type="submit" style="text-align:center">Update</button>
+    </br>
+    <div class="container">
+    </br>
+        @if(count($errors) > 0)
         <div class="alert alert-danger" role="alert" style="width:auto;">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -34,6 +36,10 @@
             </ul>
         </div>
     @endif
+    </div>
+        </div>
+
+
 
     </form>
 </body>
@@ -68,5 +74,13 @@ $('#museum_id').change(function(){
 });
 
 </script>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection
 
