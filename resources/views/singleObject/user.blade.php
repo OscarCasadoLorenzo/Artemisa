@@ -2,8 +2,6 @@
 
 @section('title', 'User')
 
-
-
 @section('information')
     <!-- Page Content -->
     <div class="container">
