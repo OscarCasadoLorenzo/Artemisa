@@ -7,8 +7,10 @@ use App\Artwork;
 use App\Collection;
 use App\Museum;
 use App\Author;
+use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class ArtworkController extends Controller
 {
@@ -25,8 +27,16 @@ class ArtworkController extends Controller
     public function getArtwork($id){
         $artwork = Artwork::find($id);
         $author = Author::find($artwork->author_id);
-
-        return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author]);
+        $corazon = 0;
+        if(Auth::check()){
+            if(User::find(Auth::User()->id)->artworks()->having('pivot_artwork_id','=',$id)->get()->isEmpty()){
+                $corazon = 0;
+            }
+            else{
+                $corazon = 1;
+            }
+        }
+        return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'corazon' => $corazon]);
     }
 
     public function getDetails($id = 0)
@@ -146,3 +156,4 @@ class ArtworkController extends Controller
         }
     }
 }
+

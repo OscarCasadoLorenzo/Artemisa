@@ -61,7 +61,11 @@
             <input type="hidden" name="id_user" value="{{Auth::User()->id}}">
             <input type="hidden" name="id_artwork" value="{{$artwork->id}}">
             <button type="submit" id="swapHeart" class="btn btn-default swap">
-                <span class="glyphicon glyphicon-heart-empty"></span>
+                @if($corazon == 0)
+                    <span class="glyphicon glyphicon-heart-empty"></span>
+                @else
+                <span class="glyphicon glyphicon-heart"></span>
+                @endif
             </button>
         </form>
         @endif

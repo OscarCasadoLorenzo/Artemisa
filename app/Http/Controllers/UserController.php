@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Artwork;
+use App\Author;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -28,8 +29,9 @@ class UserController extends Controller
             $user = User::find($user_id);
         if(User::find($user_id)->artworks()->having('pivot_artwork_id','=',$artwork_id)->get()->isEmpty()){
             Artwork::find($artwork_id)->users()->attach($user);
-            $ruta = "/artworks/" . $artwork_id;
-            return redirect($ruta);
+            $artwork = Artwork::find($artwork_id);
+            $author = Author::find($artwork->author_id);
+            return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'corazon'=> 1]);
         }
         else{
             $ruta = "/artworks/" . $artwork_id;
