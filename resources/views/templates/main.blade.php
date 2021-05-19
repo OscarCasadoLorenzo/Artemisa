@@ -19,6 +19,7 @@
         <script src="https://kit.fontawesome.com/177edab996.js" crossorigin="anonymous"></script>
 
         <title>Artemisa | @yield('title', 'Default')</title>
+
     </head>
 
     <style>
@@ -29,7 +30,8 @@
 
         body{
             font-family:sans-serif;
-            padding: 90px 20px 0;
+            padding: 90px 20px 0; 
+            position:relative;
         }
 
         .header{
@@ -44,8 +46,6 @@
         .nav{
             display:flex;
             justify-content:space-between;
-
-            max-width: 992px;
             margin: 0 auto;
         }
 
@@ -131,6 +131,9 @@
 
                 height: calc(100% - 60px);
                 overflow-y: auto;
+
+                left: 100%;
+                transition: left 0.3s;
             }
 
             .nav-menu-item{
@@ -143,59 +146,37 @@
                 background: none
             }
 
+            .nav-menu_visible{
+                left: 0;
+            }
+
             .nav-toggle{
                 display:block;
             }
         }
 
+        #information{
+            position:absolute;
+            z-index:-50;
+        }
 
-    </style>
+
+    </style>        
 
     <body>
         <section class="header">
 
         <nav class = "nav">
-            <a href="#" class="logo">ARTEMISA</a>
-            <button class="nav-toggle">
+            <a href="/museums" class="logo">ARTEMISA</a>
+            <button class="nav-toggle ">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-menu">
-                <li class = "nav-menu-item"><a href="#" class="nav-menu-link">Blog</a>
-                <li class = "nav-menu-item"><a href="#" class="nav-menu-link">Blog</a>
-                <li class = "nav-menu-item"><a href="#" class="nav-menu-link">Blog</a>
-                <li class = "nav-menu-item"><a href="#" class="nav-menu-link">Blog</a>
-            </ul>
-        </nav> 
-
-        <!--
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container" style=" width:100%;">
-
-                    <a class="navbar-brand" href="/museums" style="padding-top: 10px">Artemisa</a>
-                    <div class="dropdown" style="padding-top: 10px; padding-right:5%">
-                        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownNavLink" data-bs-toggle="dropdown" style="width: 35px !important; height: 35px !important; padding-top:1px" aria-expanded="false">
-                        </a>
-<<<<<<< HEAD
-                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
-                                <li><a class="dropdown-item" href="/authors">Authors</a></li>
-                                <li><a class="dropdown-item" href="/museums">Museums</a></li>
-                            </ul>
-=======
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
-                        <li><a class="dropdown-item" href="/authors">Authors</a></li>
-                        <li><a class="dropdown-item" href="/museums">Museums</a></li>
-                        <li><a class="dropdown-item" href="/aboutUs">About us</a></li>
-                        </ul>
->>>>>>> 803d74e6f122f832cbaf001cdb9a1d638e2c8df8
-                    </div>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            @if (Auth::check() && Auth::user()->type == "admin")
+                <li class = "nav-menu-item"><a href="/authors" class="nav-menu-link">Authors</a>
+                <li class = "nav-menu-item"><a href="/museums" class="nav-menu-link">Museums</a>
+                <li class = "nav-menu-item"><a href="/aboutUs" class="nav-menu-link">About us</a>
+            
+            @if (Auth::check() && Auth::user()->type == "admin")
                             <li class="nav-item">
                                 <form name="admin" class="administration" style="display: flex; margin-top: 22px">
                                     <select name="action">
@@ -229,58 +210,47 @@
                                     <input type="button" value="Go" onclick=window.open(admin.action.value)>
                                 </form>
                             </li>
-                        @endif
+                @endif
 
+                @if (Auth::check())
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link" href="/users/{{Auth::user()->id}}">Profile</a>
+                    </li>
+                    
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
 
-                        <form class="d-flex"  >
-                            <section class="container" id="filters" style="width:100%;">
-                                @yield("filters")
-                                @if (Auth::check())
-                                  
-                                    <div id="profile" class="dropdown" style="margin-top: 22px; display: flex; ">
-                                        <button class="btn btn-primary" type="button" data-toggle="dropdown" >{{Auth::user()->name}}
-                                        <span class="caret"></span></button>
-                                        <ul id="subprofile" class="dropdown-menu">
-                                            <li><a href="/users/{{Auth::user()->id}}">Profile</a></li>
-                                            <li>
-                                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
-                                                </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @else
-                                <div class="container-fluid" style="margin-top: 22px; display: flex; ">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                </div>
-                                @endif
-                            </section>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
                         </form>
-                    </ul>
-                    </div>
-                </div>
-            </nav>
-            -->
-
+                    </li>
+                @endif
+            
+            </ul>
+        </nav> 
         </section>
 
         <section class="content" id="information">
+            @yield("filters")
             @yield("information")
         </section>
 
         <section class="content" id="footer">
             @yield("footer")
         </section>
+
+        <script>
+            const navToggle = document.querySelector(".nav-toggle")
+            const navMenu = document.querySelector(".nav-menu")
+
+            navToggle.addEventListener("click", () => {
+                navMenu.classList.toggle("nav-menu_visible");
+            });
+        </script>
     <body>
 </html>
 
