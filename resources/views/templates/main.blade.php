@@ -176,10 +176,18 @@
                         <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none dropdown-toggle"
                         id="dropdownNavLink" data-bs-toggle="dropdown" style="width: 35px !important; height: 35px !important; padding-top:1px" aria-expanded="false">
                         </a>
+<<<<<<< HEAD
                             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
                                 <li><a class="dropdown-item" href="/authors">Authors</a></li>
                                 <li><a class="dropdown-item" href="/museums">Museums</a></li>
                             </ul>
+=======
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink" style="">
+                        <li><a class="dropdown-item" href="/authors">Authors</a></li>
+                        <li><a class="dropdown-item" href="/museums">Museums</a></li>
+                        <li><a class="dropdown-item" href="/aboutUs">About us</a></li>
+                        </ul>
+>>>>>>> 803d74e6f122f832cbaf001cdb9a1d638e2c8df8
                     </div>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

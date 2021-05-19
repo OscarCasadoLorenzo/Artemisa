@@ -4,7 +4,7 @@
 
 
 @section('information')
-
+@if (Auth::check() && Auth::User()->type == "admin")
 <style>
     #swapHeart > span {
     color: red;
@@ -61,7 +61,11 @@
             <input type="hidden" name="id_user" value="{{Auth::User()->id}}">
             <input type="hidden" name="id_artwork" value="{{$artwork->id}}">
             <button type="submit" id="swapHeart" class="btn btn-default swap">
-                <span class="glyphicon glyphicon-heart-empty"></span>
+                @if($corazon == 0)
+                    <span class="glyphicon glyphicon-heart-empty"></span>
+                @else
+                    <span class="glyphicon glyphicon-heart"></span>
+                @endif
             </button>
         </form>
         @endif
@@ -76,12 +80,20 @@
         <!-- <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">View Author</h2> </a> -->
         <h2>Author</h2>
         <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">{{$author->name}}</h2> </a>
-
+        <h2>Museum</h2>
+        <a class="btn btn-primary" href="/museums/{{$museum->id}}"> <h2 class="text-white m-0">{{$museum->name}}</h2> </a>
     </div>
     </div>
 
 
 
     </div>
-    <!-- /.container -->
+    @else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection

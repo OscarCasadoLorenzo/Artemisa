@@ -3,6 +3,7 @@
 @section('title', 'User')
 
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
     <!-- Page Content -->
     <div class="container">
 
@@ -28,6 +29,16 @@
     </div>
     <!-- /.col-md-4 -->
     </br>
+
+
+        <a class="dropdown-item" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </a>
+
+
+
 
     <div style="display:flex;">
         @foreach($artworks as $artwork)
@@ -59,5 +70,12 @@
 
 
     </div>
-    <!-- /.container -->
+    @else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection

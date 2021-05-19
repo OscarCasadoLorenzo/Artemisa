@@ -20,6 +20,7 @@ Route::get('/', 'MuseumController@paginaInicial');
 Route::get('/museums', 'MuseumController@getMuseums');
 Route::get('/authors', 'AuthorController@getAuthors');
 
+
 //Rutas de extracción de objeto unico
 Route::get('/artworks/{id}', 'ArtworkController@getArtwork')->where('id', '\d+');
 Route::get('/authors/{id}', 'AuthorController@getAuthor')->where('id', '\d+');
@@ -27,8 +28,6 @@ Route::get('/users/{id}', 'UserController@getUser')->where('id', '\d+');
 Route::get('/museums/{id}', 'MuseumController@getMuseum')->where('id', '\d+'); //solo permite que id sean numeros
 Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id', '\d+'); //solo permite que id sean numeros
 
-//Rutas para login
-Route::post('/users/login', 'UserController@login');  //esta creo que sobra
 
 //Inserción de elementos
 Route::post('/users', 'UserController@saveUser');
@@ -94,3 +93,4 @@ Auth::routes();
 
 //EXPERIMENTOS
 Route::post('/artworks/fav', 'UserController@favArt')->name('fav');
+Route::get('/aboutUs', 'UserController@aboutus');

@@ -1,5 +1,6 @@
 @extends('templates.main')
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
 <body>
     <h1 style="position:absolute;left:35%">Update Author</h1>
     @if($errors->any())
@@ -72,4 +73,12 @@ $('#author_id').change(function(){
 });
 
 </script>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection

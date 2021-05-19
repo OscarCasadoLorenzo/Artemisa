@@ -3,6 +3,7 @@
 @section('title', 'Create museum')
 
 @section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
     <body>
         <div class ="container">
 
@@ -57,6 +58,14 @@
         </form>
         </div>
     </body>
+    @else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection
 
 

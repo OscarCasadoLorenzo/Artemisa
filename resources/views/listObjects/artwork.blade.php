@@ -26,5 +26,8 @@
             </div>
         </div>
     @endforeach
-    {{$artworks->links()}}
+    <div class="d-flex" style= "margin-top:30px">
+    <div class="mx-auto">
+        {{$artworks->links()}}
+    </div>
 @endsection
