@@ -102,7 +102,7 @@
             display:none;
         }
 
-        @media (max-width: 768px){
+        @media (max-width: 988px){
             
             body{
                 padding-top: 70px;
