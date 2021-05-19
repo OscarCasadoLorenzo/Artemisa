@@ -80,7 +80,8 @@
         <!-- <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">View Author</h2> </a> -->
         <h2>Author</h2>
         <a class="btn btn-primary" href="/authors/{{$author->id}}"> <h2 class="text-white m-0">{{$author->name}}</h2> </a>
-
+        <h2>Museum</h2>
+        <a class="btn btn-primary" href="/museums/{{$museum->id}}"> <h2 class="text-white m-0">{{$museum->name}}</h2> </a>
     </div>
     </div>
 

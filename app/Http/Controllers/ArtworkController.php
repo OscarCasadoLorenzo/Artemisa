@@ -32,6 +32,8 @@ class ArtworkController extends Controller
     public function getArtwork($id){
         $artwork = Artwork::find($id);
         $author = Author::find($artwork->author_id);
+        $collection = Collection::find($artwork->collection_id);
+        $museum = Museum::find($collection->museum_id);
         $corazon = 0;
         if(Auth::check()){
             if(User::find(Auth::User()->id)->artworks()->having('pivot_artwork_id','=',$id)->get()->isEmpty()){
@@ -41,7 +43,7 @@ class ArtworkController extends Controller
                 $corazon = 1;
             }
         }
-        return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'corazon' => $corazon]);
+        return view('singleObject.artwork', ['artwork'=>$artwork, 'author'=>$author, 'museum'=>$museum, 'collection'=>$collection, 'corazon' => $corazon]);
     }
 
     public function getDetails($id = 0)
@@ -66,7 +68,9 @@ class ArtworkController extends Controller
             $input['imgRoute'] = $filepath;
         }
         Artwork::create($input);
-        return "Obra $request->name añadida a la BD!";
+        $collections = Collection::all();
+        $authors = Author::all();
+        return view('createObjects.artwork', compact('collections'), compact('authors'));
     }
 
     public function deleteArtwork(){
@@ -79,7 +83,9 @@ class ArtworkController extends Controller
         $art = Artwork::findOrFail($request->artwork_id);
         $art->delete();
 
-        return redirect('/museums');
+        $artworks = Artwork::all();
+
+        return view('deleteObjects.artwork', compact('artworks'));
     }
 
     public function modifyArtwork()

@@ -100,7 +100,10 @@ class UserController extends Controller
         $aux = User::findOrFail($request->user_id);
         $aux->delete();
 
-        return redirect('/museums');
+        // return redirect('/museums');
+        $users = User::where('type', '!=', 'admin')->get(); //cogemos los usuarios que no son admin
+
+        return view('deleteObjects.user', compact('users'));
     }
 
     public function findUsers(){

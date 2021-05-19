@@ -28,7 +28,8 @@ class CollectionController extends Controller
     public function saveCollection(CollectionRequest $request){
         $valores = array('_token' => $request->_token, 'name' => $request->name, 'museum_id' => $request->museum_id);
         Collection::create($valores);
-        return "Colección $request->name añadida a la BD!";
+        $museums = Museum::all();
+        return view('createObjects.collection', compact('museums'));
     }
 
     public function deleteCollection(){
@@ -41,7 +42,9 @@ class CollectionController extends Controller
         $col = Collection::findOrFail($request->collection_id);
         $col->delete();
 
-        return redirect('/museums');
+        $collections = Collection::all();
+
+        return view('deleteObjects.collection', compact('collections'));
     }
 
     public function findCollection(){
@@ -59,7 +62,8 @@ class CollectionController extends Controller
         $coll->nacionality = $request->input('nacionality');
         $coll->museum_id = $request->input('museum_id');
         $coll->save();
-        return "Museo con nombre $request->old_name actualizado correctamente";
+        $collections = Collection::all();
+        return view('updateObjects.collection', compact('collections'));
     }
 
     public function ordenar(Request $request){
