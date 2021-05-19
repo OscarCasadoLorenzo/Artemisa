@@ -64,7 +64,7 @@
                 @if($corazon == 0)
                     <span class="glyphicon glyphicon-heart-empty"></span>
                 @else
-                <span class="glyphicon glyphicon-heart"></span>
+                    <span class="glyphicon glyphicon-heart"></span>
                 @endif
             </button>
         </form>
