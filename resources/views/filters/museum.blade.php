@@ -1,21 +1,21 @@
 <style>
     .textboxs{
         display:flex;
+        justify-content:center;
         margin-top: 13px;
     }
 
     #boton{
-        height: 35px;
-        margin-top: 5px;
-        margin-right: 20px;
+        margin-right:10px;
     }
+
+
 </style>
 
 <div class="textboxs">
             <form action="/museums" method="get">
                 <input type="text" name="name" placeholder="Nombre" id="boton">
                 <input type="text" name="location" placeholder="Localización" id="boton">
-                <br/>
                 <button type="submit" class="btn btn-primary" id="boton">Buscar</button>
 
             </form >

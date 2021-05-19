@@ -211,7 +211,7 @@
                                 </form>
                             </li>
                 @endif
-
+                
                 @if (Auth::check())
                     <li class="nav-menu-item">
                         <a class="nav-menu-link" href="/users/{{Auth::user()->id}}">Profile</a>
@@ -228,6 +228,14 @@
                             @csrf
                         </form>
                     </li>
+                @else
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a class="nav-menu-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                                
                 @endif
             
             </ul>
