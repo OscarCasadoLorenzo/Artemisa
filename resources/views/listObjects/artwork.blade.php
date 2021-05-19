@@ -4,7 +4,13 @@
 
 
 @section('information')
+<style>
+ .img-fluid{
+        width:1000px !important;
+        object-fit:fill;
+    }
 
+</style>
     <!-- pruebas sort -->
     <!-- @foreach($artworks as $artwork)
         <div class="card"  style="text-align:center">

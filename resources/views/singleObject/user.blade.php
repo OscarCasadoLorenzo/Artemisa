@@ -4,6 +4,13 @@
 
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
+<style>
+ .img-fluid{
+        width:1000px !important;
+        object-fit:fill;
+    }
+
+</style>
     <!-- Page Content -->
     <div class="container">
 
