@@ -5,7 +5,7 @@
     <h1 style="text-align:center;">Update Collection</h1>
     <form method="POST" action="{{route('museum.update')}}">
     @if($errors->any())
-        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+        <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
     @csrf
         </br>
@@ -16,8 +16,8 @@
             <option value="{{$collection['id']}}">{{$collection['name']}}</option>
             @endforeach
         </select>
-        ARTWORKS
-        <div class="form-group1" style="margin:4px, 4px; padding:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+        <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
+        <div class="form-group1" style=" box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
             @foreach($artworks as $artwork)
                 <div class="artwork">
                     <label>
@@ -27,8 +27,8 @@
                 </div>
             @endforeach
         </div>
-        MUSEUMS
-        <div class="form-group2" style="margin:4px, 4px; padding:4px; width: 500px; height: 110px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+        <h4 style="padding:1em; text-align:center;"> MUSEUMS </h3>
+            <div class="form-group2" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px;width: 500px; height: auto; overflow-x: hidden; overflow-y: auto; text-align:justify;">
             @foreach($museums as $museum)
                 <div class="museum">
                     <label>

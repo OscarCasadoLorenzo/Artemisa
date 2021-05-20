@@ -1,16 +1,16 @@
 @extends('templates.main')
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
-<body>
-    <h1 style="position:absolute;left:35%">Update Author</h1>
+<body style="text-align: center;">
+    <h1>Update Author</h1>
     @if($errors->any())
-    <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+    <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
     <form method="POST" action="{{route('author.update')}}" enctype="multipart/form-data">
     @csrf
         </br>
-        <div style="position:absolute;top:10%;right:40%;width: 500px;">
-        <select  name="author_id" id="author_id" class="form-control">
+        <div  style=" margin:30%; margin-top:1%;">
+        <select  name="author_id" id="author_id" class="form-control" style="width: auto;">
                 <option value="-1">Choose an Author</option>
                 @foreach ($authors as $author)
                 <option value="{{$author['id']}}">{{$author['name']}}</option>
@@ -24,8 +24,8 @@
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
         </div>
-        <div id="preview" style="position:absolute;top:25%;right:50%;">
- 
+        <div id="preview" >
+
         </div>
         </br> </br>
         @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
@@ -72,13 +72,13 @@ $('#author_id').change(function(){
 
 </script>
 <script>
- 
+
 // Funcion para previsualizar la imagen
 function preview(e)
 {
 	if(e.files && e.files[0])
 	{
-        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
         // ficheros (o información en buffer) almacenados en el cliente de forma
         // asíncrona
         var reader=new FileReader();

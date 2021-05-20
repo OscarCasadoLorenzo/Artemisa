@@ -1,14 +1,14 @@
 @extends('templates.main')
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
-<body>
-    <h1 style="position:absolute;left:40%">Update Artwork</h1>
+<body style="">
+    <h1 style="margin-left:30%;">Update Artwork</h1>
     @if($errors->any())
-        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+        <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
     <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data">
     @csrf
-        <div style="position:absolute;top:17%;left:35%;">
+        <div class="container" style=" margin:25%; margin-top:1%;">
 
             <select name="id" style="width: 400px;" id="id" class="form-control">
                 <option value="-1">Choose an Artwork</option>

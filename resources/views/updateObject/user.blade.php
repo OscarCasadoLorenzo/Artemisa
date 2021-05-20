@@ -6,13 +6,13 @@
 <body>
     <h1 style="text-align:center">Update User</h1>
     @if($errors->any())
-    <h4 style="float:right;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
+    <h4 style="float:right;margin-right:10%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
     <form method="POST" action="{{route('user.update')}}">
     @csrf
         </br>
         <div style="margin-left:25%; margin-right:25%; ">
-        <select  name="user_id" id="user_id" class="form-control">
+        <select  name="user_id" id="user_id" class="form-control" style="width: auto;">
                 <option value="-1">Choose an User</option>
                 @foreach ($users as $user)
                 <option value="{{$user['id']}}"  @if (old('user_id') == $user['id']) selected="selected" @endif > {{$user['email']}}</option>
@@ -25,9 +25,9 @@
         <td><input type="text" class="form-control" id="surname2" name="surname2" placeholder="Second surname" value="{{old('surname2')}}"/></td>
         <tr>
         </table>
-        <input type="date" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth" value="{{old('birth_date')}}"/>
+        <input type="date" class="form-control" style="width:auto" id="birth_date" name="birth_date" placeholder="Date of birth" value="{{old('birth_date')}}"/>
         <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{old('location')}}"/>
-        <select  name="type" id="type" class="form-control">
+        <select  name="type" id="type" class="form-control" style="width: auto;">
                 <option style="display:none"> </option>
                 <option value="visitor" @if (old('type') == "visitor") selected="selected" @endif >visitor</option>
                 <option value="admin" @if (old('type') == "admin") selected="selected" @endif>admin</option>

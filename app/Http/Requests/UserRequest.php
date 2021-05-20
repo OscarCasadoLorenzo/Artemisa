@@ -31,8 +31,7 @@ class UserRequest extends FormRequest
             'email' => 'required',
             'birth_date' => 'date',
             'location' => 'min:3|max:75|required',
-            'password' => ['required',
-                            'min:6',
+            'password' => ['min:6',
                             'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
                             'confirmed'
                         ] //should contain at least 3 of a-z or A-Z and number.
