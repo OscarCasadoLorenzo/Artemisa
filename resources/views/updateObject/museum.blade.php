@@ -3,7 +3,7 @@
 @if (Auth::check() && Auth::User()->type == "admin")
 <body>
     <h1 style="text-align:center;">Update Museum</h1>
-    <form method="POST" action="{{route('museum.update')}}" >
+    <form method="POST" action="{{route('museum.update')}}" enctype="multipart/form-data">
     @if($errors->any())
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
@@ -20,8 +20,7 @@
         <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{ old('location') }}"/>
         <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}"/>
         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ old('email') }}"/>
-        <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute" value="{{ old('imgRoute') }}"/>
-        <!--<input type="text" class="form-control" id="type" />-->
+        <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('img')}}" placeholder="Route of image"></br>
         </br>
         <button class="btn btn-primary" type="submit" style="text-align:center">Update</button>
     </br>
@@ -38,7 +37,9 @@
     @endif
     </div>
         </div>
-
+        <div id="preview" style="position:absolute;top:25%;right:50%;">
+ 
+        </div>
 
 
     </form>
@@ -59,7 +60,7 @@ $('#museum_id').change(function(){
                 $('#address').val(response.address);
                 $('#name').val(response.name);
                 $('#email').val(response.email);
-                $('#imgRoute').val(response.imgRoute);
+                $('#imgRoute').val('');
 
             }
             else{
@@ -71,8 +72,34 @@ $('#museum_id').change(function(){
             }
         }
     });
+    document.getElementById("preview").innerHTML="";
 });
+</script>
+<script>
+ 
+// Funcion para previsualizar la imagen
+function preview(e)
+{
+	if(e.files && e.files[0])
+	{
+        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // ficheros (o información en buffer) almacenados en el cliente de forma
+        // asíncrona
+        var reader=new FileReader();
 
+        // El evento onload se ejecuta cada vez que se ha leido el archivo
+        // correctamente
+        reader.onload=function(e) {
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+        }
+        // El evento onerror se ejecuta si ha encontrado un error de lectura
+        reader.onerror=function(e) {
+            document.getElementById("preview").innerHTML="Error de lectura";
+        }
+        // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+        reader.readAsDataURL(e.files[0]);
+	}
+}
 </script>
 @else
 <body>

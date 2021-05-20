@@ -70,8 +70,41 @@ class AuthorController extends Controller
         $authors->nacionality = $request->input('nacionality');
         $authors->birth_date = $request->input('birth_date');
         $authors->movement = $request->input('movement');
-        $authors->imgRoute = $request->input('imgRoute');
-        $authors->ewiki = $request->input('eWiki');
+        //Subir fichero
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name'])) 
+        {
+            //Validamos que el archivo tenga contenido
+            if(empty($_FILES['imgRoute']['name']))
+            {
+                return Redirect::to('/authors/update')->withErrors(['Archivo no encontrado']);
+            }
+
+            $upload_file_name = $_FILES['imgRoute']['name'];
+            //Compruebo que el nombre no sea demasiado largo
+            if(strlen ($upload_file_name)>100)
+            {
+                return Redirect::to('/authors/update')->withErrors(['Nombre del archivo demasiado grande']);
+            }
+            //Elimino todos los caracteres "raros"
+            $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+            //Limite fichero
+            if ($_FILES['imgRoute']['size'] > 1000000) 
+            {
+                return Redirect::to('/authors/update')->withErrors(['Imagen demasiado grande']);
+            }
+            //Save the file
+            $dest=dirname(__DIR__, 3).'/public/';
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$upload_file_name)) 
+            {
+                return Redirect::to('/authors/update')->withErrors(['Error subiendo el archivo']);
+            }
+            //Muevo y renombro
+            $dbroute = $dest.$authors->imgRoute;
+            $extension_pos = strrpos($dbroute, '.');
+            $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
+            rename($dbroute, $old);
+            rename($dest.'images/authors/'.$upload_file_name,$dbroute);
+        }   
         $authors->save();
         //cambiar el redirect para que lleve a la pagina del author modificado
         return redirect('/authors');

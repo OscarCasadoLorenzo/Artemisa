@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Collection;
 use App\Museum;
+use App\Artwork;
 use App\Http\Requests\CollectionRequest;
 
 class CollectionController extends Controller
@@ -54,6 +55,20 @@ class CollectionController extends Controller
 
     public function findCollection(){
 
+    }
+
+    public function modifyCollection()
+    {
+        $collections = Collection::all();
+        $artworks = Artwork::all();
+        $museums = Museum::all();
+        return view('updateObject.collection') -> with(compact('museums','artworks','collections'));
+    }
+
+    public function getDetails($id = 0)
+    {
+        $collections = Collection::where('id',$id)->first();
+        return response()->json($collections);
     }
 
     public function update(CollectionRequest $request)

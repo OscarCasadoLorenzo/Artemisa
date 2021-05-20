@@ -57,6 +57,7 @@ Route::post('/users/update', 'UserController@update')->name('user.update');
 Route::get('/museums/update', 'MuseumController@modifyMuseum');
 Route::post('/museums/update', 'MuseumController@update')->name('museum.update');
 Route::get('/collections/update', 'CollectionController@modifyCollection');
+Route::post('/collections/update', 'CollectionController@update')->name('collections.update');
 Route::get('/artworks/update', 'ArtworkController@modifyArtwork');
 Route::post('/artworks/update', 'ArtworkController@update')->name('artwork.update');
 Route::get('/authors/update', 'AuthorController@modifyAuthor');
@@ -87,6 +88,7 @@ Route::get('get/details/user{id}', 'UserController@getDetails')->name('getDetail
 Route::get('get/details/author{id}', 'AuthorController@getDetails')->name('getDetailsAuthor');
 Route::get('get/details/museum{id}', 'MuseumController@getDetails')->name('getDetailsMuseum');
 Route::get('get/details/artwork{id}', 'ArtworkController@getDetails')->name('getDetailsArtwork');
+Route::get('get/details/collection{id}', 'CollectionController@getDetails')->name('getDetailsCollection');
 
 Auth::routes();
 

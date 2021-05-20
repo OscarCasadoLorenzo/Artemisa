@@ -1,47 +1,77 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Collections</title>
-    </head>
-    @if (Auth::check() && Auth::User()->type == "admin")
-    <body>
-        <h1>Create new collection</h1>
-        <form action="/collections" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="nm">Name&nbsp;</label>
-                <input type="text" id="nm" name="name" autofocus value="{{ old('imgRoute') }}">
-            </div>
-            </br>
-            <div class="form-group">
-                <label for="im">Museo&nbsp;</label>
-                <select name="museum_id" id="im" class="form-control">
-                    <option value="">Choose a museum</option>
-                    @foreach ($museums as $museum)
-                    <option value="{{$museum['id']}}">{{$museum['name']}}</option>
-                    @endforeach
-                </select>
-            </div>
-            </br>
-            <button class="btn btn-primary" type="submit">Submit</button>
-
+@extends('templates.main')
+@section('information')
+@if (Auth::check() && Auth::User()->type == "admin")
+<body>
+    <h1 style="text-align:center;">Update Collection</h1>
+    <form method="POST" action="{{route('museum.update')}}">
+    @if($errors->any())
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+    @endif
+    @csrf
         </br>
-        <div class="container">
-        </br>
-            @if(count($errors) > 0)
-            <div class="alert alert-danger" role="alert" style="width:auto;">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li> {{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div style="float:center; margin-right:35%; margin-left:35%;">
+        <select  name="collection_id" id="collection_id" class="form-control">
+            <option value="-1">Choose a collection</option>
+            @foreach ($collections as $collection)
+            <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+            @endforeach
+        </select>
+        ARTWORKS
+        <div class="form-group1" style="margin:4px, 4px; padding:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+            @foreach($artworks as $artwork)
+                <div class="artwork">
+                    <label>
+                        <input type="checkbox" class="art" value="{{$artwork['id']}}">
+                        {{$artwork['title']}}
+                    </label>
+                </div>
+            @endforeach
         </div>
-
-        </form>
-    </body>
+        MUSEUMS
+        <div class="form-group2" style="margin:4px, 4px; padding:4px; width: 500px; height: 110px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+            @foreach($museums as $museum)
+                <div class="museum">
+                    <label>
+                        <input type="radio" name="mus" value="{{$museum['id']}}">
+                        {{$museum['name']}}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+        </br>
+        <button class="btn btn-primary" type="submit" style="text-align:center">Update</button>
+        </br>
+    </div>
+    </form>
+</body>
+<script type=text/javascript>
+$('#collection_id').change(function(){
+    var elements = document.getElementsByClassName("art");
+    var id = $(this).val();
+    if(id != -1)
+    {
+        var url = '{{ route("getDetailsCollection", ":id") }}';
+        url = url.replace(':id', id);
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            success: function(response){
+                if(response != null){
+                    for (var i = 0, len = elements.length; i < len; i++) {
+                        elements[i].checked = true; //TODO Relaciones
+                    }
+                }
+            }
+        });
+    }
+    else{
+        for (var i = 0, len = elements.length; i < len; i++) {
+                        elements[i].checked = false;
+                    }
+    }
+});
+</script>
 @else
 <body>
     <div>
@@ -50,4 +80,4 @@
     </div>
 </body>
 @endif
-</html>
+@endsection

@@ -6,7 +6,7 @@
     @if($errors->any())
     <h4 style="position:absolute;right:30%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
-    <form method="POST" action="{{route('author.update')}}" >
+    <form method="POST" action="{{route('author.update')}}" enctype="multipart/form-data">
     @csrf
         </br>
         <div style="position:absolute;top:10%;right:40%;width: 500px;">
@@ -20,13 +20,13 @@
         <input type="text" class="form-control" id="movement" name="movement" placeholder="Movement"/>
         <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="Nacionality"/>
         <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth"/>
-        <input type="text" class="form-control" id="eWiki" name="eWiki" placeholder="eWiki"/>
-        <input type="text" class="form-control" id="imgRoute" name="imgRoute" placeholder="imgRoute"/>
-        <!--<input type="text" class="form-control" id="type" />-->
+        <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('img')}}" placeholder="Route of image"></br>
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
         </div>
-
+        <div id="preview" style="position:absolute;top:25%;right:50%;">
+ 
+        </div>
         </br> </br>
         @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
         <div class="alert alert-danger" role="alert" style="width:auto;">
@@ -56,9 +56,7 @@ $('#author_id').change(function(){
                 $('#nacionality').val(response.nacionality);
                 $('#name').val(response.name);
                 $('#birth_date').val(response.birth_date);
-                $('#imgRoute').val(response.imgRoute);
-                $('#eWiki').val(response.eWiki);
-
+                $('#imgRoute').val('');
             }
             else{
                 $('#movement').val('');
@@ -66,12 +64,38 @@ $('#author_id').change(function(){
                 $('#name').val('');
                 $('#birth_date').val('');
                 $('#imgRoute').val('');
-                $('#eWiki').val('');
             }
         }
     });
+    document.getElementById("preview").innerHTML="";
 });
 
+</script>
+<script>
+ 
+// Funcion para previsualizar la imagen
+function preview(e)
+{
+	if(e.files && e.files[0])
+	{
+        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // ficheros (o información en buffer) almacenados en el cliente de forma
+        // asíncrona
+        var reader=new FileReader();
+
+        // El evento onload se ejecuta cada vez que se ha leido el archivo
+        // correctamente
+        reader.onload=function(e) {
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+        }
+        // El evento onerror se ejecuta si ha encontrado un error de lectura
+        reader.onerror=function(e) {
+            document.getElementById("preview").innerHTML="Error de lectura";
+        }
+        // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+        reader.readAsDataURL(e.files[0]);
+	}
+}
 </script>
 @else
 <body>
