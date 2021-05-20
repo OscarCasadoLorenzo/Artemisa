@@ -5,7 +5,7 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
     <body>
-        <div class ="container">
+        <div class ="container" style=" margin-left:15%; margin-top:2%; text-align:center">
 
         <h1>Create new author</h1>
         <form action="/authors" method="post" enctype="multipart/form-data">
@@ -35,16 +35,16 @@
                 <input type="text" id="ew" name="eWiki" autofocus>
             </div>
             </br>
-            <div class="form-group">
+            <div class="form-group" >
                 <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus>
+                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:30%;">
             </div>
             </br>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
         </div>
     </body>
-    
+
 
     @else
 <body>

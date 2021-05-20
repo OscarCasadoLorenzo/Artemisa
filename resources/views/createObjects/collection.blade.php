@@ -17,7 +17,7 @@
         <title>Collections</title>
     </head>
     <body>
-        <div class ="container">
+        <div class ="container" style="text-align:center; margin:17%; margin-top:1%">
 
         <h1>Create new collection</h1>
         <form action="/collections" method="post">

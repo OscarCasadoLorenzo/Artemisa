@@ -11,9 +11,9 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
     <body>
-        <div class ="container">
+        <div class ="container" style="text-align:center; margin:17%; margin-top:1%">
 
-        <h1>Create new artwork</h1>
+        <h1 >Create new artwork</h1></br>
         <form action="/artworks" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -63,7 +63,7 @@
             </br>
             <div class="form-group">
                 <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus>
+                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:28%;">
             </div>
             </br>
 

@@ -4,16 +4,18 @@
 
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
-    <body>
-        <div class ="container">
 
-        <style>
-            div ul{
-                margin:auto;
-                width:60%;
-                text-align: center;
-            }
-        </style>
+<style>
+    div ul{
+        margin:auto;
+        width:60%;
+        text-align: center;
+    }
+</style>
+
+    <body>
+        <div class ="container" style="text-align:center; margin:17%; margin-top:1%">
+
 
         <h1>Create new museum</h1>
         <form action="/museums" method="post" enctype="multipart/form-data">
@@ -41,7 +43,7 @@
             </br>
             <div class="form-group">
                 <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus value="{{ old('imgRoute') }}">
+                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:30%" value="{{ old('imgRoute') }}">
             </div>
             </br>
             <button class="btn btn-primary"  type="submit">Submit</button>

@@ -6,7 +6,7 @@
     @if($errors->any())
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
-    <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data"> 
+    <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data">
     @csrf
         <div style="position:absolute;top:17%;left:35%;">
 
@@ -46,8 +46,8 @@
         </div>
         @endif
     </div>
-    <div id="preview" style="position:absolute;top:25%;right:50%;">
- 
+    <div id="preview" >
+
     </div>
     </form>
 </body>
@@ -97,13 +97,13 @@ $('#id').change(function(){
 </script>
 <!--No hay que reinventar tampoco la rueda-->
 <script>
- 
+
 // Funcion para previsualizar la imagen
 function preview(e)
 {
 	if(e.files && e.files[0])
 	{
-        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
         // ficheros (o información en buffer) almacenados en el cliente de forma
         // asíncrona
         var reader=new FileReader();
