@@ -33,7 +33,7 @@
                 <option value="{{$collection['id']}}" @if (old('collection_id') == $collection['id']) selected="selected" @endif>{{$collection['name']}}</option>
                 @endforeach
             </select></br>
-            <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('img')}}" placeholder="Route of image"></br>
+            <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
             <button class="btn btn-primary" type="submit">Submit</button>
         </br> </br>
         @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")

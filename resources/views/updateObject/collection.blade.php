@@ -16,16 +16,28 @@
             <option value="{{$collection['id']}}">{{$collection['name']}}</option>
             @endforeach
         </select>
+
         <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
-        <div class="form-group1" style=" box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
-            @foreach($artworks as $artwork)
-                <div class="artwork">
-                    <label>
-                        <input type="checkbox" class="art" value="{{$artwork['id']}}">
-                        {{$artwork['title']}}
-                    </label>
-                </div>
-            @endforeach
+    <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+            <table>
+                @foreach($artworks as $artwork)
+                    <tr class="artwork">
+                        <td><label>
+                            <input type="checkbox" class="art" value="{{$artwork['id']}}">
+                            {{$artwork['title']}}
+                        </td>
+                        <td style="visibility:hidden;">
+                            <select  name="collection_id" id="collection_id" class="form-control">
+                            <option value="-1">Choose</option>
+                            @foreach ($collections as $collection)
+                            <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+                            @endforeach
+                        </select>
+                        </td>
+                    </tr>
+                    </div>
+                @endforeach
+            </table>
         </div>
         <h4 style="padding:1em; text-align:center;"> MUSEUMS </h3>
             <div class="form-group2" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px;width: 500px; height: auto; overflow-x: hidden; overflow-y: auto; text-align:justify;">
