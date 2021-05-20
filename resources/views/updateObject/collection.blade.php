@@ -25,7 +25,7 @@
                             <input type="checkbox" class="art" value="{{$artwork['id']}}">
                             {{$artwork['title']}}
                         </td>
-                        <td style="visibility:hidden;">
+                        <td id="{{'collect'.$artwork['id']}}" style="visibility:hidden;">
                             <select  name="collection_id" id="collection_id" class="form-control">
                             <option value="-1">Choose</option>
                             @foreach ($collections as $collection)
@@ -62,26 +62,65 @@ $('#collection_id').change(function(){
     if(id != -1)
     {
         var url = '{{ route("getDetailsCollection", ":id") }}';
+        var url2 = '{{ route("collectionArtworks", ":id") }}';
         url = url.replace(':id', id);
+        url2 = url2.replace(':id', id);
         $.ajax({
             url: url,
             type: 'get',
             dataType: 'json',
             success: function(response){
                 if(response != null){
-                    for (var i = 0, len = elements.length; i < len; i++) {
-                        elements[i].checked = true; //TODO Relaciones
-                    }
+                    $.ajax({
+                        url: url2,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(response2){
+                            result = response2;
+                            if(response2 != null){
+                                for (var i = 0, len = elements.length; i < len; i++) {
+                                    for(var j = 0, len2 = response2.length; j < len2; j++)
+                                    {
+                                        if(elements[i].value == response2[j].id)
+                                        {
+                                            debugger;
+                                            elements[i].checked = true; 
+                                            elements[i].addEventListener("click",unhide);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            elements[i].removeEventListener("click",unhide);
+                                            elements[i].checked = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
                 }
             }
         });
     }
     else{
         for (var i = 0, len = elements.length; i < len; i++) {
-                        elements[i].checked = false;
+                        elements[i].checked = true;
                     }
     }
 });
+</script>
+<script type=text/javascript>
+function unhide(event) {
+    debugger;
+    obj = event.currentTarget;
+    if (obj.checked) 
+    {
+        document.getElementById('collect'+obj.value).style.visibility = "hidden";
+    } else {
+        document.getElementById('collect'+obj.value).style.visibility = "visible";
+        document.getElementById('collect'+obj.value).value = "-1";
+    }
+}
 </script>
 @else
 <body>

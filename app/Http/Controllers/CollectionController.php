@@ -71,6 +71,12 @@ class CollectionController extends Controller
         return response()->json($collections);
     }
 
+    public function getCollectionArtwork($id = 0)
+    {
+        $artworks = Artwork::select('id')->where('collection_id', $id)->get();
+        return response()->json($artworks);
+    }
+
     public function update(CollectionRequest $request)
     {
         $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
