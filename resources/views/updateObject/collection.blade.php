@@ -18,14 +18,25 @@
         </select>
         ARTWORKS
         <div class="form-group1" style="margin:4px, 4px; padding:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
-            @foreach($artworks as $artwork)
-                <div class="artwork">
-                    <label>
-                        <input type="checkbox" class="art" value="{{$artwork['id']}}">
-                        {{$artwork['title']}}
-                    </label>
-                </div>
-            @endforeach
+            <table>
+                @foreach($artworks as $artwork)
+                    <tr class="artwork">
+                        <td><label>
+                            <input type="checkbox" class="art" value="{{$artwork['id']}}">
+                            {{$artwork['title']}}
+                        </td>
+                        <td style="visibility:hidden;">
+                            <select  name="collection_id" id="collection_id" class="form-control">
+                            <option value="-1">Choose</option>
+                            @foreach ($collections as $collection)
+                            <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+                            @endforeach
+                        </select>
+                        </td>
+                    </tr>
+                    </div>
+                @endforeach
+            </table>
         </div>
         MUSEUMS
         <div class="form-group2" style="margin:4px, 4px; padding:4px; width: 500px; height: 110px; overflow-x: hidden; overflow-y: auto; text-align:justify;">

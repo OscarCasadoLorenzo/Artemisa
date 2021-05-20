@@ -20,7 +20,7 @@
         <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{ old('location') }}"/>
         <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}"/>
         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ old('email') }}"/>
-        <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('img')}}" placeholder="Route of image"></br>
+        <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
         </br>
         <button class="btn btn-primary" type="submit" style="text-align:center">Update</button>
     </br>
