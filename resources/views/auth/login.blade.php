@@ -2,9 +2,9 @@
 
 @section('content')
         <!-- Bootstrap CSS -->
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="container">
+<div class="container" style="float: center; margin:25%; margin-top:2%">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -60,7 +60,7 @@
                                     {{ __('Login') }}
                                 </button>
                             </div>
-                    
+
                             <div style="display:flex; justify-content:right; padding-right: 15px">
                                 <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             </div>

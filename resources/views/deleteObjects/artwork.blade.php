@@ -11,7 +11,7 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
     <body>
-        <div class ="container">
+        <div class ="container" style=" margin-left:15%; margin-top:2%; text-align:center">
         <h1>Delete an artwork:</h1>
         <form method="POST" action="/artworks">
             @csrf @method('DELETE')

@@ -3,8 +3,8 @@
 @section('content')
         <!-- Bootstrap CSS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container" style="float: center; margin:25%; margin-top:2%">
+    <div class="row justify-content-center" style="">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
@@ -89,7 +89,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="1 mayúscula, 1 minúscula y 1 número"required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                             <label for="birth_date" class="col-md-4 col-form-label text-md-right">{{ __('birth_date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birth_date" type="date" class="form-control @error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date">
+                                <input id="birth_date" style="width:auto; height:auto; " type="date" class="form-control @error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date">
 
                                 @error('birth_date')
                                     <span class="invalid-feedback" role="alert">
