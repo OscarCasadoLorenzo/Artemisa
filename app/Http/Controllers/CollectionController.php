@@ -7,6 +7,7 @@ use App\Collection;
 use App\Museum;
 use App\Artwork;
 use App\Http\Requests\CollectionRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class CollectionController extends Controller
 {
@@ -79,22 +80,34 @@ class CollectionController extends Controller
 
     public function update(CollectionRequest $request)
     {
-        $coll = Collection::findOrFail($request->input('id'));
+        $coll = Collection::findOrFail($request->input('collection_id'));
         if($coll->name != $request->input('name'))
         {
-            $request->validate(
+            $validator = $request->validate(
             [
-                'name' => 'required|unique:Collection,name'
+                'name' => 'required|unique:collections,name'
             ]);
             $coll -> name = $request->input('name');
         }
-        $coll->museum_id = $request->input('museum_id');
+        $coll->museum_id = $radioVal = $_POST["museum"];
         $artworks = Artwork::all();
         $selected = $request->input('art');
         foreach($artworks as $artwork)
         {
-            if(in_array($artwork->id, $selected)) return Redirect::to('/collections/update')->withErrors(['ACTUALIZADO CON EXITO']);
+            if(in_array($artwork->id, $selected)) 
+            {
+                $artwork->collection_id = $coll->id;
+            }
+            else
+            {
+                if(($newcol = $request->input('collectSub'.$artwork->id)) == "-1") return Redirect::to('/collections/update')->withErrors(['You must choose the new collection in deselected artwork']);
+                else if((int)$newcol > -1)
+                {
+                    $artwork->collection_id = $newcol;
+                }
+            }
         }
+        foreach($artworks as $artwork) $artwork->save();
         $coll->save();
         return Redirect::to('/collections/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }

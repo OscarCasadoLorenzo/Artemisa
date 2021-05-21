@@ -6,14 +6,14 @@
     <form method="POST" action="{{route('collections.update')}}" >
     @csrf
     @if($errors->any())
-        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+    <h4 style="float:right;margin-right:20%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
         </br>
         <div style="float:center; margin-right:35%; margin-left:35%;">
         <select  name="collection_id" id="collection_id" class="form-control">
             <option value="-1">Choose a collection</option>
             @foreach ($collections as $collection)
-            <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+            <option value="{{$collection['id']}}" >{{$collection['name']}}</option>
             @endforeach
         </select>
         <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{ old('name') }}"/>
@@ -28,7 +28,7 @@
                         </td>
                         <td id="{{'collect'.$artwork['id']}}" style="visibility:hidden;">
                             <select  id="{{'collectSub'.$artwork['id']}}" name="{{'collectSub'.$artwork['id']}}" id="collection_id" class="form-control">
-                            <option selected="selected" value="-1">Choose</option>
+                            <option selected="selected" value="-2">Choose</option>
                             @foreach ($collections as $collection)
                             <option value="{{$collection['id']}}">{{$collection['name']}}</option>
                             @endforeach
@@ -94,17 +94,16 @@ $('#collection_id').change(function(){
                                     for(var j = 0, len2 = response2.length; j < len2; j++)
                                     {
                                         document.getElementById('collect'+elements[i].value).style.visibility = "hidden";
-                                        document.getElementById('collect'+elements[i].value).value = "-1";
+                                        $test = document.getElementById('collectSub'+elements[i].value);
+                                        $test.options[0].value = "-2";
+                                        elements[i].removeEventListener("click",unhide);
+                                        elements[i].checked = false;
                                         if(elements[i].value == response2[j].id)
                                         {
                                             elements[i].checked = true; 
+                                            document.getElementById('collectSub'+elements[i].value).options[0].value = "-1";
                                             elements[i].addEventListener("click",unhide);
                                             break;
-                                        }
-                                        else
-                                        {
-                                            elements[i].removeEventListener("click",unhide);
-                                            elements[i].checked = false;
                                         }
                                     }
                                 }

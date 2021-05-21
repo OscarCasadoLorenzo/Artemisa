@@ -5,7 +5,7 @@
     <h1 style="text-align:center;">Update Museum</h1>
     <form method="POST" action="{{route('museum.update')}}" enctype="multipart/form-data">
     @if($errors->any())
-        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
     @csrf
         </br>
