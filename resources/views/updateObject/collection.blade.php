@@ -26,8 +26,8 @@
                             {{$artwork['title']}}
                         </td>
                         <td id="{{'collect'.$artwork['id']}}" style="visibility:hidden;">
-                            <select  name="collection_id" id="collection_id" class="form-control">
-                            <option value="-1">Choose</option>
+                            <select  id="{{'collectSub'.$artwork['id']}}" name="{{'collectSub'.$artwork['id']}}" id="collection_id" class="form-control">
+                            <option selected="selected" value="-1">Choose</option>
                             @foreach ($collections as $collection)
                             <option value="{{$collection['id']}}">{{$collection['name']}}</option>
                             @endforeach
@@ -81,9 +81,10 @@ $('#collection_id').change(function(){
                                 for (var i = 0, len = elements.length; i < len; i++) {
                                     for(var j = 0, len2 = response2.length; j < len2; j++)
                                     {
+                                        document.getElementById('collect'+elements[i].value).style.visibility = "hidden";
+                                        document.getElementById('collect'+elements[i].value).value = "-1";
                                         if(elements[i].value == response2[j].id)
                                         {
-                                            debugger;
                                             elements[i].checked = true; 
                                             elements[i].addEventListener("click",unhide);
                                             break;
@@ -111,14 +112,16 @@ $('#collection_id').change(function(){
 </script>
 <script type=text/javascript>
 function unhide(event) {
-    debugger;
     obj = event.currentTarget;
     if (obj.checked) 
     {
         document.getElementById('collect'+obj.value).style.visibility = "hidden";
-    } else {
+    } 
+    else 
+    {
+        debugger;
         document.getElementById('collect'+obj.value).style.visibility = "visible";
-        document.getElementById('collect'+obj.value).value = "-1";
+        document.getElementById('collectSub'+obj.value).selectedIndex = 0; 
     }
 }
 </script>
