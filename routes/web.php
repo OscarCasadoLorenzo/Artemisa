@@ -34,7 +34,7 @@ Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id
 Route::post('/users', 'UserController@saveUser');
 Route::post('/museums', 'MuseumController@saveMuseum');
 Route::post('/authors', 'AuthorController@saveAuthor');
-Route::post('/collections', 'CollectionController@saveCollection');
+Route::post('/collections', 'CollectionController@saveCollection') -> name('collection.save');
 Route::post('/artworks', 'ArtworkController@saveArtwork');
 
 //Destruccion de elementos
