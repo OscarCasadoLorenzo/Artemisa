@@ -4,10 +4,10 @@
 <body>
     <h1 style="text-align:center;">Update Collection</h1>
     <form method="POST" action="{{route('collections.update')}}" >
+    @csrf
     @if($errors->any())
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
     @endif
-    @csrf
         </br>
         <div style="float:center; margin-right:35%; margin-left:35%;">
         <select  name="collection_id" id="collection_id" class="form-control">
