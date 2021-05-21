@@ -25,7 +25,6 @@ class CollectionRequest extends FormRequest
     {
         return [
             'name' => 'regex:/^([^0-9]*)$/|min:4|max:50|required',
-            'museum' => 'required'
         ];
     }
 }

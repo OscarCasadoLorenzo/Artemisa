@@ -79,17 +79,24 @@ class CollectionController extends Controller
 
     public function update(CollectionRequest $request)
     {
-        $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
-        $coll->validate(
-        [
-            'name' => 'required|unique:Collection,name'
-        ]);
-        $coll -> name = $request->input('name');
-        $coll->nacionality = $request->input('nacionality');
+        $coll = Collection::findOrFail($request->input('id'));
+        if($coll->name != $request->input('name'))
+        {
+            $request->validate(
+            [
+                'name' => 'required|unique:Collection,name'
+            ]);
+            $coll -> name = $request->input('name');
+        }
         $coll->museum_id = $request->input('museum_id');
+        $artworks = Artwork::all();
+        $selected = $request->input('art');
+        foreach($artworks as $artwork)
+        {
+            if(in_array($artwork->id, $selected)) return Redirect::to('/collections/update')->withErrors(['ACTUALIZADO CON EXITO']);
+        }
         $coll->save();
-        $collections = Collection::all();
-        return view('updateObjects.collection', compact('collections'));
+        return Redirect::to('/collections/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function ordenar(Request $request){
