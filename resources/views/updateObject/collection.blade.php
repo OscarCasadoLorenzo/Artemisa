@@ -6,11 +6,7 @@
     <form method="POST" action="{{route('collections.update')}}" >
     @csrf
     @if($errors->any())
-<<<<<<< HEAD
-        <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
-=======
     <h4 style="float:right;margin-right:20%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
->>>>>>> 538c6c1b9897c72d556e56ea80a88a18f8d6eee0
     @endif
         </br>
         <div style="float:center; margin-right:35%; margin-left:35%;">
@@ -22,8 +18,8 @@
         </select>
 
         <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{ old('name') }}"/>
-        <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
 
+        <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
             <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
                 <table id="table" name="table">
                 @foreach($artworks as $artwork)

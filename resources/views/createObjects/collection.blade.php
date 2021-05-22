@@ -11,8 +11,9 @@
         </br>
         <div style="float:center; margin-right:35%; margin-left:35%;">
         <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{old('name')}}"/>
-        ARTWORKS
-        <div class="form-group1" style="margin:4px, 4px; padding:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+
+        <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
+            <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 290px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
             <table id="table" name="table">
                 @foreach($artworks as $artwork)
                     <tr class="artwork">
@@ -24,8 +25,8 @@
                 @endforeach
             </table>
         </div>
-        MUSEUMS
-        <div class="form-group2" style="margin:4px, 4px; padding:4px; width: 500px; height: 110px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+        <h4 style="padding:1em; text-align:center;"> MUSEUMS </h3>
+            <div class="form-group2" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px;width: 500px; height: auto; overflow-x: hidden; overflow-y: auto; text-align:justify;">
             @foreach($museums as $museum)
                 <div class="museum">
                     <label>
