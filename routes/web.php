@@ -34,7 +34,7 @@ Route::get('/collections/{id}', 'CollectionController@getCollection')->where('id
 Route::post('/users', 'UserController@saveUser');
 Route::post('/museums', 'MuseumController@saveMuseum');
 Route::post('/authors', 'AuthorController@saveAuthor');
-Route::post('/collections', 'CollectionController@saveCollection');
+Route::post('/collections', 'CollectionController@saveCollection') -> name('collection.save');
 Route::post('/artworks', 'ArtworkController@saveArtwork');
 
 //Destruccion de elementos
@@ -89,6 +89,7 @@ Route::get('get/details/author{id}', 'AuthorController@getDetails')->name('getDe
 Route::get('get/details/museum{id}', 'MuseumController@getDetails')->name('getDetailsMuseum');
 Route::get('get/details/artwork{id}', 'ArtworkController@getDetails')->name('getDetailsArtwork');
 Route::get('get/details/collection{id}', 'CollectionController@getDetails')->name('getDetailsCollection');
+Route::get('get/collectionArt{id}', 'CollectionController@getCollectionArtwork')->name('collectionArtworks');
 
 Auth::routes();
 

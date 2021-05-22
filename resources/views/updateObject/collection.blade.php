@@ -3,32 +3,38 @@
 @if (Auth::check() && Auth::User()->type == "admin")
 <body>
     <h1 style="text-align:center;">Update Collection</h1>
-    <form method="POST" action="{{route('museum.update')}}">
-    @if($errors->any())
-        <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
-    @endif
+    <form method="POST" action="{{route('collections.update')}}" >
     @csrf
+    @if($errors->any())
+<<<<<<< HEAD
+        <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
+=======
+    <h4 style="float:right;margin-right:20%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
+>>>>>>> 538c6c1b9897c72d556e56ea80a88a18f8d6eee0
+    @endif
         </br>
         <div style="float:center; margin-right:35%; margin-left:35%;">
         <select  name="collection_id" id="collection_id" class="form-control">
             <option value="-1">Choose a collection</option>
             @foreach ($collections as $collection)
-            <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+            <option value="{{$collection['id']}}" >{{$collection['name']}}</option>
             @endforeach
         </select>
 
+        <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{ old('name') }}"/>
         <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
-    <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
-            <table>
+
+            <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+                <table id="table" name="table">
                 @foreach($artworks as $artwork)
                     <tr class="artwork">
                         <td><label>
-                            <input type="checkbox" class="art" value="{{$artwork['id']}}">
+                            <input type="checkbox" id="{{'check'.$artwork['id']}}"  name="art[]" class="art" value="{{$artwork['id']}}">
                             {{$artwork['title']}}
                         </td>
-                        <td style="visibility:hidden;">
-                            <select  name="collection_id" id="collection_id" class="form-control">
-                            <option value="-1">Choose</option>
+                        <td id="{{'collect'.$artwork['id']}}" style="visibility:hidden;">
+                            <select  id="{{'collectSub'.$artwork['id']}}" name="{{'collectSub'.$artwork['id']}}" id="collection_id" class="form-control">
+                            <option selected="selected" value="-2">Choose</option>
                             @foreach ($collections as $collection)
                             <option value="{{$collection['id']}}">{{$collection['name']}}</option>
                             @endforeach
@@ -44,7 +50,7 @@
             @foreach($museums as $museum)
                 <div class="museum">
                     <label>
-                        <input type="radio" name="mus" value="{{$museum['id']}}">
+                        <input type="radio" id="{{'museo'.$museum['id']}}" name="museum" value="{{$museum['id']}}">
                         {{$museum['name']}}
                     </label>
                 </div>
@@ -53,6 +59,15 @@
         </br>
         <button class="btn btn-primary" type="submit" style="text-align:center">Update</button>
         </br>
+        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
+        <div class="alert alert-danger" role="alert" style="width:auto;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li> {{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </div>
     </form>
 </body>
@@ -63,16 +78,44 @@ $('#collection_id').change(function(){
     if(id != -1)
     {
         var url = '{{ route("getDetailsCollection", ":id") }}';
+        var url2 = '{{ route("collectionArtworks", ":id") }}';
         url = url.replace(':id', id);
+        url2 = url2.replace(':id', id);
         $.ajax({
             url: url,
             type: 'get',
             dataType: 'json',
             success: function(response){
                 if(response != null){
-                    for (var i = 0, len = elements.length; i < len; i++) {
-                        elements[i].checked = true; //TODO Relaciones
-                    }
+                    document.getElementById('museo'+response.museum_id).checked = true;
+                    $('#name').val(response.name);
+                    $.ajax({
+                        url: url2,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(response2){
+                            result = response2;
+                            if(response2 != null){
+                                for (var i = 0, len = elements.length; i < len; i++) {
+                                    for(var j = 0, len2 = response2.length; j < len2; j++)
+                                    {
+                                        document.getElementById('collect'+elements[i].value).style.visibility = "hidden";
+                                        $test = document.getElementById('collectSub'+elements[i].value);
+                                        $test.options[0].value = "-2";
+                                        elements[i].removeEventListener("click",unhide);
+                                        elements[i].checked = false;
+                                        if(elements[i].value == response2[j].id)
+                                        {
+                                            elements[i].checked = true;
+                                            document.getElementById('collectSub'+elements[i].value).options[0].value = "-1";
+                                            elements[i].addEventListener("click",unhide);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -81,8 +124,23 @@ $('#collection_id').change(function(){
         for (var i = 0, len = elements.length; i < len; i++) {
                         elements[i].checked = false;
                     }
+        $('#name').val("");
     }
 });
+</script>
+<script type=text/javascript>
+function unhide(event) {
+    obj = event.currentTarget;
+    if (obj.checked)
+    {
+        document.getElementById('collect'+obj.value).style.visibility = "hidden";
+    }
+    else
+    {
+        document.getElementById('collect'+obj.value).style.visibility = "visible";
+        document.getElementById('collectSub'+obj.value).selectedIndex = 0;
+    }
+}
 </script>
 @else
 <body>

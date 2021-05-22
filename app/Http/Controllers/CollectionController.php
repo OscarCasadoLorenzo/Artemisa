@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Collection;
 use App\Museum;
+use DB;
 use App\Artwork;
 use App\Http\Requests\CollectionRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class CollectionController extends Controller
 {
@@ -23,19 +25,32 @@ class CollectionController extends Controller
 
     public function createCollection(){
         $museums = Museum::all();
-        return view('createObjects.collection', compact('museums'));  //modificado compact para el desplegable
+        $artworks = Artwork::all();
+        return view('createObjects.collection', compact('museums','artworks'));  //modificado compact para el desplegable
     }
 
     public function saveCollection(CollectionRequest $request){
-        $request->validate(
-            [
-                'name' => 'unique:users',
-            ]);
-
-        $valores = array('_token' => $request->_token, 'name' => $request->name, 'museum_id' => $request->museum_id);
-        Collection::create($valores);
-        $museums = Museum::all();
-        return view('createObjects.collection', compact('museums'));
+        $coll = new Collection;
+        $coll -> id = DB::select("SHOW TABLE STATUS LIKE 'collections'")[0]->Auto_increment + 1;
+        $validator = $request->validate(
+        [
+            'name' => 'required|unique:collections,name'
+        ]);
+        $coll -> name = $request->input('name');
+        if(!isset($_POST['museum']) || empty($_POST['museum'])) return Redirect::to('/collections/create')->withInput($request->all())->withErrors(['You must select the museum']);
+        $coll->museum_id = $_POST['museum'];
+        $artworks = Artwork::all();
+        $selected = $request->input('art');
+        foreach($artworks as $artwork)
+        {
+            if(in_array($artwork->id, $selected)) 
+            {
+                $artwork->collection_id = $coll->id;
+            }
+        }
+        $coll->save();
+        foreach($artworks as $artwork) $artwork->save();
+        return Redirect::to('/collections/create')->withErrors(['Collection Created']);
     }
 
     public function deleteCollection(){
@@ -71,19 +86,44 @@ class CollectionController extends Controller
         return response()->json($collections);
     }
 
+    public function getCollectionArtwork($id = 0)
+    {
+        $artworks = Artwork::select('id')->where('collection_id', $id)->get();
+        return response()->json($artworks);
+    }
+
     public function update(CollectionRequest $request)
     {
-        $coll = Collection::table('name')->where('name',$request->input('old_name'))->first();
-        $coll->validate(
-        [
-            'name' => 'required|unique:Collection,name'
-        ]);
-        $coll -> name = $request->input('name');
-        $coll->nacionality = $request->input('nacionality');
-        $coll->museum_id = $request->input('museum_id');
+        $coll = Collection::findOrFail($request->input('collection_id'));
+        if($coll->name != $request->input('name'))
+        {
+            $validator = $request->validate(
+            [
+                'name' => 'required|unique:collections,name'
+            ]);
+            $coll -> name = $request->input('name');
+        }
+        $coll->museum_id = $_POST["museum"];
+        $artworks = Artwork::all();
+        $selected = $request->input('art');
+        foreach($artworks as $artwork)
+        {
+            if(in_array($artwork->id, $selected)) 
+            {
+                $artwork->collection_id = $coll->id;
+            }
+            else
+            {
+                if(($newcol = $request->input('collectSub'.$artwork->id)) == "-1") return Redirect::to('/collections/update')->withInput($request->all())->withErrors(['You must choose the new collection in deselected artwork']);
+                else if((int)$newcol > -1)
+                {
+                    $artwork->collection_id = $newcol;
+                }
+            }
+        }
+        foreach($artworks as $artwork) $artwork->save();
         $coll->save();
-        $collections = Collection::all();
-        return view('updateObjects.collection', compact('collections'));
+        return Redirect::to('/collections/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function ordenar(Request $request){
