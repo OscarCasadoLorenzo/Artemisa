@@ -4,11 +4,7 @@
 <body style="">
     <h1 style="margin-left:30%;">Update Artwork</h1>
     @if($errors->any())
-<<<<<<< HEAD
-        <h4 style="color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")ACTUALIZADO CON EXITO @endif</h4>
-=======
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
->>>>>>> 538c6c1b9897c72d556e56ea80a88a18f8d6eee0
     @endif
     <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data">
     @csrf
