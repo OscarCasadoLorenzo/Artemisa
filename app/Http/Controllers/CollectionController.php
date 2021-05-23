@@ -113,7 +113,7 @@ class CollectionController extends Controller
                 if($artwork->collection_id != $coll->id)
                 {
                     $artwork->collection_id = $coll->id;
-                    $updated = $artwork;
+                    $updated[] = $artwork;
                 }
             }
             else
@@ -122,7 +122,7 @@ class CollectionController extends Controller
                 else if((int)$newcol > -1)
                 {
                     $artwork->collection_id = $newcol;
-                    $updated = $artwork;
+                    $updated[] = $artwork;
                 }
             }
         }
