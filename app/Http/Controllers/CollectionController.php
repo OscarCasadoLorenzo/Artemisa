@@ -106,6 +106,7 @@ class CollectionController extends Controller
         $coll->museum_id = $_POST["museum"];
         $artworks = Artwork::all();
         $selected = $request->input('art');
+        $updated = array();
         foreach($artworks as $artwork)
         {
             if(in_array($artwork->id, $selected))  //Separar los actualizados de los no actualizados

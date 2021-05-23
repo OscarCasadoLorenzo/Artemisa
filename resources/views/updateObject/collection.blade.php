@@ -1,7 +1,7 @@
 @extends('templates.main')
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
-<body>
+<body @if(!is_null(old('art'))) onLoad="launcher()" @endif>
     <h1 style="text-align:center;">Update Collection</h1>
     <form method="POST" action="{{route('collections.update')}}" >
     @csrf
@@ -13,7 +13,7 @@
         <select  name="collection_id" id="collection_id" class="form-control">
             <option value="-1">Choose a collection</option>
             @foreach ($collections as $collection)
-            <option value="{{$collection['id']}}" >{{$collection['name']}}</option>
+            <option value="{{$collection['id']}}" @if($collection['id'] == old('collection_id'))) selected @endif >{{$collection['name']}}</option>
             @endforeach
         </select>
         </br>
@@ -25,14 +25,21 @@
                 @foreach($artworks as $artwork)
                     <tr class="artwork">
                         <td><label>
-                            <input type="checkbox" id="{{'check'.$artwork['id']}}"  name="art[]" class="art" value="{{$artwork['id']}}">
+                            <input type="checkbox" id="{{'check'.$artwork['id']}}"  name="art[]" class="art" value="{{$artwork['id']}}"
+                                 @if(!is_null(old('art')) && in_array($artwork['id'], old('art'))) checked="checked"
+                                 @endif >
                             {{$artwork['title']}}
                         </td>
+                        @if(!is_null(old('art')) && !in_array($artwork['id'], old('art')) && $artwork['collection_id'] == old('collection_id'))
+                        <td id="{{'collect'.$artwork['id']}}">
+                        @else
                         <td id="{{'collect'.$artwork['id']}}" style="visibility:hidden;">
+                        @endif
                             <select  id="{{'collectSub'.$artwork['id']}}" name="{{'collectSub'.$artwork['id']}}" id="collection_id" class="form-control">
+
                             <option selected="selected" value="-2">Choose</option>
                             @foreach ($collections as $collection)
-                            <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+                            <option value="{{$collection['id']}}" @if($collection['id'] == old('collectSub'.$artwork['id'])) selected @endif >{{$collection['name']}}</option>
                             @endforeach
                         </select>
                         </td>
@@ -46,7 +53,7 @@
             @foreach($museums as $museum)
                 <div class="museum">
                     <label>
-                        <input type="radio" id="{{'museo'.$museum['id']}}" name="museum" value="{{$museum['id']}}">
+                        <input type="radio" id="{{'museo'.$museum['id']}}" name="museum" value="{{$museum['id']}}" @if(old('museum') == $museum['id']) checked @endif>
                         {{$museum['name']}}
                     </label>
                 </div>
@@ -125,6 +132,15 @@ $('#collection_id').change(function(){
         $('#name').val("");
     }
 });
+</script>
+<script>
+function launcher() {
+    var elements = document.getElementsByClassName("art");
+    for (var i = 0, len = elements.length; i < len; i++) {
+        if(document.getElementById('collect'+elements[i].value).style.visibility != "hidden") elements[i].addEventListener("click",unhide);
+        else if(elements[i].checked) elements[i].addEventListener("click",unhide);
+    }   
+}
 </script>
 <script type=text/javascript>
 function unhide(event) {
