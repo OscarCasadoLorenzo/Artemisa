@@ -108,9 +108,13 @@ class CollectionController extends Controller
         $selected = $request->input('art');
         foreach($artworks as $artwork)
         {
-            if(in_array($artwork->id, $selected)) 
+            if(in_array($artwork->id, $selected))  //Separar los actualizados de los no actualizados
             {
-                $artwork->collection_id = $coll->id;
+                if($artwork->collection_id != $coll->id)
+                {
+                    $artwork->collection_id = $coll->id;
+                    $updated = $artwork;
+                }
             }
             else
             {
@@ -118,10 +122,11 @@ class CollectionController extends Controller
                 else if((int)$newcol > -1)
                 {
                     $artwork->collection_id = $newcol;
+                    $updated = $artwork;
                 }
             }
         }
-        foreach($artworks as $artwork) $artwork->save();
+        foreach($updated as $artwork) $artwork->save();
         $coll->save();
         return Redirect::to('/collections/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }

@@ -16,7 +16,7 @@
             <option value="{{$collection['id']}}" >{{$collection['name']}}</option>
             @endforeach
         </select>
-
+        </br>
         <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{ old('name') }}"/>
 
         <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
@@ -117,9 +117,11 @@ $('#collection_id').change(function(){
         });
     }
     else{
-        for (var i = 0, len = elements.length; i < len; i++) {
+        for (var i = 0, len = elements.length; i < len; i++)
                         elements[i].checked = false;
-                    }
+        ele = document.getElementsByName("museum");
+        for(var i=0;i<ele.length;i++)
+                ele[i].checked = false;
         $('#name').val("");
     }
 });
