@@ -1,6 +1,13 @@
 @extends('templates.main')
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
+
+<style>
+select option[disabled] {
+    display: none;
+}
+</style>
+
 <body @if(!is_null(old('art'))) onLoad="launcher()" @endif>
     <h1 style="text-align:center;">Update Collection</h1>
     <form method="POST" action="{{route('collections.update')}}" >
@@ -18,7 +25,6 @@
         </select>
         </br>
         <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{ old('name') }}"/>
-
         <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
             <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
                 <table id="table" name="table">
@@ -103,8 +109,8 @@ $('#collection_id').change(function(){
                                     for(var j = 0, len2 = response2.length; j < len2; j++)
                                     {
                                         document.getElementById('collect'+elements[i].value).style.visibility = "hidden";
-                                        $test = document.getElementById('collectSub'+elements[i].value);
-                                        $test.options[0].value = "-2";
+                                        $hidden = document.getElementById('collectSub'+elements[i].value);
+                                        $hidden.options[0].value = "-2";
                                         elements[i].removeEventListener("click",unhide);
                                         elements[i].checked = false;
                                         if(elements[i].value == response2[j].id)
@@ -136,10 +142,29 @@ $('#collection_id').change(function(){
 <script>
 function launcher() {
     var elements = document.getElementsByClassName("art");
-    for (var i = 0, len = elements.length; i < len; i++) {
-        if(document.getElementById('collect'+elements[i].value).style.visibility != "hidden") elements[i].addEventListener("click",unhide);
-        else if(elements[i].checked) elements[i].addEventListener("click",unhide);
-    }   
+    var url = '{{ route("collectionArtworks", ":id") }}';
+    url = url.replace(':id', document.getElementById("collection_id").value);
+    $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        success: function(response){
+            debugger;
+            for (var i = 0, len = elements.length; i < len; i++) {
+                if(document.getElementById('collect'+elements[i].value).style.visibility != "hidden") elements[i].addEventListener("click",unhide);
+                else if(elements[i].checked)
+                {
+                    for(var j = 0, len = response.length; j < len; j++)
+                    if(response[j].id == elements[i].value)
+                    {
+                        elements[i].addEventListener("click",unhide);
+                        break;
+                    }
+                    
+                } 
+            }   
+        }
+    });
 }
 </script>
 <script type=text/javascript>
