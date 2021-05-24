@@ -3,7 +3,7 @@
 @section('title', 'User')
 
 @section('information')
-@if (Auth::check() && Auth::User()->type == "admin")
+@if (Auth::check())
 <style>
  .img-fluid{
         width:1000px !important;
