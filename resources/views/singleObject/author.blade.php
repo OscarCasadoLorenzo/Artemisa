@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <h2>Obras:</h2> </br>
+    <h2 style="text-align: center;">Obras:</h2> </br>
     <div class="obras" style="display:flex;
     justify-content:center;">
         @foreach($artworks as $artwork)

@@ -24,9 +24,9 @@ class MuseumRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'regex:/^([^0-9]*)$/|min:4|max:50|required',
-            'location' => 'regex:/^([^0-9]*)$/|min:4|max:50|required',
-            'address' => 'min:4|max:50|required',
+            'name' => 'regex:/^([^0-9]*)$/|min:3|max:50|required',
+            'location' => 'regex:/^([^0-9]*)$/|min:3|max:50|required',
+            'address' => 'min:3|max:50|required',
             'email' => 'min:6|max:50|nullable|email',
         ];
     }
