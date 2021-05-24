@@ -104,7 +104,7 @@ $('#collection_id').change(function(){
                         dataType: 'json',
                         success: function(response2){
                             result = response2;
-                            if(response2 != null){
+                            if(response2 != null && response2.length > 0){
                                 for (var i = 0, len = elements.length; i < len; i++) {
                                     for(var j = 0, len2 = response2.length; j < len2; j++)
                                     {
@@ -122,6 +122,11 @@ $('#collection_id').change(function(){
                                         }
                                     }
                                 }
+                            }
+                            else
+                            {
+                                for (var i = 0, len = elements.length; i < len; i++)
+                                elements[i].checked = false;
                             }
                         }
                     });
@@ -151,13 +156,18 @@ function launcher() {
         success: function(response){
             debugger;
             for (var i = 0, len = elements.length; i < len; i++) {
-                if(document.getElementById('collect'+elements[i].value).style.visibility != "hidden") elements[i].addEventListener("click",unhide);
+                if(document.getElementById('collect'+elements[i].value).style.visibility != "hidden")
+                {
+                    elements[i].addEventListener("click",unhide);
+                    document.getElementById('collectSub'+elements[i].value).options[0].value = "-1";
+                }
                 else if(elements[i].checked)
                 {
                     for(var j = 0, len = response.length; j < len; j++)
                     if(response[j].id == elements[i].value)
                     {
                         elements[i].addEventListener("click",unhide);
+                        document.getElementById('collectSub'+elements[i].value).options[0].value = "-1";
                         break;
                     }
                     

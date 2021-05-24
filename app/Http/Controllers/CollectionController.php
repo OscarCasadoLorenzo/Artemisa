@@ -107,23 +107,26 @@ class CollectionController extends Controller
         $artworks = Artwork::all();
         $selected = $request->input('art');
         $updated = array();
-        foreach($artworks as $artwork)
+        if($selected != null)
         {
-            if(in_array($artwork->id, $selected))  //Separar los actualizados de los no actualizados
+            foreach($artworks as $artwork)
             {
-                if($artwork->collection_id != $coll->id)
+                if(in_array($artwork->id, $selected))  //Separar los actualizados de los no actualizados
                 {
-                    $artwork->collection_id = $coll->id;
-                    $updated[] = $artwork;
+                    if($artwork->collection_id != $coll->id)
+                    {
+                        $artwork->collection_id = $coll->id;
+                        $updated[] = $artwork;
+                    }
                 }
-            }
-            else
-            {
-                if(($newcol = $request->input('collectSub'.$artwork->id)) == "-1") return Redirect::to('/collections/update')->withInput($request->all())->withErrors(['You must choose the new collection in deselected artwork']);
-                else if((int)$newcol > -1)
+                else
                 {
-                    $artwork->collection_id = $newcol;
-                    $updated[] = $artwork;
+                    if(($newcol = $request->input('collectSub'.$artwork->id)) == "-1") return Redirect::to('/collections/update')->withInput($request->all())->withErrors(['You must choose the new collection in deselected artwork']);
+                    else if((int)$newcol > -1)
+                    {
+                        $artwork->collection_id = $newcol;
+                        $updated[] = $artwork;
+                    }
                 }
             }
         }
