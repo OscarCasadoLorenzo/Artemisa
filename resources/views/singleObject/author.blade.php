@@ -28,7 +28,6 @@
 </style>
 
 @section('information')
-@if (Auth::check() && Auth::User()->type == "admin")
     <div id=ficha style="display:flex;
     justify-content:center;">
         <div class="col-lg-7" style = "width:auto;">
@@ -46,7 +45,7 @@
         </div>
     </div>
 
-    <h2>Obras:</h2> </br>
+    <h2 style="text-align: center;">Obras:</h2> </br>
     <div class="obras" style="display:flex;
     justify-content:center;">
         @foreach($artworks as $artwork)
@@ -64,14 +63,6 @@
                 </div>
         @endforeach
     </div>
-    @else
-<body>
-    <div>
-        <h3>Access Denied, please log in</h3>
-        <a href="/login">Login</a>
-    </div>
-</body>
-@endif
 @endsection
 
 

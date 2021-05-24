@@ -3,7 +3,6 @@
 @section('title', 'Museum')
 
 @section('information')
-@if (Auth::check() && Auth::User()->type == "admin")
     <!-- Page Content -->
     <div class="container">
 
@@ -62,13 +61,5 @@
     </div>
 
     </div>
-    
-    @else
-<body>
-    <div>
-        <h3>Access Denied, please log in</h3>
-        <a href="/login">Login</a>
-    </div>
-</body>
-@endif
+
 @endsection
