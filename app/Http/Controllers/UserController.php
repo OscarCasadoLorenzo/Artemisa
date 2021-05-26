@@ -90,7 +90,8 @@ class UserController extends Controller
             'location' => $location,
             'birth_date' => $birth_date,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'type' => $type
         ]);
         return redirect('/museums');
     }

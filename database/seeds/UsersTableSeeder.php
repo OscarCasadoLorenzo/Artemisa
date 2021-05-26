@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         $u1->birth_date = '1998-03-28';
         $u1->email = 'correo@corre.es';
         $u1->password = "#12341234_asdf";
-        $u1->location = 'Alicante';
+        $u1->location = 'Almoradi';
         $u1->save();
 
         $u2 = new User();
@@ -53,5 +53,26 @@ class UsersTableSeeder extends Seeder
         $u4->password = "#12341234_asdf";
         $u4->location = 'Alicante';
         $u4->save();
+
+        $u5 = new User();
+        $u5->name = 'Profesor';
+        $u5->surname1 = 'Usuario';
+        $u5->surname2 = 'Normal';
+        $u5->birth_date = '1999-12-31';
+        $u5->email = 'normal@mail.es';
+        $u5->password = "$2y$10$9nVWRsI4awUr9w5K/68BTupSDJT7/fiaTOfpiNz/.WNTHhcVhijsO"; //Normal_123
+        $u5->location = 'Alicante';
+        $u5->save();
+
+        $u6 = new User();
+        $u6->name = 'Profesor';
+        $u6->surname1 = 'Usuario';
+        $u6->surname2 = 'Admin';
+        $u6->birth_date = '1999-12-31';
+        $u6->type = 'admin';
+        $u6->email = 'admin@mail.es';
+        $u6->password = "$2y$10$0oO1Lf9ohIbqLZl5n1TDb.rBMPd5CKARoIY.vRs1RAdNlmrfCVC4u"; //Admin_123
+        $u6->location = 'Alicante';
+        $u6->save();
     }
 }
