@@ -32,7 +32,7 @@ class CollectionController extends Controller
     public function saveCollection(CollectionRequest $request){
         $coll = new Collection;
         $coll -> id = DB::select("SHOW TABLE STATUS LIKE 'collections'")[0]->Auto_increment + 1;
-        $validator = $request->validate(
+        $request->validate(
         [
             'name' => 'required|unique:collections,name'
         ]);
@@ -43,7 +43,7 @@ class CollectionController extends Controller
         $selected = $request->input('art');
         foreach($artworks as $artwork)
         {
-            if(in_array($artwork->id, $selected)) 
+            if(in_array($artwork->id, $selected))
             {
                 $artwork->collection_id = $coll->id;
             }
@@ -97,7 +97,7 @@ class CollectionController extends Controller
         $coll = Collection::findOrFail($request->input('collection_id'));
         if($coll->name != $request->input('name'))
         {
-            $validator = $request->validate(
+            $request->validate(
             [
                 'name' => 'required|unique:collections,name'
             ]);

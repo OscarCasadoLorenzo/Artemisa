@@ -69,13 +69,7 @@ class UserController extends Controller
         return view('createObjects.user');
     }
 
-    public function saveUser(User $user){
-    // public function saveUser(UserRequest $request){
-        // $encript = bcrypt($request->password);
-        // $request['password']= $encript;
-        // User::create($request->all());
-        // return redirect('/');
-
+    public function saveUser(UserRequest $user){
         $user->validate(
             [
                 'email' => 'unique:users',
@@ -140,7 +134,6 @@ class UserController extends Controller
             $request->validate(
             [
                 'email' => 'required|unique:users,email',
-                //'birth_date' => 'date' ???
             ]);
         }
         $request->validate(
