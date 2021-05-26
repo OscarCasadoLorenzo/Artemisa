@@ -211,7 +211,6 @@ function launcher() {
 <script type=text/javascript>
 function unhide(event) {
     obj = event.currentTarget;
-    debugger;
     if (obj.checked)
     {
         document.getElementById('collect'+obj.value).style.visibility = "hidden";

@@ -95,7 +95,6 @@ class CollectionController extends Controller
     public function update(CollectionRequest $request)
     {
         $coll = Collection::findOrFail($request->input('collection_id'));
-        if($coll->value == -1) return Redirect::to('/collections/update')->withInput($request->all())->withErrors(['You must choose the new collection in deselected artwork']);
         if($coll->name != $request->input('name'))
         {
             $request->validate(
