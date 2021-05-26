@@ -2,12 +2,6 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
 
-<style>
-select option[disabled] {
-    display: none;
-}
-</style>
-
 <body @if(!is_null(old('art'))) onLoad="launcher()" @endif>
     <h1 style="text-align:center;">Update Collection</h1>
     <form method="POST" action="{{route('collections.update')}}" >
@@ -39,13 +33,13 @@ select option[disabled] {
                         @if(!is_null(old('art')) && !in_array($artwork['id'], old('art')) && $artwork['collection_id'] == old('collection_id'))
                         <td id="{{'collect'.$artwork['id']}}">
                         @else
-                        <td id="{{'collect'.$artwork['id']}}" style="visibility:hidden;">
+                        <td id="{{'collect'.$artwork['id']}}" name="collect" style="visibility:hidden;">
                         @endif
-                            <select  id="{{'collectSub'.$artwork['id']}}" name="{{'collectSub'.$artwork['id']}}" id="collection_id" class="form-control">
+                            <select id="{{'collectSub'.$artwork['id']}}" name="{{'collectSub'.$artwork['id']}}" class="collectSub" class="form-control">
 
                             <option selected="selected" value="-2">Choose</option>
                             @foreach ($collections as $collection)
-                            <option value="{{$collection['id']}}" @if($collection['id'] == old('collectSub'.$artwork['id'])) selected @endif >{{$collection['name']}}</option>
+                            <option name="collectionsoption" value="{{$collection['id']}}" @if($collection['id'] == old('collectSub'.$artwork['id'])) selected @endif >{{$collection['name']}}</option>
                             @endforeach
                         </select>
                         </td>
@@ -122,11 +116,35 @@ $('#collection_id').change(function(){
                                         }
                                     }
                                 }
+                                ele = document.getElementsByName("collectionsoption");
+                                for(var i = 0, len = ele.length; i < len; i++)
+                                {
+                                    if(ele[i].value == id)
+                                    {
+                                        document.getElementsByName("collectionsoption")[i].style.display = "none";
+                                    }
+                                    else
+                                    {
+                                        document.getElementsByName("collectionsoption")[i].style.display = "block";
+                                    }
+                                }
                             }
                             else
                             {
+                                debugger;
                                 for (var i = 0, len = elements.length; i < len; i++)
-                                elements[i].checked = false;
+                                {
+                                    elements[i].checked = false;
+                                    elements[i].removeEventListener("click",unhide);
+                                }
+                                collectsub = document.getElementsByClassName("collectSub");
+                                collect = document.getElementsByName("collect");
+                                for(var i=0;i< ele.length; i++)
+                                {
+                                    collect[i].style.visibility = "hidden"
+                                    collectsub[i].selectedIndex = 0;
+                                    collectsub[i].options[0].value = "-2";
+                                }
                             }
                         }
                     });
@@ -136,11 +154,24 @@ $('#collection_id').change(function(){
     }
     else{
         for (var i = 0, len = elements.length; i < len; i++)
-                        elements[i].checked = false;
+        {
+            elements[i].checked = false;
+            elements[i].removeEventListener("click",unhide);
+        }    
         ele = document.getElementsByName("museum");
         for(var i=0;i<ele.length;i++)
                 ele[i].checked = false;
         $('#name').val("");
+        //METERLE UN GET ALL ARTWORKS Y OCULTAR TODOS LOS CUADROS NAME (collectSub)
+        collectsub = document.getElementsByClassName("collectSub");
+        collect = document.getElementsByName("collect");
+        for(var i=0;i< ele.length; i++)
+        {
+            collect[i].style.visibility = "hidden"
+            collectsub[i].selectedIndex = 0;
+            collectsub[i].options[0].value = "-2";
+        }
+                
     }
 });
 </script>
@@ -180,6 +211,7 @@ function launcher() {
 <script type=text/javascript>
 function unhide(event) {
     obj = event.currentTarget;
+    debugger;
     if (obj.checked)
     {
         document.getElementById('collect'+obj.value).style.visibility = "hidden";
