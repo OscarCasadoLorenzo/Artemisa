@@ -12,7 +12,9 @@
 @if (Auth::check() && Auth::User()->type == "admin")
     <body>
         <div class ="container" style="text-align:center; margin:17%; margin-top:1%">
-
+        @if($errors->any())
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "CREADO CON EXITO")CREATED SUCCESSFULLY @endif</h4>
+    @endif
         <h1 >Create new artwork</h1></br>
         <form action="/artworks" method="post" enctype="multipart/form-data">
             @csrf
@@ -68,6 +70,15 @@
             </br>
 
             <button class="btn btn-primary" type="submit">Submit</button>
+            @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO")
+            <div class="alert alert-danger" role="alert" style="width:auto;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
         </form>
         </div>
     </body>

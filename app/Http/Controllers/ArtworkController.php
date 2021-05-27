@@ -59,7 +59,7 @@ class ArtworkController extends Controller
         return view('createObjects.artwork', compact('collections'), compact('authors'));
     }
 
-    public function saveArtwork(Request $request){
+    public function saveArtwork(ArtworkRequest $request){
         $input = $request->all();
         if($file = $request->file('imgRoute')){
             $filename = $file->getClientOriginalName();
@@ -69,9 +69,7 @@ class ArtworkController extends Controller
             $input['imgRoute'] = $filepath;
         }
         Artwork::create($input);
-        $collections = Collection::all();
-        $authors = Author::all();
-        return view('createObjects.artwork', compact('collections'), compact('authors'));
+        return Redirect::to('/artworks/create')->withErrors(['CREADO CON EXITO']);
     }
 
     public function deleteArtwork(){

@@ -32,19 +32,20 @@
                 @foreach ($collections as $collection)
                 <option value="{{$collection['id']}}" @if (old('collection_id') == $collection['id']) selected="selected" @endif>{{$collection['name']}}</option>
                 @endforeach
-            </select></br>
+            </select>
+            </br> </br>
+            @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
+            <div class="alert alert-danger" role="alert" style="width:auto;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            </br>
             <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
             <button class="btn btn-primary" type="submit">Submit</button>
-        </br> </br>
-        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
-        <div class="alert alert-danger" role="alert" style="width:auto;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li> {{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
     </div>
     <div id="preview" >
 
@@ -97,7 +98,6 @@ $('#id').change(function(){
 </script>
 <!--No hay que reinventar tampoco la rueda-->
 <script>
-
 // Funcion para previsualizar la imagen
 function preview(e)
 {

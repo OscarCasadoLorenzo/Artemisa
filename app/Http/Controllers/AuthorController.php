@@ -107,7 +107,7 @@ class AuthorController extends Controller
         }   
         $authors->save();
         //cambiar el redirect para que lleve a la pagina del author modificado
-        return redirect('/authors');
+        return Redirect::to('/authors/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function destroyAuthor(Request $request){
@@ -116,7 +116,7 @@ class AuthorController extends Controller
 
         $authors = Author::all();
 
-        return view('deleteObjects.author', compact('authors'));
+        return Redirect::to('/authors/delete')->withErrors(['ELIMINADO CON EXITO']);
     }
 
     public function buscar(Request $request){

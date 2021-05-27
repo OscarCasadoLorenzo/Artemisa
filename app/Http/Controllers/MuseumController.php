@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Museum;
 use \App\Http\Controllers\CollectionController;
 use App\Http\Requests\MuseumRequest;
-
+use Illuminate\Support\Facades\Redirect;
 
 class MuseumController extends Controller
 {
@@ -42,9 +42,7 @@ class MuseumController extends Controller
             $input['imgRoute'] = $filepath;
         }
         Museum::create($input);
-        // return "Museo $request->name añadido a la BD!";
-        $museums = Museum::all();
-        return view('createObjects.museum', compact('museums'));
+        return Redirect::to('/museums/create')->withErrors(['CREADO CON EXITO']);
     }
 
     public function getMuseum($id){
@@ -119,17 +117,14 @@ class MuseumController extends Controller
             rename($dest.'images/museums/'.$upload_file_name,$dbroute);
         }
         $museum->save();
-        $museums = Museum::all();
-        return view('updateObject.museum', compact('museums',$museums));
+        return Redirect::to('/museums/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function destroyMuseum(Request $request){
         $aux = Museum::findOrFail($request->museum_id);
         $aux->delete();
 
-        $museums = Museum::all(); //cogemos los usuarios que no son admin
-
-        return view('deleteObjects.museum', compact('museums'));
+        return Redirect::to('/museums/delete')->withErrors(['ELIMINADO CON EXITO']);
     }
 
     public function buscar(Request $request){

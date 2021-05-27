@@ -15,7 +15,9 @@
 
     <body>
         <div class ="container" style="text-align:center; margin:17%; margin-top:1%">
-
+        @if($errors->any())
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "CREADO CON EXITO")CREATED SUCCESSFULLY @endif</h4>
+    @endif
 
         <h1>Create new museum</h1>
         <form action="/museums" method="post" enctype="multipart/form-data">
@@ -50,7 +52,7 @@
         </br>
         <div class="container">
         </br>
-            @if(count($errors) > 0)
+            @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO") 
             <div class="alert alert-danger" role="alert" style="width:auto;">
                 <ul>
                     @foreach ($errors->all() as $error)
