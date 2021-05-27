@@ -27,7 +27,7 @@ class AuthorRequest extends FormRequest
             'name' => 'regex:/^[a-zA-Z- áéíóúÁÉÍÓÚ]+$/u|min:3|max:50|required',
             'nacionality' => 'regex:/^[a-zA-Z -áéíóúÁÉÍÓÚ]+$/u|min:3|max:50|required',
             'birth_date' => 'regex:/^[0-9]+$/u|min:4|max:4|required',
-            'movement' => 'regex:/^[a-zA-Z ,áéíóúÁÉÍÓÚ]+$/u|min:3|max:50|required'
+            'movement' => 'regex:/^[a-zA-Z ,áéíóúÁÉÍÓÚ]+$/u|min:3|max:50|required',
         ];
     }
 }

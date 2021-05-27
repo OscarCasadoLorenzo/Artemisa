@@ -2,6 +2,13 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
 
+<style>
+    td{
+        padding:2px;
+        padding-left:6px;
+    }
+</style>
+
 <body @if(!is_null(old('art'))) onLoad="launcher()" @endif>
     <h1 style="text-align:center;">Update Collection</h1>
     <form method="POST" action="{{route('collections.update')}}" >
@@ -20,7 +27,7 @@
         </br>
         <input type="text" class="form-control" id="name" name="name" placeholder="Collection Name" value="{{ old('name') }}"/>
         <h4 style="padding:1em; text-align:center;"> ARTWORKS </h3>
-            <div class="form-group1" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 200px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
+            <div class="form-group1" style="float: center; box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px; width: 500px; height: 400px; overflow-x: hidden; overflow-y: auto; text-align:justify;">
                 <table id="table" name="table">
                 @foreach($artworks as $artwork)
                     <tr class="artwork">
@@ -51,7 +58,7 @@
         <h4 style="padding:1em; text-align:center;"> MUSEUMS </h3>
             <div class="form-group2" style="box-shadow: 5px 10px 8px #888888; border: 1px solid; margin:4px;width: 500px; height: auto; overflow-x: hidden; overflow-y: auto; text-align:justify;">
             @foreach($museums as $museum)
-                <div class="museum">
+                <div class="museum" style=" padding-left:8px; ">
                     <label>
                         <input type="radio" id="{{'museo'.$museum['id']}}" name="museum" value="{{$museum['id']}}" @if(old('museum') == $museum['id']) checked @endif>
                         {{$museum['name']}}
@@ -157,7 +164,7 @@ $('#collection_id').change(function(){
         {
             elements[i].checked = false;
             elements[i].removeEventListener("click",unhide);
-        }    
+        }
         ele = document.getElementsByName("museum");
         for(var i=0;i<ele.length;i++)
                 ele[i].checked = false;
@@ -171,7 +178,7 @@ $('#collection_id').change(function(){
             collectsub[i].selectedIndex = 0;
             collectsub[i].options[0].value = "-2";
         }
-                
+
     }
 });
 </script>
@@ -201,9 +208,9 @@ function launcher() {
                         document.getElementById('collectSub'+elements[i].value).options[0].value = "-1";
                         break;
                     }
-                    
-                } 
-            }   
+
+                }
+            }
         }
     });
 }
