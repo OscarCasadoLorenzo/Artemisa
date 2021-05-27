@@ -68,7 +68,7 @@ class AuthorController extends Controller
         if($authors->name != $request->input('name')){
             $request->validate(
             [
-                'name' => 'unique:authors,name',
+                'name' => 'required|unique:authors,name',
                 //'birth_date' => 'date' Multivalidación?
             ]);
         }
