@@ -4,6 +4,9 @@
 
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
+@if($errors->any())
+    <h4 style="float:right;margin-right:10%;color:green;">@if($errors->first() == "Autor creado correctamente")CREATED SUCCESSFULLY @endif</h4>
+@endif
     <body>
         <div class ="container" style=" margin-left:15%; margin-top:2%; text-align:center">
 
@@ -38,7 +41,17 @@
             </br>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
+        @if(count($errors) > 0 && $errors->first() != "Autor creado correctamente")
+    <div class="alert alert-danger" role="alert" style="width:auto;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li> {{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
         </div>
+        </br>
     </body>
 
 

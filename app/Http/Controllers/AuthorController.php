@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use App\Artwork;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {
@@ -33,9 +35,7 @@ class AuthorController extends Controller
             $input['imgRoute'] = $filepath;
         }
         Author::create($input);
-        // return "Autor $request->name añadida a la BD!";
-        $authors = Author::all();
-        return view('createObjects.author', compact('authors'));
+        return Redirect::to('/authors/create')->withErrors(['Autor creado correctamente']);
     }
 
     public function deleteAuthor(){
