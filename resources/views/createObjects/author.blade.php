@@ -21,8 +21,8 @@
             </div>
             </br>
             <div class="form-group">
-                <label for="bd">Birth date</label>
-                <input type="number" id="bd" name="birth_date" autofocus>
+                <label for="bd">Year date</label>
+                <input type="number" id="bd" name="birth_date"  min="0" max="2500" autofocus>
             </div>
             </br>
             <div class="form-group">
@@ -30,10 +30,6 @@
                 <input type="text" id="mv" name="movement" autofocus>
             </div>
             </br>
-            <div class="form-group">
-                <label for="ew">WikiLink</label>
-                <input type="text" id="ew" name="eWiki" autofocus>
-            </div>
             </br>
             <div class="form-group" >
                 <label for="img">Image</label>

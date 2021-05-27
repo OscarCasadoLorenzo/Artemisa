@@ -19,7 +19,7 @@
         <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
         <input type="text" class="form-control" id="movement" name="movement" placeholder="Movement"/>
         <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="Nacionality"/>
-        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth"/>
+        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Year of birth"/>
         <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>

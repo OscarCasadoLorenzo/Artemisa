@@ -23,7 +23,7 @@ class AuthorController extends Controller
         return view('createObjects.author');
     }
 
-    public function saveAuthor(Request $request){
+    public function saveAuthor(AuthorRequest $request){
         $input = $request->all();
         if($file = $request->file('imgRoute')){
             $filename = $file->getClientOriginalName();
@@ -56,7 +56,7 @@ class AuthorController extends Controller
         return view('updateObject.author', compact('authors',$authors));
     }
 
-    public function update(Request $request)
+    public function update(AuthorRequest $request)
     {
         $authors = Author::findOrFail($request->input('author_id'));
         if($authors->name != $request->input('name')){
