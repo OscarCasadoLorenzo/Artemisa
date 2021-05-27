@@ -20,27 +20,27 @@
             @csrf
             <div class="form-group">
                 <label for="tt">Title</label>
-                <input type="text" id="tt" name="title" autofocus>
+                <input type="text" id="tt" name="title" autofocus value="{{ old('title') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="mv">Artistic movement</label>
-                <input type="text" id="mv" name="movement" autofocus>
+                <input type="text" id="mv" name="movement" autofocus value="{{ old('movement') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="gr">Genre</label>
-                <input type="text" id="gr" name="genre" autofocus>
+                <input type="text" id="gr" name="genre" autofocus value="{{ old('genre') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="dm">Dimensions</label>
-                <input type="text" id="dm" name="dimensions" autofocus>
+                <input type="text" id="dm" name="dimensions" autofocus placeholder="24.5x12m" value="{{ old('dimensions') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="yr">Year</label>
-                <input type="number" id="yr" name="year" autofocus>
+                <input type="number" id="yr" name="year" autofocus value="{{ old('year') }}">
             </div>
             </br>
             <div class="form-group">

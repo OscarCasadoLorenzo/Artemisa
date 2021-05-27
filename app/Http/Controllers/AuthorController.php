@@ -26,6 +26,12 @@ class AuthorController extends Controller
     }
 
     public function saveAuthor(AuthorRequest $request){
+
+        $request->validate(
+            [
+                'name' => 'unique:authors,name',
+            ]);
+
         $input = $request->all();
         if($file = $request->file('imgRoute')){
             $filename = $file->getClientOriginalName();
@@ -58,11 +64,11 @@ class AuthorController extends Controller
 
     public function update(AuthorRequest $request)
     {
-        $authors = Author::findOrFail($request->input('author_id'));
+        $authors = Author::findOrFail($request->input('id'));
         if($authors->name != $request->input('name')){
             $request->validate(
             [
-                'name' => 'required|unique:authors,name',
+                'name' => 'unique:authors,name',
                 //'birth_date' => 'date' Multivalidación?
             ]);
         }
@@ -71,7 +77,7 @@ class AuthorController extends Controller
         $authors->birth_date = $request->input('birth_date');
         $authors->movement = $request->input('movement');
         //Subir fichero
-        if (is_uploaded_file($_FILES['imgRoute']['tmp_name'])) 
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
         {
             //Validamos que el archivo tenga contenido
             if(empty($_FILES['imgRoute']['name']))
@@ -88,13 +94,13 @@ class AuthorController extends Controller
             //Elimino todos los caracteres "raros"
             $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
             //Limite fichero
-            if ($_FILES['imgRoute']['size'] > 1000000) 
+            if ($_FILES['imgRoute']['size'] > 1000000)
             {
                 return Redirect::to('/authors/update')->withErrors(['Imagen demasiado grande']);
             }
             //Save the file
             $dest=dirname(__DIR__, 3).'/public/';
-            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$upload_file_name)) 
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$upload_file_name))
             {
                 return Redirect::to('/authors/update')->withErrors(['Error subiendo el archivo']);
             }
@@ -104,7 +110,7 @@ class AuthorController extends Controller
             $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
             rename($dbroute, $old);
             rename($dest.'images/authors/'.$upload_file_name,$dbroute);
-        }   
+        }
         $authors->save();
         //cambiar el redirect para que lleve a la pagina del author modificado
         return Redirect::to('/authors/update')->withErrors(['ACTUALIZADO CON EXITO']);

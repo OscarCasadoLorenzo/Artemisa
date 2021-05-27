@@ -15,28 +15,28 @@
             @csrf
             <div class="form-group">
                 <label for="nm">Name</label>
-                <input type="text" id="nm" name="name" autofocus>
+                <input type="text" id="nm" name="name" autofocus value="{{ old('name') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="nc">Nacionality</label>
-                <input type="text" id="nc" name="nacionality" autofocus>
+                <input type="text" id="nc" name="nacionality" autofocus value="{{ old('nacionality') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="bd">Year date</label>
-                <input type="number" id="bd" name="birth_date"  min="0" max="2500" autofocus>
+                <input type="number" id="bd" name="birth_date"  min="0" max="2500" autofocus value="{{ old('birth_date') }}">
             </div>
             </br>
             <div class="form-group">
                 <label for="mv">Artistic movement&nbsp;&nbsp;</label>
-                <input type="text" id="mv" name="movement" autofocus>
+                <input type="text" id="mv" name="movement" autofocus value="{{ old('movement') }}">
             </div>
             </br>
             </br>
             <div class="form-group" >
                 <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:30%;">
+                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:30%;" value="{{ old('imgRoute') }}">
             </div>
             </br>
             <button class="btn btn-primary" type="submit">Submit</button>

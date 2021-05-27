@@ -60,6 +60,10 @@ class ArtworkController extends Controller
     }
 
     public function saveArtwork(ArtworkRequest $request){
+        $request->validate(
+            [
+                'title' => 'required|unique:artworks,title'
+            ]);
         $input = $request->all();
         if($file = $request->file('imgRoute')){
             $filename = $file->getClientOriginalName();
@@ -102,7 +106,7 @@ class ArtworkController extends Controller
         {
             $request->validate(
             [
-                'title' => 'required|unique:Artwork,title'
+                'title' => 'required|unique:artworks,title'
             ]);
             $art->title = $request->input('title');
         }
@@ -133,7 +137,7 @@ class ArtworkController extends Controller
         }
         $art->collection_id = $request->input('collection_id');
         //Subir fichero
-        if (is_uploaded_file($_FILES['imgRoute']['tmp_name'])) 
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
         {
             //Validamos que el archivo tenga contenido
             if(empty($_FILES['imgRoute']['name']))
@@ -150,13 +154,13 @@ class ArtworkController extends Controller
             //Elimino todos los caracteres "raros"
             $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
             //Limite fichero
-            if ($_FILES['imgRoute']['size'] > 1000000) 
+            if ($_FILES['imgRoute']['size'] > 1000000)
             {
                 return Redirect::to('/artworks/update')->withErrors(['Imagen demasiado grande']);
             }
             //Save the file
             $dest=dirname(__DIR__, 3).'/public/';
-            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/artworks/'.$upload_file_name)) 
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/artworks/'.$upload_file_name))
             {
                 return Redirect::to('/artworks/update')->withErrors(['Error subiendo el archivo']);
             }
@@ -166,7 +170,7 @@ class ArtworkController extends Controller
             $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
             rename($dbroute, $old);
             rename($dest.'images/artworks/'.$upload_file_name,$dbroute);
-        }   
+        }
         $art->save();
         return Redirect::to('/artworks/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
