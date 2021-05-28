@@ -45,11 +45,14 @@
             </br>
             <div class="form-group">
                 <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:30%" value="{{ old('imgRoute') }}">
+                <input style="margin-left:28%;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" ></br>
             </div>
             </br>
             <button class="btn btn-primary"  type="submit">Submit</button>
         </br>
+        <div id="preview" style="position:absolute;top:25%;right:50%;">
+ 
+        </div>
         <div class="container">
         </br>
             @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO") 
@@ -65,6 +68,32 @@
         </form>
         </div>
     </body>
+    <script>
+ 
+// Funcion para previsualizar la imagen
+function preview(e)
+{
+	if(e.files && e.files[0])
+	{
+        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // ficheros (o información en buffer) almacenados en el cliente de forma
+        // asíncrona
+        var reader=new FileReader();
+
+        // El evento onload se ejecuta cada vez que se ha leido el archivo
+        // correctamente
+        reader.onload=function(e) {
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+        }
+        // El evento onerror se ejecuta si ha encontrado un error de lectura
+        reader.onerror=function(e) {
+            document.getElementById("preview").innerHTML="Error de lectura";
+        }
+        // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+        reader.readAsDataURL(e.files[0]);
+	}
+}
+</script>
     @else
 <body>
     <div>

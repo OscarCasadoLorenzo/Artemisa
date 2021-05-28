@@ -205,6 +205,7 @@ class ArtworkController extends Controller
             else
             {
                 rename($dest.'images/artworks/'.$upload_file_name,$dest.'images/artworks/'.$art->title.'.png');
+                $art->imgRoute = 'images/artworks/'.$art->title.'.png';
             }
 
         }

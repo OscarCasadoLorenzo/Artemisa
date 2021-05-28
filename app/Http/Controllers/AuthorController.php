@@ -142,6 +142,7 @@ class AuthorController extends Controller
             else
             {
                 rename($dest.'images/authors/'.$upload_file_name,$dest.'images/authors/'.$authors->name.'.png');
+                $authors->imgRoute = 'images/authors/'.$authors->name.'.png';
             }
         }
         $authors->save();
