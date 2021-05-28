@@ -131,11 +131,18 @@ class AuthorController extends Controller
                 return Redirect::to('/authors/update')->withErrors(['Error subiendo el archivo']);
             }
             //Muevo y renombro
-            $dbroute = $dest.$authors->imgRoute;
-            $extension_pos = strrpos($dbroute, '.');
-            $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
-            rename($dbroute, $old);
-            rename($dest.'images/authors/'.$upload_file_name,$dbroute);
+            if(file_exists($dest.'images/authors/'.$authors->name.'.png'))
+            {
+                $dbroute = $dest.$authors->imgRoute;
+                $extension_pos = strrpos($dbroute, '.');
+                $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
+                rename($dbroute, $old);
+                rename($dest.'images/authors/'.$upload_file_name,$dbroute);
+            }
+            else
+            {
+                rename($dest.'images/authors/'.$upload_file_name,$dest.'images/authors/'.$authors->name.'.png');
+            }
         }
         $authors->save();
         //cambiar el redirect para que lleve a la pagina del author modificado

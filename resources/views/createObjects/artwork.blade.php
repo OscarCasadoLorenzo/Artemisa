@@ -48,7 +48,7 @@
                 <select name="author_id" id ="select" class="form-control">
                     <option value="">Choose an Author</option>
                     @foreach ($authors as $author)
-                    <option value="{{$author['id']}}">{{$author['name']}}</option>
+                    <option value="{{$author['id']}}" @if (old('author_id') == $author['id']) selected="selected" @endif >{{$author['name']}}</option>
                     @endforeach
                 </select>
             </div>
@@ -58,18 +58,21 @@
                 <select name="collection_id" id ="select" class="form-control">
                     <option value="">Choose a Collection</option>
                     @foreach ($collections as $collection)
-                    <option value="{{$collection['id']}}">{{$collection['name']}}</option>
+                    <option value="{{$collection['id']}}" @if (old('collection_id') == $collection['id']) selected="selected" @endif >{{$collection['name']}}</option>
                     @endforeach
                 </select>
             </div>
             </br>
             <div class="form-group">
                 <label for="img">Image</label>
-                <input type="file" id="img" name="imgRoute" autofocus style="margin-left:28%;">
+                <input style="margin-left:28%;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" ></br>
             </div>
             </br>
 
             <button class="btn btn-primary" type="submit">Submit</button>
+            <div id="preview" style="position:absolute;top:25%;right:50%;">
+            
+            </div>
             @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO")
             <div class="alert alert-danger" role="alert" style="width:auto;">
                 <ul>
@@ -82,7 +85,31 @@
         </form>
         </div>
     </body>
+    <script>
+// Funcion para previsualizar la imagen
+function preview(e)
+{
+	if(e.files && e.files[0])
+	{
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
+        // ficheros (o información en buffer) almacenados en el cliente de forma
+        // asíncrona
+        var reader=new FileReader();
 
+        // El evento onload se ejecuta cada vez que se ha leido el archivo
+        // correctamente
+        reader.onload=function(e) {
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+        }
+        // El evento onerror se ejecuta si ha encontrado un error de lectura
+        reader.onerror=function(e) {
+            document.getElementById("preview").innerHTML="Error de lectura";
+        }
+        // indicamos que lea la imagen seleccionado por el usuario de su disco duro
+        reader.readAsDataURL(e.files[0]);
+	}
+}
+</script>
 @else
 <body>
     <div>

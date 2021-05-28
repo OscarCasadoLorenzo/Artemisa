@@ -64,15 +64,44 @@ class ArtworkController extends Controller
             [
                 'title' => 'required|unique:artworks,title'
             ]);
-        $input = $request->all();
-        if($file = $request->file('imgRoute')){
-            $filename = $file->getClientOriginalName();
-            $file->move('images/artworks', $filename);
-            $path = '/images/artworks/';
-            $filepath = $path . $filename;
-            $input['imgRoute'] = $filepath;
+        $artwork = new artwork();
+        $artwork->title = $request->input('title');
+        $artwork->movement = $request->input('movement');
+        $artwork->genre = $request->input('genre');
+        $artwork->dimensions = $request->input('dimensions');
+        $artwork->year = $request->input('year');
+        $artwork->author_id = $request->input('author_id');
+        $artwork->collection_id = $request->input('collection_id');
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
+        {
+            //Validamos que el archivo tenga contenido
+            if(empty($_FILES['imgRoute']['name']))
+            {
+                return Redirect::to('/artworks/create')->withErrors(['Archivo no encontrado']);
+            }
+
+            $upload_file_name = $_FILES['imgRoute']['name'];
+            //Compruebo que el nombre no sea demasiado largo
+            if(strlen ($upload_file_name)>100)
+            {
+                return Redirect::to('/artworks/create')->withErrors(['Nombre del archivo demasiado grande']);
+            }
+            //Elimino todos los caracteres "raros"
+            $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+            //Limite fichero
+            if ($_FILES['imgRoute']['size'] > 1000000)
+            {
+                return Redirect::to('/artworks/create')->withErrors(['Imagen demasiado grande']);
+            }
+            //Save the file
+            $dest=dirname(__DIR__, 3).'/public/';
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/artworks/'.$request->input('title').'.png'))
+            {
+                return Redirect::to('/artworks/create')->withErrors(['Error subiendo el archivo']);
+            }
+            $artwork->imgRoute = 'images/artworks/'.$request->input('title').'.png';
         }
-        Artwork::create($input);
+        $artwork->save();
         return Redirect::to('/artworks/create')->withErrors(['CREADO CON EXITO']);
     }
 
@@ -165,11 +194,19 @@ class ArtworkController extends Controller
                 return Redirect::to('/artworks/update')->withErrors(['Error subiendo el archivo']);
             }
             //Muevo y renombro
-            $dbroute = $dest.$art->imgRoute;
-            $extension_pos = strrpos($dbroute, '.');
-            $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
-            rename($dbroute, $old);
-            rename($dest.'images/artworks/'.$upload_file_name,$dbroute);
+            if(file_exists($dest.'images/artworks/'.$art->title.'.png'))
+            {
+                $dbroute = $dest.$art->imgRoute;
+                $extension_pos = strrpos($dbroute, '.');
+                $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
+                rename($dbroute, $old);
+                rename($dest.'images/artworks/'.$upload_file_name,$dbroute);
+            }
+            else
+            {
+                rename($dest.'images/artworks/'.$upload_file_name,$dest.'images/artworks/'.$art->title.'.png');
+            }
+
         }
         $art->save();
         return Redirect::to('/artworks/update')->withErrors(['ACTUALIZADO CON EXITO']);
