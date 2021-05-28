@@ -28,19 +28,45 @@ class AuthorController extends Controller
     public function saveAuthor(AuthorRequest $request){
 
         $request->validate(
-            [
-                'name' => 'unique:authors,name',
-            ]);
+        [
+            'name' => 'unique:authors,name',
+        ]);
+        
+        $author = new author();
+        $author->name = $request->input('name');
+        $author->nacionality = $request->input('nacionality');
+        $author->birth_date = $request->input('birth_date');
+        $author->movement = $request->input('movement');
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
+        {
+            //Validamos que el archivo tenga contenido
+            if(empty($_FILES['imgRoute']['name']))
+            {
+                return Redirect::to('/authors/create')->withErrors(['Archivo no encontrado']);
+            }
 
-        $input = $request->all();
-        if($file = $request->file('imgRoute')){
-            $filename = $file->getClientOriginalName();
-            $file->move('images/authors', $filename);
-            $path = '/images/authors/';
-            $filepath = $path . $filename;
-            $input['imgRoute'] = $filepath;
+            $upload_file_name = $_FILES['imgRoute']['name'];
+            //Compruebo que el nombre no sea demasiado largo
+            if(strlen ($upload_file_name)>100)
+            {
+                return Redirect::to('/authors/create')->withErrors(['Nombre del archivo demasiado grande']);
+            }
+            //Elimino todos los caracteres "raros"
+            $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+            //Limite fichero
+            if ($_FILES['imgRoute']['size'] > 1000000)
+            {
+                return Redirect::to('/authors/create')->withErrors(['Imagen demasiado grande']);
+            }
+            //Save the file
+            $dest=dirname(__DIR__, 3).'/public/';
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$request->input('name').'.png'))
+            {
+                return Redirect::to('/authors/create')->withErrors(['Error subiendo el archivo']);
+            }
+            $author->imgRoute = 'images/authors/'.$request->input('name').'.png';
         }
-        Author::create($input);
+        $author->save();
         return Redirect::to('/authors/create')->withErrors(['Autor creado correctamente']);
     }
 

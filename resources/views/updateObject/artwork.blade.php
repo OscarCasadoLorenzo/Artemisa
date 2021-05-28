@@ -47,9 +47,9 @@
             <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
             <button class="btn btn-primary" type="submit">Submit</button>
     </div>
-    <div id="preview" >
-
-    </div>
+    <div id="preview" style="position:absolute;top:25%;right:50%;">
+ 
+ </div>
     </form>
 </body>
 @else

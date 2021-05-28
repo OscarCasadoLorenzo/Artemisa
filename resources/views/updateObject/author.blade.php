@@ -24,9 +24,9 @@
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
         </div>
-        <div id="preview" >
-
-        </div>
+        <div id="preview" style="position:absolute;top:25%;right:50%;">
+ 
+ </div>
         </br> </br>
         @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
         <div class="alert alert-danger" role="alert" style="width:auto;">
