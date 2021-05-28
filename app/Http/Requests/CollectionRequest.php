@@ -24,7 +24,7 @@ class CollectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'regex:/^([^0-9]*)$/|min:3|max:50|required'
+            'name' => 'min:3|max:50|required'
         ];
     }
 }
