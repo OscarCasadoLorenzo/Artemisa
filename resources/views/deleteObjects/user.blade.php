@@ -9,6 +9,9 @@
     }
 </style>
 @section('information')
+@if($errors->any())
+    <h4 style="float:right;margin-right:10%;color:green;">@if($errors->first() == "ELIMINADO CON EXITO")DELETED SUCCESSFULLY @endif</h4>
+@endif
 @if (Auth::check() && Auth::User()->type == "admin")
     <body>
         <div class ="container" style=" margin-left:15%; margin-top:2%; text-align:center">

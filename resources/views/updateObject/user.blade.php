@@ -43,7 +43,7 @@
     </br> </br>
 <div class="container">
 </br>
-    @if(count($errors) > 0)
+    @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
     <div class="alert alert-danger" role="alert" style="width:auto;">
         <ul>
             @foreach ($errors->all() as $error)

@@ -2,13 +2,13 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
 <body style="">
-    <h1 style="margin-left:30%;">Update Artwork</h1>
+    <h1 style="margin-left:40%;">Update Artwork</h1>
     @if($errors->any())
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
     <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data">
     @csrf
-        <div class="container" style=" margin:25%; margin-top:1%;">
+        <div class="container" style="margin-left:35%; margin-top:1%; ">
 
             <select name="id" style="width: 400px;" id="id" class="form-control">
                 <option value="-1">Choose an Artwork</option>
@@ -32,33 +32,26 @@
                 @foreach ($collections as $collection)
                 <option value="{{$collection['id']}}" @if (old('collection_id') == $collection['id']) selected="selected" @endif>{{$collection['name']}}</option>
                 @endforeach
-            </select></br>
+            </select>
+            </br> </br>
+            @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
+            <div class="alert alert-danger" role="alert" style="width:auto;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            </br>
             <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
             <button class="btn btn-primary" type="submit">Submit</button>
-        </br> </br>
-        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
-        <div class="alert alert-danger" role="alert" style="width:auto;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li> {{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
     </div>
-    <div id="preview" >
+            <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
 
-    </div>
+            </div>
     </form>
 </body>
-@else
-<body>
-    <div>
-        <h3>Access Denied, please log in</h3>
-        <a href="/login">Login</a>
-    </div>
-</body>
-@endif
 <script type=text/javascript>
 $('#id').change(function(){
     var id = $(this).val();
@@ -97,7 +90,6 @@ $('#id').change(function(){
 </script>
 <!--No hay que reinventar tampoco la rueda-->
 <script>
-
 // Funcion para previsualizar la imagen
 function preview(e)
 {
@@ -111,7 +103,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {
@@ -122,4 +114,12 @@ function preview(e)
 	}
 }
 </script>
+@else
+<body>
+    <div>
+        <h3>Access Denied, please log in</h3>
+        <a href="/login">Login</a>
+    </div>
+</body>
+@endif
 @endsection

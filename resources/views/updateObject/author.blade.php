@@ -19,24 +19,28 @@
         <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
         <input type="text" class="form-control" id="movement" name="movement" placeholder="Movement"/>
         <input type="text" class="form-control" id="nacionality" name="nacionality" placeholder="Nacionality"/>
-        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Date of birth"/>
+        <input type="text" class="form-control" id="birth_date" name="birth_date" placeholder="Year of birth"/>
         <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
         </br>
         <button class="btn btn-primary" type="submit" >Update</button>
-        </div>
-        <div id="preview" >
+        </br>
+        </br>
+        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
+            <div class="alert alert-danger" role="alert" style="width:auto;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
         </div>
-        </br> </br>
-        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
-        <div class="alert alert-danger" role="alert" style="width:auto;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li> {{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
+        <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
+
+
+ </div>
+
         </div>
     </form>
 </body>
@@ -86,7 +90,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {

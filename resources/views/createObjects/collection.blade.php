@@ -18,7 +18,8 @@
                 @foreach($artworks as $artwork)
                     <tr class="artwork">
                         <td><label>
-                            <input type="checkbox" id="{{'check'.$artwork['id']}}"  name="art[]" class="art" value="{{$artwork['id']}}">
+                            <input type="checkbox" id="{{'check'.$artwork['id']}}"  name="art[]" class="art" value="{{$artwork['id']}}" @if(!is_null(old('art')) && in_array($artwork['id'], old('art'))) checked="checked"
+                                 @endif>
                             {{$artwork['title']}}
                     </tr>
                     </div>
@@ -30,7 +31,7 @@
             @foreach($museums as $museum)
                 <div class="museum">
                     <label>
-                        <input type="radio" id="{{'museo'.$museum['id']}}" name="museum" value="{{$museum['id']}}">
+                        <input type="radio" id="{{'museo'.$museum['id']}}" name="museum" value="{{$museum['id']}}" @if(old('museum') == $museum['id']) checked @endif>
                         {{$museum['name']}}
                     </label>
                 </div>

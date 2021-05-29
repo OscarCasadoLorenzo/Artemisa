@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use App\Artwork;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {
@@ -23,19 +25,49 @@ class AuthorController extends Controller
         return view('createObjects.author');
     }
 
-    public function saveAuthor(Request $request){
-        $input = $request->all();
-        if($file = $request->file('imgRoute')){
-            $filename = $file->getClientOriginalName();
-            $file->move('images/authors', $filename);
-            $path = '/images/authors/';
-            $filepath = $path . $filename;
-            $input['imgRoute'] = $filepath;
+    public function saveAuthor(AuthorRequest $request){
+
+        $request->validate(
+        [
+            'name' => 'unique:authors,name',
+        ]);
+        
+        $author = new author();
+        $author->name = $request->input('name');
+        $author->nacionality = $request->input('nacionality');
+        $author->birth_date = $request->input('birth_date');
+        $author->movement = $request->input('movement');
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
+        {
+            //Validamos que el archivo tenga contenido
+            if(empty($_FILES['imgRoute']['name']))
+            {
+                return Redirect::to('/authors/create')->withErrors(['Archivo no encontrado']);
+            }
+
+            $upload_file_name = $_FILES['imgRoute']['name'];
+            //Compruebo que el nombre no sea demasiado largo
+            if(strlen ($upload_file_name)>100)
+            {
+                return Redirect::to('/authors/create')->withErrors(['Nombre del archivo demasiado grande']);
+            }
+            //Elimino todos los caracteres "raros"
+            $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+            //Limite fichero
+            if ($_FILES['imgRoute']['size'] > 1000000)
+            {
+                return Redirect::to('/authors/create')->withErrors(['Imagen demasiado grande']);
+            }
+            //Save the file
+            $dest=dirname(__DIR__, 3).'/public/';
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$request->input('name').'.png'))
+            {
+                return Redirect::to('/authors/create')->withErrors(['Error subiendo el archivo']);
+            }
+            $author->imgRoute = 'images/authors/'.$request->input('name').'.png';
         }
-        Author::create($input);
-        // return "Autor $request->name añadida a la BD!";
-        $authors = Author::all();
-        return view('createObjects.author', compact('authors'));
+        $author->save();
+        return Redirect::to('/authors/create')->withErrors(['Autor creado correctamente']);
     }
 
     public function deleteAuthor(){
@@ -56,7 +88,7 @@ class AuthorController extends Controller
         return view('updateObject.author', compact('authors',$authors));
     }
 
-    public function update(Request $request)
+    public function update(AuthorRequest $request)
     {
         $authors = Author::findOrFail($request->input('author_id'));
         if($authors->name != $request->input('name')){
@@ -71,7 +103,7 @@ class AuthorController extends Controller
         $authors->birth_date = $request->input('birth_date');
         $authors->movement = $request->input('movement');
         //Subir fichero
-        if (is_uploaded_file($_FILES['imgRoute']['tmp_name'])) 
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
         {
             //Validamos que el archivo tenga contenido
             if(empty($_FILES['imgRoute']['name']))
@@ -88,26 +120,34 @@ class AuthorController extends Controller
             //Elimino todos los caracteres "raros"
             $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
             //Limite fichero
-            if ($_FILES['imgRoute']['size'] > 1000000) 
+            if ($_FILES['imgRoute']['size'] > 1000000)
             {
                 return Redirect::to('/authors/update')->withErrors(['Imagen demasiado grande']);
             }
             //Save the file
             $dest=dirname(__DIR__, 3).'/public/';
-            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$upload_file_name)) 
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/authors/'.$upload_file_name))
             {
                 return Redirect::to('/authors/update')->withErrors(['Error subiendo el archivo']);
             }
             //Muevo y renombro
-            $dbroute = $dest.$authors->imgRoute;
-            $extension_pos = strrpos($dbroute, '.');
-            $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
-            rename($dbroute, $old);
-            rename($dest.'images/authors/'.$upload_file_name,$dbroute);
-        }   
+            if(file_exists($dest.'images/authors/'.$authors->name.'.png'))
+            {
+                $dbroute = $dest.$authors->imgRoute;
+                $extension_pos = strrpos($dbroute, '.');
+                $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
+                rename($dbroute, $old);
+                rename($dest.'images/authors/'.$upload_file_name,$dbroute);
+            }
+            else
+            {
+                rename($dest.'images/authors/'.$upload_file_name,$dest.'images/authors/'.$authors->name.'.png');
+                $authors->imgRoute = 'images/authors/'.$authors->name.'.png';
+            }
+        }
         $authors->save();
         //cambiar el redirect para que lleve a la pagina del author modificado
-        return redirect('/authors');
+        return Redirect::to('/authors/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function destroyAuthor(Request $request){
@@ -116,7 +156,7 @@ class AuthorController extends Controller
 
         $authors = Author::all();
 
-        return view('deleteObjects.author', compact('authors'));
+        return Redirect::to('/authors/delete')->withErrors(['ELIMINADO CON EXITO']);
     }
 
     public function buscar(Request $request){

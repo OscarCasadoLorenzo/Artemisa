@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Museum;
 use \App\Http\Controllers\CollectionController;
 use App\Http\Requests\MuseumRequest;
-
+use Illuminate\Support\Facades\Redirect;
 
 class MuseumController extends Controller
 {
@@ -29,22 +29,48 @@ class MuseumController extends Controller
     public function saveMuseum(MuseumRequest $request){
 
         $request->validate(
-            [
-                'name' => 'unique:museums',
-            ]);
+        [
+            'name' => 'unique:museums',
+        ]);
+        $museum = new museum();
+        $museum -> name = $request->input('name');
+        $museum->location = $request->input('location');
+        $museum->address = $request->input('address');
+        $museum->email = $request->input('email');
+        //Subir fichero
+        if (is_uploaded_file($_FILES['imgRoute']['tmp_name']))
+        {
+            //Validamos que el archivo tenga contenido
+            if(empty($_FILES['imgRoute']['name']))
+            {
+                return Redirect::to('/museums/create')->withErrors(['Archivo no encontrado']);
+            }
 
-        $input = $request->all();
-        if($file = $request->file('imgRoute')){
-            $filename = $file->getClientOriginalName();
-            $file->move('images/museums', $filename);
-            $path = '/images/museums/';
-            $filepath = $path . $filename;
-            $input['imgRoute'] = $filepath;
+            $upload_file_name = $_FILES['imgRoute']['name'];
+            //Compruebo que el nombre no sea demasiado largo
+            if(strlen ($upload_file_name)>100)
+            {
+                return Redirect::to('/museums/create')->withErrors(['Nombre del archivo demasiado grande']);
+            }
+            //Elimino todos los caracteres "raros"
+            $upload_file_name = preg_replace("/[^A-Za-z0-9 \.\-_]/", '', $upload_file_name);
+            //Limite fichero
+            if ($_FILES['imgRoute']['size'] > 1000000)
+            {
+                return Redirect::to('/museums/create')->withErrors(['Imagen demasiado grande']);
+            }
+            //Save the file
+            $dest=dirname(__DIR__, 3).'/public/';
+            if (!move_uploaded_file($_FILES['imgRoute']['tmp_name'], $dest.'images/museums/'.$upload_file_name))
+            {
+                return Redirect::to('/museums/create')->withErrors(['Error subiendo el archivo']);
+            }
+            //Muevo y renombro
+            rename($dest.'images/museums/'.$upload_file_name,$dest.'images/museums/'.$museum->name.'.png');
+            $museum->imgRoute = 'images/museums/'.$museum->name.'.png';
         }
-        Museum::create($input);
-        // return "Museo $request->name añadido a la BD!";
-        $museums = Museum::all();
-        return view('createObjects.museum', compact('museums'));
+        $museum->save();
+        return Redirect::to('/museums/create')->withErrors(['CREADO CON EXITO']);
     }
 
     public function getMuseum($id){
@@ -112,24 +138,29 @@ class MuseumController extends Controller
                 return Redirect::to('/museums/update')->withErrors(['Error subiendo el archivo']);
             }
             //Muevo y renombro
-            $dbroute = $dest.$museum->imgRoute;
-            $extension_pos = strrpos($dbroute, '.');
-            $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
-            rename($dbroute, $old);
-            rename($dest.'images/museums/'.$upload_file_name,$dbroute);
+            if(file_exists($dest.'images/museums/'.$museum->name.'.png'))
+            {
+                $dbroute = $dest.$museum->imgRoute;
+                $extension_pos = strrpos($dbroute, '.');
+                $old = substr($dbroute, 0, $extension_pos) . '.old' . substr($dbroute, $extension_pos);
+                rename($dbroute, $old);
+                rename($dest.'images/museums/'.$upload_file_name,$dbroute);
+            }
+            else
+            {
+                $museum->imgRoute = 'images/museums/'.$museum->name.'.png';
+                rename($dest.'images/museums/'.$upload_file_name,$dest.'images/museums/'.$museum->name.'.png');
+            }
         }
         $museum->save();
-        $museums = Museum::all();
-        return view('updateObject.museum', compact('museums',$museums));
+        return Redirect::to('/museums/update')->withErrors(['ACTUALIZADO CON EXITO']);
     }
 
     public function destroyMuseum(Request $request){
         $aux = Museum::findOrFail($request->museum_id);
         $aux->delete();
 
-        $museums = Museum::all(); //cogemos los usuarios que no son admin
-
-        return view('deleteObjects.museum', compact('museums'));
+        return Redirect::to('/museums/delete')->withErrors(['ELIMINADO CON EXITO']);
     }
 
     public function buscar(Request $request){

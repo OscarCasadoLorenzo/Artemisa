@@ -31,7 +31,6 @@ class CollectionController extends Controller
 
     public function saveCollection(CollectionRequest $request){
         $coll = new Collection;
-        $coll -> id = DB::select("SHOW TABLE STATUS LIKE 'collections'")[0]->Auto_increment + 1;
         $request->validate(
         [
             'name' => 'required|unique:collections,name'
@@ -39,17 +38,25 @@ class CollectionController extends Controller
         $coll -> name = $request->input('name');
         if(!isset($_POST['museum']) || empty($_POST['museum'])) return Redirect::to('/collections/create')->withInput($request->all())->withErrors(['You must select the museum']);
         $coll->museum_id = $_POST['museum'];
-        $artworks = Artwork::all();
         $selected = $request->input('art');
-        foreach($artworks as $artwork)
+        $updated =  array();
+        if($selected != null)
         {
-            if(in_array($artwork->id, $selected))
+            $artworks = Artwork::all();
+            foreach($artworks as $artwork)
             {
-                $artwork->collection_id = $coll->id;
+                if(in_array($artwork->id, $selected))
+                {
+                    array_push($updated,$artwork);
+                }
             }
         }
         $coll->save();
-        foreach($artworks as $artwork) $artwork->save();
+        foreach($updated as $artwork)
+        {
+            $artwork->collection_id = $coll->id;
+            $artwork->save();
+        } 
         return Redirect::to('/collections/create')->withErrors(['Collection Created']);
     }
 

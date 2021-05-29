@@ -11,6 +11,9 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
     <body>
+    @if($errors->any())
+        <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ELIMINADO CON EXITO")DELETED SUCCESSFULLY @endif</h4>
+    @endif
         <div class ="container" style=" margin-left:15%; margin-top:2%; text-align:center">
 
         <h1>Delete an author:</h1>
