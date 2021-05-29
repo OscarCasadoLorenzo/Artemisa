@@ -50,8 +50,8 @@
             </ul>
         </div>
         @endif
-        <div id="preview" style="position:absolute;top:25%;right:50%;">
- 
+        <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
+
         </div>
         </div>
         </br>
@@ -61,7 +61,7 @@ function preview(e)
 {
 	if(e.files && e.files[0])
 	{
-        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
         // ficheros (o información en buffer) almacenados en el cliente de forma
         // asíncrona
         var reader=new FileReader();
@@ -69,7 +69,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {

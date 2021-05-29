@@ -50,12 +50,12 @@
             </br>
             <button class="btn btn-primary"  type="submit">Submit</button>
         </br>
-        <div id="preview" style="position:absolute;top:25%;right:50%;">
- 
+        <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
+
         </div>
         <div class="container">
         </br>
-            @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO") 
+            @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO")
             <div class="alert alert-danger" role="alert" style="width:auto;">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -69,13 +69,13 @@
         </div>
     </body>
     <script>
- 
+
 // Funcion para previsualizar la imagen
 function preview(e)
 {
 	if(e.files && e.files[0])
 	{
-        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
         // ficheros (o información en buffer) almacenados en el cliente de forma
         // asíncrona
         var reader=new FileReader();
@@ -83,7 +83,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {

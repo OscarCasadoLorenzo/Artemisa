@@ -20,25 +20,25 @@
         <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="{{ old('location') }}"/>
         <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}"/>
         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ old('email') }}"/>
+        </br>
         <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
         </br>
         <button class="btn btn-primary" type="submit" style="text-align:center">Update</button>
-    </br>
-    <div class="container">
-    </br>
-        @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
-        <div class="alert alert-danger" role="alert" style="width:auto;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li> {{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    </br>    </br>
+</br>
+
+    @if(count($errors) > 0 && $errors->first() != "ACTUALIZADO CON EXITO")
+    <div class="alert alert-danger" role="alert" style="width:auto;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li> {{$error}}</li>
+            @endforeach
+        </ul>
     </div>
+@endif
         </div>
-        <div id="preview" style="position:absolute;top:25%;right:50%;">
- 
+        <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
+
         </div>
 
 
@@ -76,13 +76,13 @@ $('#museum_id').change(function(){
 });
 </script>
 <script>
- 
+
 // Funcion para previsualizar la imagen
 function preview(e)
 {
 	if(e.files && e.files[0])
 	{
-        // Inicializamos un FileReader. permite que las aplicaciones web lean 
+        // Inicializamos un FileReader. permite que las aplicaciones web lean
         // ficheros (o información en buffer) almacenados en el cliente de forma
         // asíncrona
         var reader=new FileReader();
@@ -90,7 +90,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {

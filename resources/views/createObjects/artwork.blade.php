@@ -70,9 +70,12 @@
             </br>
 
             <button class="btn btn-primary" type="submit">Submit</button>
-            <div id="preview" style="position:absolute;top:25%;right:50%;">
-            
+            <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
+
             </div>
+        </br>
+    </br>
+
             @if(count($errors) > 0 && $errors->first() != "CREADO CON EXITO")
             <div class="alert alert-danger" role="alert" style="width:auto;">
                 <ul>
@@ -99,7 +102,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {

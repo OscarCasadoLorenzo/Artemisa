@@ -2,13 +2,13 @@
 @section('information')
 @if (Auth::check() && Auth::User()->type == "admin")
 <body style="">
-    <h1 style="margin-left:30%;">Update Artwork</h1>
+    <h1 style="margin-left:40%;">Update Artwork</h1>
     @if($errors->any())
         <h4 style="position:absolute;left:60%;color:green;">@if($errors->first() == "ACTUALIZADO CON EXITO")UPDATED SUCCESSFULLY @endif</h4>
     @endif
     <form method="POST" action="{{route('artwork.update')}}" enctype="multipart/form-data">
     @csrf
-        <div class="container" style=" margin:25%; margin-top:1%;">
+        <div class="container" style="margin-left:35%; margin-top:1%; ">
 
             <select name="id" style="width: 400px;" id="id" class="form-control">
                 <option value="-1">Choose an Artwork</option>
@@ -47,7 +47,7 @@
             <input style="width: 400px;" type="file" id="imgRoute" onchange="preview(this)" name="imgRoute" accept="image/png" value="{{old('imgRoute')}}" placeholder="Route of image"></br>
             <button class="btn btn-primary" type="submit">Submit</button>
     </div>
-            <div id="preview" style="position:absolute;top:25%;right:50%;">
+            <div id="preview" style="position:absolute;top:15%;right:50%;left:10%; text-align: left; width:300px; height:200px">
 
             </div>
     </form>
@@ -103,7 +103,7 @@ function preview(e)
         // El evento onload se ejecuta cada vez que se ha leido el archivo
         // correctamente
         reader.onload=function(e) {
-            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width: 30%;'>";
+            document.getElementById("preview").innerHTML="<img src='"+e.target.result+"'style='max-width:300px;'>";
         }
         // El evento onerror se ejecuta si ha encontrado un error de lectura
         reader.onerror=function(e) {
