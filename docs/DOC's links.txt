@@ -5,10 +5,9 @@ USUARIO ADMIN:
 email: admin@mail.es
 pass: Admin_123
 
-Debido al volumen máximo permitido en la entrega (20MB) nos vemos obligados a referenciaros al siguiente repositorio de Google Drive: 
+En este enlace está la presentación de nuestra página:
 
 https://docs.google.com/presentation/d/1pqFdyJ64g5_HGG2Lz3nGtBNoSfgTNLDEL3IBilBh0EI/edit?usp=sharing
 
-En él se encuentran tanto los mockups, como el UML y la presentación (video y audios incluidos).
 Cualquier duda no duden en contactar con los componentes del equipo.
 
