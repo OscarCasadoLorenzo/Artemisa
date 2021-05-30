@@ -1,5 +1,9 @@
 # proyectoDSS
 
+Los datos de usuario se encuentran en el txt de docs, asi como el UML y los mockups.
+La mayor novedad respecto a la anterior entrega se encuentra en los CRUD, sobretodo en otros en los UPDATE.
+
+
 git config --global user.name "josemicarrion99"
 git config --global user.email "jmcp25@alu.ua.es"
 
