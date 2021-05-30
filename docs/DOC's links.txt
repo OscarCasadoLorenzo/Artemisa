@@ -7,7 +7,7 @@ pass: Admin_123
 
 Debido al volumen máximo permitido en la entrega (20MB) nos vemos obligados a referenciaros al siguiente repositorio de Google Drive: 
 
-https://drive.google.com/drive/folders/1983TXcb6n4w81-QlFqTB3on3WWja_vBm?usp=sharing
+https://docs.google.com/presentation/d/1pqFdyJ64g5_HGG2Lz3nGtBNoSfgTNLDEL3IBilBh0EI/edit?usp=sharing
 
 En él se encuentran tanto los mockups, como el UML y la presentación (video y audios incluidos).
 Cualquier duda no duden en contactar con los componentes del equipo.
